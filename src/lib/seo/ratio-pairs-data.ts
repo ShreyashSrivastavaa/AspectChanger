@@ -24,7 +24,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
     targetRatio: "9:16",
     title: "16:9 to 9:16 Video Converter - Landscape to Vertical Video",
     h1: "Convert 16:9 Landscape Video to 9:16 Vertical",
-    metaDescription: "Convert 16:9 widescreen video to 9:16 vertical online without uploading. Calculate exact crop loss, preview blur margins, and export in 1080x1920 with WebAssembly.",
+    metaDescription: "Convert 16:9 widescreen video to 9:16 vertical online without uploading. Calculate exact crop loss, preview blur margins, and export in 1080x1920 with WebCodecs.",
     summary: "Converting 16:9 widescreen footage to 9:16 vertical is the most frequent video transformation in modern content repurposing. Because a 16:9 horizontal frame is much wider than a vertical screen, direct cropping cuts away 68.36% of the active video width. AspectCut provides intelligent reframing options: an interactive focal point draggable crop to center moving subjects, or a dynamic blurred background mode that retains 100% of the active frame with zero letterbox dead space.",
     useCaseDescription: "Ideal for converting YouTube horizontal videos, landscape podcasts, 4K camera footage, drone reels, and desktop gameplay clips into vertical videos for TikTok, YouTube Shorts, Instagram Reels, and Snapchat.",
     compositionAdvice: "If your footage contains a single speaker or centered subject, use 'Crop' mode with our draggable focal point to center their face. For instructional screencasts, UI demonstrations, or multi-person panel discussions where cropping cuts off critical context, choose 'Blurred Background' to display the complete 16:9 frame in the vertical center while filling top and bottom bars with aesthetic ambient blur.",
@@ -39,7 +39,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       "Select 9:16 vertical target ratio.",
       "Choose 'Blur' to keep the full landscape frame or 'Crop' to zoom edge-to-edge.",
       "If using 'Crop', drag the focal point target to center your subject.",
-      "Click 'Convert Video' to run local WebAssembly encoding and download your 1080×1920 file."
+      "Click 'Convert Video' to run local WebCodecs encoding and download your 1080×1920 file."
     ],
     faqs: [
       {
@@ -56,7 +56,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       },
       {
         q: "Does AspectCut upload my video to a remote server?",
-        a: "No. AspectCut executes an Emscripten-compiled FFmpeg WebAssembly binary directly within your local browser memory. No video bytes leave your computer."
+        a: "No. AspectCut executes an hardware-accelerated WebCodecs engine directly within your local browser memory. No video bytes leave your computer."
       }
     ]
   },
@@ -81,7 +81,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       "Set target aspect ratio to 16:9 (1920×1080).",
       "Select 'Blur' to preserve full vertical height with blurred sidebars.",
       "Preview the result in the interactive canvas.",
-      "Export your 16:9 landscape video locally via client-side WebAssembly."
+      "Export your 16:9 landscape video locally via client-side WebCodecs."
     ],
     faqs: [
       {
@@ -123,7 +123,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       "Select 1:1 Square (1080×1080) as your target ratio.",
       "Choose 'Crop' and drag the focal position over your subject.",
       "Check the real-time preview to ensure all critical action stays inside the frame.",
-      "Render locally with instant WebAssembly processing."
+      "Render locally with instant WebCodecs processing."
     ],
     faqs: [
       {
@@ -248,7 +248,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       "Choose 16:9 Widescreen target ratio.",
       "Set fitting mode to 'Blur' to avoid vertical cropping.",
       "Preview the balanced presentation on canvas.",
-      "Download your 1920×1080 landscape video rendered locally with WebAssembly."
+      "Download your 1920×1080 landscape video rendered locally with WebCodecs."
     ],
     faqs: [
       {
@@ -265,7 +265,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       },
       {
         q: "Does this require software installation?",
-        a: "No. AspectCut runs 100% in your web browser via WebAssembly with zero server uploads."
+        a: "No. AspectCut runs 100% in your web browser via WebCodecs with zero server uploads."
       }
     ]
   },
@@ -289,7 +289,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       "Select 16:9 Widescreen target.",
       "Choose 'Crop' for edge-to-edge widescreen, or 'Blur' to preserve full vertical archival framing.",
       "Adjust focal vertical position if cropping.",
-      "Render locally via WebAssembly to 1920×1080."
+      "Render locally via WebCodecs to 1920×1080."
     ],
     faqs: [
       {
@@ -331,7 +331,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       "Choose 4:3 Classic from the ratio options.",
       "Position the focal slider over the primary focal point.",
       "Preview the 1440×1080 crop.",
-      "Export locally with instant WebAssembly encoding."
+      "Export locally with instant WebCodecs encoding."
     ],
     faqs: [
       {
@@ -348,7 +348,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       },
       {
         q: "Is AspectCut safe for sensitive or private video?",
-        a: "Yes. AspectCut operates entirely inside your local browser via WebAssembly; no video data is transmitted over the internet."
+        a: "Yes. AspectCut operates entirely inside your local browser via WebCodecs; no video data is transmitted over the internet."
       }
     ]
   },
@@ -417,7 +417,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       "Set fitting mode to 'Blur' to avoid vertical cropping, or 'Crop' to zoom edge-to-edge.",
       "Verify the balanced layout on the interactive preview canvas.",
       "Choose your export quality setting (default CRF 20 ensures crisp HD output).",
-      "Download your 1920×1080 widescreen video rendered in-browser via WebAssembly."
+      "Download your 1920×1080 widescreen video rendered in-browser via WebCodecs."
     ],
     faqs: [
       {
@@ -461,7 +461,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       "Select 'Crop' for full-screen or 'Blur' for complete toolbar visibility.",
       "Adjust focal slider if cropping to align with key illustrations.",
       "Verify the 1080×1920 composition on the live canvas.",
-      "Export directly to 1080×1920 with local WebAssembly processing."
+      "Export directly to 1080×1920 with local WebCodecs processing."
     ],
     faqs: [
       {
@@ -478,7 +478,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       },
       {
         q: "Is my video uploaded to a cloud service?",
-        a: "No. Processing is executed locally in your browser with WebAssembly."
+        a: "No. Processing is executed locally in your browser with WebCodecs."
       }
     ]
   },
@@ -505,7 +505,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       "Drag the focal point upward toward the speaker's eyes to maintain proper headroom.",
       "Preview the crop in the interactive player.",
       "Select your export quality (default CRF 20 ensures crisp edges).",
-      "Export locally via client-side WebAssembly with zero waiting queues."
+      "Export locally via client-side WebCodecs with zero waiting queues."
     ],
     faqs: [
       {
@@ -548,7 +548,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       "Select 4:5 Portrait target ratio (1080×1350 pixels).",
       "Adjust the vertical focal slider to frame the subject naturally.",
       "Preview the exact feed crop in the interactive canvas.",
-      "Export your 1080×1350 MP4 locally via WebAssembly.",
+      "Export your 1080×1350 MP4 locally via WebCodecs.",
       "Upload to Instagram feed with full composition confidence."
     ],
     faqs: [
@@ -566,7 +566,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       },
       {
         q: "Does this tool work on mobile browsers?",
-        a: "Yes. AspectCut works in modern mobile browsers with WebAssembly support."
+        a: "Yes. AspectCut works in modern mobile browsers with WebCodecs support."
       }
     ]
   },
@@ -593,7 +593,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       "Choose 'Blur' or 'Crop' according to your composition needs.",
       "Preview the result on the interactive canvas player.",
       "Select quality profile (CRF 20 recommended for sharp social media output).",
-      "Download your 1080×1920 video rendered locally via WebAssembly."
+      "Download your 1080×1920 video rendered locally via WebCodecs."
     ],
     faqs: [
       {
@@ -610,7 +610,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       },
       {
         q: "Are video files stored on your servers?",
-        a: "No. AspectCut runs 100% locally on your computer with WebAssembly."
+        a: "No. AspectCut runs 100% locally on your computer with WebCodecs."
       }
     ]
   },
@@ -637,7 +637,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       "Set fitting mode to 'Crop' to remove top/bottom black bars and fill the 16:9 canvas.",
       "Preview the composition in real-time on canvas.",
       "Choose CRF 18 or 20 for cinematic clarity.",
-      "Export locally to 1920×1080 or 3840×2160 via WebAssembly."
+      "Export locally to 1920×1080 or 3840×2160 via WebCodecs."
     ],
     faqs: [
       {
@@ -654,7 +654,7 @@ export const RATIO_PAIRS_DATA: RatioPairDetail[] = [
       },
       {
         q: "Can I convert large 4K files with AspectCut?",
-        a: "Yes. Modern desktop browsers can process high-bitrate 4K files in RAM via WebAssembly."
+        a: "Yes. Modern desktop browsers can process high-bitrate 4K files in RAM via WebCodecs."
       }
     ]
   }

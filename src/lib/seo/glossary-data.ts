@@ -125,7 +125,7 @@ export const GLOSSARY_TERMS: Record<string, GlossaryTermDetail> = {
     category: "Architecture & Web Standards",
     shortDefinition: "A low-level, binary instruction format designed as a portable compilation target for high-performance languages (C, C++, Rust), executing at near-native speed in web browsers.",
     fullExplanation: "WebAssembly enables complex C and C++ multimedia libraries—such as FFmpeg, libx264, and libswscale—to run directly inside browser runtimes with sandboxed memory safety. Prior to WebAssembly, browser-based video editing required either client plugins or uploading massive video files to remote cloud compute clusters. With modern WebAssembly multi-threading via pthreads and SharedArrayBuffer, client hardware decodes, filters, and encodes video frames locally at speeds comparable to native desktop applications. This eliminates server bandwidth costs, protects user privacy, and allows unlimited high-speed conversions without third-party surveillance or file retention risks. Furthermore, WebAssembly code executes in a tightly sandboxed stack-based virtual machine, preventing arbitrary system access while offering predictable, deterministic performance across Windows, macOS, Linux, and mobile browsers. By eliminating server upload bottlenecks, users can process multi-gigabyte camera files instantly without waiting for cloud transfers.",
-    technicalExample: "AspectCut executes FFmpeg 0.12 compiled with Emscripten into a multi-threaded wasm binary.",
+    technicalExample: "ffmpeg.wasm is a well-known example: FFmpeg compiled with Emscripten to run in a browser.",
     relatedTerms: [
       { slug: "coop-coep", term: "Cross-Origin Isolation" },
       { slug: "stream-copy", term: "Stream Copying" }

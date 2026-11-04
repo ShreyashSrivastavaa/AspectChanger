@@ -31,12 +31,12 @@ export default function TermsPage() {
       <div className="space-y-2">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--text-muted)] hover:text-[#c89c6e] transition-colors mb-2"
+          className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--text-muted)] hover:text-[var(--accent-text)] transition-colors mb-2"
         >
           <ArrowLeft className="w-3.5 h-3.5" /> Back to Tool
         </Link>
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-[11px] font-mono text-[var(--text-muted)]">
-          <Scale className="w-3.5 h-3.5 text-[#c89c6e]" />
+          <Scale className="w-3.5 h-3.5 text-[var(--accent-text)]" />
           <span>Legal & Terms</span>
         </div>
         <h1 className="text-3xl font-semibold tracking-tight text-[var(--text-main)]">
@@ -50,11 +50,11 @@ export default function TermsPage() {
       <div className="space-y-6 text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
         <div className="p-4 rounded-xl glass-panel border border-[var(--border-subtle)] space-y-2">
           <div className="flex items-center gap-2 text-xs font-semibold text-[var(--text-main)]">
-            <ShieldCheck className="w-4 h-4 text-[#c89c6e]" />
+            <ShieldCheck className="w-4 h-4 text-[var(--accent-text)]" />
             <span>Core Principle: Zero-Upload Local Processing</span>
           </div>
           <p className="text-xs">
-            Because AspectCut runs entirely inside your browser via WebAssembly (Wasm), your video data never travels across our network or touches our servers. You retain 100% ownership, copyright, and control over all media processed through the application.
+            Because AspectCut runs entirely inside your browser via WebCodecs , your video data never travels across our network or touches our servers. You retain 100% ownership, copyright, and control over all media processed through the application.
           </p>
         </div>
 
@@ -68,7 +68,7 @@ export default function TermsPage() {
         <div className="space-y-2">
           <h2 className="text-sm font-semibold text-[var(--text-main)]">2. Client-Side Execution & Privacy</h2>
           <p>
-            All video transformations (re-encoding, cropping, aspect-ratio scaling, blurring, letterboxing, and audio remuxing) are executed directly on your client hardware via WebAssembly. AspectCut does not store, index, view, or retain copies of your video or audio files.
+            All video transformations (re-encoding, cropping, aspect-ratio scaling, blurring, letterboxing, and audio remuxing) are executed directly on your client hardware via WebCodecs. AspectCut does not store, index, view, or retain copies of your video or audio files.
           </p>
         </div>
 
@@ -89,7 +89,7 @@ export default function TermsPage() {
         <div className="space-y-2">
           <h2 className="text-sm font-semibold text-[var(--text-main)]">5. Open Source Attributions</h2>
           <p>
-            AspectCut utilizes the open-source FFmpeg multimedia framework compiled to WebAssembly via Emscripten. FFmpeg is licensed under the LGPL v2.1+ or GPL v2+ depending on build configuration.
+            AspectCut utilizes the open-source Mediabunny media library, licensed under the Mozilla Public License 2.0, together with your browser&apos;s built-in WebCodecs engine. Some files also load Mediabunny codec add-ons that contain parts of FFmpeg (libavcodec), licensed under the LGPL v2.1 or later and available from the Mediabunny project, or the TurboRes-based ProRes decoder.
           </p>
         </div>
 

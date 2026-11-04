@@ -226,7 +226,7 @@ export const RESOLUTIONS_DATA: Record<string, ResolutionDetail> = {
       },
       {
         q: "Can AspectCut process 3840x2160 4K video locally?",
-        a: "Yes. AspectCut's multi-threaded WebAssembly engine processes 4K video directly inside your web browser without server uploads."
+        a: "Yes. AspectCut's hardware-accelerated WebCodecs engine processes 4K video directly inside your web browser without server uploads."
       },
       {
         q: "Can I convert 4K horizontal video into vertical for Shorts?",

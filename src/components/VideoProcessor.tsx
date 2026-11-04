@@ -4,12 +4,17 @@ import React, { useState, useRef, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import CometDial from "./CometDial";
 import NervousCatcher from "./NervousCatcher";
-import { 
-  processVideoLocally, 
-  terminateFFmpeg, 
-  getRecentLogs, 
-  getCoreDiagnostics 
-} from "@/lib/ffmpeg";
+import Dropdown from "./Dropdown";
+import { convertVideo, cancelConversion, isCancelledError } from "@/lib/video-engine";
+import { PRESET_GROUPS, findPreset, findPresetGroup, type SizePreset } from "@/lib/video-presets";
+
+const MAX_CUSTOM_RATIO = 4;
+const DEFAULT_PRESET_ID = "instagram-reels";
+
+const parseRatioPart = (value: string) => {
+  const parsed = parseFloat(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+};
 
 interface VideoProcessorProps {
   initialRatio?: { w: number; h: number };
@@ -22,7 +27,6 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
 
   // Hydration & debug state
   const [mounted, setMounted] = useState(false);
-  const [isIsolated, setIsIsolated] = useState<boolean | null>(null);
   const [isDebug, setIsDebug] = useState(false);
 
   // File state
@@ -32,17 +36,26 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
   const [isDraggingOver, setIsDraggingOver] = useState(false);
 
   // Settings state
+  // Portrait entry points start on Instagram Reels; other ratios keep what the page asked for.
+  const startsOnDefaultPreset = !initialRatio || initialRatio.w * 16 === initialRatio.h * 9;
   const [targetRatio, setTargetRatio] = useState<{ w: number; h: number }>(
     initialRatio || { w: 9, h: 16 }
   );
   const [customW, setCustomW] = useState<string>("16");
   const [customH, setCustomH] = useState<string>("9");
   const [isCustom, setIsCustom] = useState(false);
+  const [presetId, setPresetId] = useState<string | null>(startsOnDefaultPreset ? DEFAULT_PRESET_ID : null);
+  const activePreset = findPreset(presetId);
+  const activeGroup = findPresetGroup(presetId);
+  // Stays set when a ratio chip clears the preset, so Size can always be opened.
+  const [platformId, setPlatformId] = useState(PRESET_GROUPS[0].id);
+  const platform = PRESET_GROUPS.find((group) => group.id === platformId) ?? PRESET_GROUPS[0];
 
   // Fit mode: 'blur' | 'crop' | 'color' (Bars)
   const [fitMode, setFitMode] = useState<"blur" | "crop" | "color">("blur");
   const [focalX, setFocalX] = useState(0.5);
   const [focalY, setFocalY] = useState(0.5);
+  const [zoom, setZoom] = useState(1);
   const [bgColor, setBgColor] = useState("#000000");
 
   // Output configuration (collapsed in Advanced)
@@ -59,9 +72,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
   const [resultBlob, setResultBlob] = useState<{ blob: Blob; url: string; filename: string } | null>(null);
 
   // Debug Diagnostics
-  const [debugLogs, setDebugLogs] = useState<string[]>([]);
-  const [lastExecutedCommand, setLastExecutedCommand] = useState<string>("");
-  const [coreInfo, setCoreInfo] = useState<{ coreType: string; loadTimeMs: number } | null>(null);
+  const [lastEncodeSummary, setLastEncodeSummary] = useState<string>("");
 
   // Drag state for focal point
   const [isDraggingFocal, setIsDraggingFocal] = useState(false);
@@ -74,7 +85,6 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
 
   useEffect(() => {
     setMounted(true);
-    setIsIsolated(typeof window !== "undefined" && Boolean(window.crossOriginIsolated));
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       if (params.get("debug") === "1") {
@@ -86,10 +96,63 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
   useEffect(() => {
     return () => {
       if (videoSrc) URL.revokeObjectURL(videoSrc);
-      if (resultBlob?.url) URL.revokeObjectURL(resultBlob.url);
-      terminateFFmpeg();
     };
-  }, [videoSrc, resultBlob]);
+  }, [videoSrc]);
+
+  useEffect(() => {
+    return () => {
+      if (resultBlob?.url) URL.revokeObjectURL(resultBlob.url);
+    };
+  }, [resultBlob]);
+
+  useEffect(() => {
+    return () => {
+      void cancelConversion();
+    };
+  }, []);
+
+  const parsedCustomW = parseRatioPart(customW);
+  const parsedCustomH = parseRatioPart(customH);
+  const customRatioValid =
+    parsedCustomW !== null &&
+    parsedCustomH !== null &&
+    parsedCustomW / parsedCustomH <= MAX_CUSTOM_RATIO &&
+    parsedCustomH / parsedCustomW <= MAX_CUSTOM_RATIO;
+  const customRatioInvalid = isCustom && !customRatioValid;
+  const useCustomRatio = isCustom && customRatioValid;
+  const currentRatioW = useCustomRatio ? parsedCustomW : targetRatio.w;
+  const currentRatioH = useCustomRatio ? parsedCustomH : targetRatio.h;
+  const ratioLabel = activePreset?.ratio ?? `${currentRatioW}:${currentRatioH}`;
+
+  // A finished result or old error no longer describes the settings once they change.
+  useEffect(() => {
+    setResultBlob(null);
+    setErrorMessage(null);
+  }, [currentRatioW, currentRatioH, presetId, fitMode, focalX, focalY, zoom, bgColor, resolution, format, quality]);
+
+  const applyPreset = (preset: SizePreset) => {
+    setIsCustom(false);
+    setPresetId(preset.id);
+    setPlatformId(findPresetGroup(preset.id)?.id ?? PRESET_GROUPS[0].id);
+    setTargetRatio({ w: preset.width, h: preset.height });
+  };
+
+  // Size links on the page use #size=<preset id> to load a preset into the tool.
+  useEffect(() => {
+    const applyHash = () => {
+      const match = window.location.hash.match(/^#size=(.+)$/);
+      if (!match) return;
+      const preset = findPreset(match[1]);
+      if (preset && !isProcessing) {
+        applyPreset(preset);
+        document.getElementById("tool")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
+  }, [isProcessing]);
 
   const handleFile = (selectedFile: File) => {
     setErrorMessage(null);
@@ -100,10 +163,10 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
       return;
     }
 
-    const validExts = [".mp4", ".mov", ".webm", ".mkv", ".avi"];
+    const validExts = [".mp4", ".mov", ".webm", ".mkv"];
     const ext = selectedFile.name.substring(selectedFile.name.lastIndexOf(".")).toLowerCase();
     if (!validExts.includes(ext) && !selectedFile.type.startsWith("video/")) {
-      setErrorMessage("Unsupported format. Please upload MP4, MOV, WebM, MKV, or AVI.");
+      setErrorMessage("Unsupported format. Please upload MP4, MOV, WebM, or MKV.");
       return;
     }
 
@@ -127,7 +190,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
       setVideoMetadata({ width, height, duration });
 
       if (width > 0 && height > 0) {
-        if (!initialRatio) {
+        if (!initialRatio && !presetId) {
           if (width > height) {
             setTargetRatio({ w: 9, h: 16 });
           } else {
@@ -139,7 +202,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
   };
 
   const handleFocalPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (fitMode !== "crop" || !previewBoxRef.current) return;
+    if (fitMode !== "crop" || isProcessing || !previewBoxRef.current) return;
     setIsDraggingFocal(true);
     updateFocalPoint(e.clientX, e.clientY);
     e.currentTarget.setPointerCapture(e.pointerId);
@@ -187,11 +250,11 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
   };
 
   const handleConvert = async () => {
-    if (!file) return;
+    if (!file || customRatioInvalid) return;
 
     setIsProcessing(true);
     setProgress(0);
-    setStatusText("Initializing WebAssembly engine...");
+    setStatusText("Preparing video engine...");
     setErrorMessage(null);
     setResultBlob(null);
     setEstimatedTime("Estimating...");
@@ -200,17 +263,15 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
     let hasUpdatedProgress = false;
 
     try {
-      const activeRatioW = isCustom ? (parseInt(customW, 10) || 16) : targetRatio.w;
-      const activeRatioH = isCustom ? (parseInt(customH, 10) || 9) : targetRatio.h;
-
-      const { blob, filename, command } = await processVideoLocally({
+      const { blob, filename, summary } = await convertVideo({
         file,
-        duration: videoMetadata?.duration,
-        targetW: activeRatioW,
-        targetH: activeRatioH,
+        targetW: currentRatioW,
+        targetH: currentRatioH,
         fitMode,
         focalX,
         focalY,
+        zoom: fitMode === "crop" ? zoom : 1,
+        outputSize: activePreset ? { width: activePreset.width, height: activePreset.height } : undefined,
         bgColor,
         resolution,
         format,
@@ -220,42 +281,30 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
           setStatusText(msg);
           if (eta) setEstimatedTime(eta);
         },
-        onLogLine: (line) => {
-          setDebugLogs((prev) => [...prev.slice(-30), line]);
-        },
       });
 
       const url = URL.createObjectURL(blob);
       setResultBlob({ blob, url, filename });
-      setLastExecutedCommand(command);
+      setLastEncodeSummary(summary);
       setProgress(100);
       setStatusText("Complete!");
       setEstimatedTime(null);
-
-      // Collect diagnostics for inspection
-      setDebugLogs(getRecentLogs());
-      setCoreInfo(getCoreDiagnostics());
     } catch (err: any) {
+      if (isCancelledError(err)) return;
       console.error("Conversion failed:", err);
       setErrorMessage(err?.message || "An error occurred during local conversion. Please try a different preset or file.");
-      setDebugLogs(getRecentLogs());
-      setCoreInfo(getCoreDiagnostics());
     } finally {
       setIsProcessing(false);
     }
   };
 
   const handleCancel = () => {
-    terminateFFmpeg();
+    void cancelConversion();
     setIsProcessing(false);
     setProgress(0);
     setStatusText("Cancelled");
     setEstimatedTime(null);
   };
-
-  const currentRatioW = isCustom ? (parseInt(customW, 10) || 16) : targetRatio.w;
-  const currentRatioH = isCustom ? (parseInt(customH, 10) || 9) : targetRatio.h;
-  const ratioLabel = `${currentRatioW}:${currentRatioH}`;
 
   const ratioOptions = [
     { label: "9:16", w: 9, h: 16, caption: "Shorts, Reels, TikTok" },
@@ -270,12 +319,14 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
       <input
         ref={fileInputRef}
         type="file"
-        accept="video/mp4,video/quicktime,video/webm,video/x-matroska,video/x-msvideo"
+        accept="video/mp4,video/quicktime,video/webm,video/x-matroska,.mkv"
         className="hidden"
         onChange={(e) => {
           if (e.target.files && e.target.files[0]) {
             handleFile(e.target.files[0]);
           }
+          // Lets the same file be picked again.
+          e.target.value = "";
         }}
       />
 
@@ -287,10 +338,10 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
           onDragLeave={onDragLeave}
           onDrop={onDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`relative w-full glass-panel py-18 sm:py-24 px-6 sm:px-12 text-center cursor-pointer transition-all duration-300 group rounded-[32px] ${
+          className={`relative w-full glass-panel min-h-[min(620px,max(280px,calc(100svh-270px)))] sm:min-h-[min(620px,max(300px,calc(100svh-226px)))] flex items-center justify-center py-6 px-6 sm:px-12 text-center cursor-pointer transition-all duration-300 group rounded-[32px] ${
             isDraggingOver
               ? "border-[#c89c6e] scale-[1.01] shadow-[0_0_50px_rgba(200,156,110,0.35)]"
-              : "hover:border-white hover:shadow-[0_30px_70px_-10px_rgba(140,110,80,0.22)]"
+              : "hover:border-white dark:hover:border-white/30 hover:shadow-[0_30px_70px_-10px_rgba(140,110,80,0.22)]"
           }`}
         >
           {/* Top-Right Frosted Glass Reticle Icon (matching reference) */}
@@ -304,10 +355,10 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
           <div className="viewfinder-corner viewfinder-bl" />
           <div className="viewfinder-corner viewfinder-br" />
 
-          <div className="max-w-md mx-auto space-y-5">
+          <div className="max-w-md mx-auto space-y-3">
             {/* Elegant Frosted Frame Icon with Metallic Gold Ripple */}
             <div className="flex justify-center">
-              <div className="relative w-16 h-16 rounded-2xl glass-pill flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+              <div className="relative w-14 h-14 rounded-2xl glass-pill flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
                 <svg width="34" height="34" viewBox="0 0 32 32" fill="none">
                   <rect x="4" y="6" width="24" height="20" rx="3" stroke="#a89b8d" strokeWidth="1.2" strokeDasharray="3 2" />
                   <rect x="11" y="4" width="10" height="24" rx="2" stroke="#c89c6e" strokeWidth="1.6" />
@@ -316,22 +367,23 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
               </div>
             </div>
 
-            <div className="space-y-2">
-              <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-[var(--text-main)]">
-                {tHero("dropTitle")}
-              </p>
-              <p className="text-xs sm:text-sm text-[var(--text-muted)] max-w-sm mx-auto leading-relaxed">
-                {tHero("dropSubtitle")}
-              </p>
-            </div>
+            <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-[var(--text-main)]">
+              {tHero("dropTitle")}
+            </p>
 
-            <div className="pt-3">
+            {activePreset && activeGroup && (
+              <p className="font-mono text-[11px] text-[var(--accent-text)]">
+                Selected: {activeGroup.name} {activePreset.label} · {activePreset.width}×{activePreset.height}
+              </p>
+            )}
+
+            <div className="pt-1">
               <span className="inline-flex items-center gap-2 px-8 py-3 rounded-full btn-radiant-glow text-xs sm:text-sm font-semibold tracking-wide shadow-xl group-hover:scale-105 transition-all">
                 {tHero("chooseFile")}
               </span>
             </div>
 
-            <p className="font-mono text-[11px] text-[var(--text-muted)] pt-3 tracking-widest uppercase">
+            <p className="font-mono text-[11px] text-[var(--text-muted)] pt-1 tracking-widest uppercase">
               {tHero("supportedFormats")}
             </p>
           </div>
@@ -404,7 +456,11 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                       }`}
                       style={
                         fitMode === "crop"
-                          ? { objectPosition: `${focalX * 100}% ${focalY * 100}%` }
+                          ? {
+                              objectPosition: `${focalX * 100}% ${focalY * 100}%`,
+                              transform: `scale(${zoom})`,
+                              transformOrigin: `${focalX * 100}% ${focalY * 100}%`,
+                            }
                           : undefined
                       }
                     />
@@ -438,7 +494,8 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="font-mono text-[11px] text-[#e8c7a2] hover:underline"
+                  disabled={isProcessing}
+                  className="font-mono text-[11px] text-[#e8c7a2] hover:underline disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Change clip
                 </button>
@@ -450,26 +507,61 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
               
               <div className="space-y-6">
                 
+                {/* Settings are locked mid-encode so the result always matches what is shown. */}
+                <fieldset disabled={isProcessing} className="space-y-6 min-w-0 disabled:opacity-60">
                 {/* 1. RATIO SELECTOR (Frosted Glass Chips) */}
                 <div>
                   <div className="flex items-center justify-between mb-2.5">
                     <label className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-                      1. Target Aspect Ratio
+                      1. Resize For
                     </label>
-                    <span className="font-mono text-xs font-bold text-[#c89c6e]">
+                    <span className="font-mono text-xs font-bold text-[var(--accent-text)]">
                       {ratioLabel}
                     </span>
                   </div>
 
+                  <div className="grid grid-cols-2 gap-2 mb-2">
+                    <Dropdown
+                      label="Platform"
+                      value={platform.id}
+                      options={PRESET_GROUPS.map((group) => ({ value: group.id, label: group.name }))}
+                      onChange={(id) => {
+                        const group = PRESET_GROUPS.find((g) => g.id === id);
+                        if (group) applyPreset(group.presets[0]);
+                      }}
+                    />
+                    <Dropdown
+                      label="Size"
+                      placeholder="Size"
+                      value={presetId}
+                      options={platform.presets.map((preset) => ({
+                        value: preset.id,
+                        label: preset.label,
+                        hint: preset.ratio,
+                      }))}
+                      onChange={(id) => {
+                        const preset = findPreset(id);
+                        if (preset) applyPreset(preset);
+                      }}
+                    />
+                  </div>
+
+                  {activePreset && (
+                    <p className="mb-2 font-mono text-[11px] text-[var(--text-muted)]">
+                      Exports at {activePreset.width}×{activePreset.height} px
+                    </p>
+                  )}
+
                   <div className="grid grid-cols-2 gap-2">
                     {ratioOptions.map((opt) => {
-                      const isSelected = !isCustom && targetRatio.w === opt.w && targetRatio.h === opt.h;
+                      const isSelected = !isCustom && !presetId && targetRatio.w === opt.w && targetRatio.h === opt.h;
                       return (
                         <button
                           key={opt.label}
                           type="button"
                           onClick={() => {
                             setIsCustom(false);
+                            setPresetId(null);
                             setTargetRatio({ w: opt.w, h: opt.h });
                           }}
                           className={`p-3 rounded-2xl text-left transition-all duration-200 ${
@@ -487,7 +579,10 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                     {/* 5th Chip: Custom */}
                     <button
                       type="button"
-                      onClick={() => setIsCustom(true)}
+                      onClick={() => {
+                        setPresetId(null);
+                        setIsCustom(true);
+                      }}
                       className={`p-3 rounded-2xl text-left transition-all duration-200 ${
                         isCustom
                           ? "bg-white/90 dark:bg-white/15 border border-[#c89c6e] text-[var(--text-main)] shadow-[0_4px_16px_rgba(200,156,110,0.25)] font-semibold"
@@ -520,6 +615,12 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                       />
                       <span className="text-[11px] text-[var(--text-muted)]">Custom Ratio</span>
                     </div>
+                  )}
+
+                  {customRatioInvalid && (
+                    <p className="mt-1.5 text-[11px] text-red-600 dark:text-red-400">
+                      Enter two positive numbers, no wider or taller than 4:1.
+                    </p>
                   )}
                 </div>
 
@@ -567,9 +668,38 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                   )}
 
                   {fitMode === "crop" && (
-                    <p className="mt-1.5 text-[11px] text-[var(--text-muted)]">
-                      Drag crosshair on the monitor to frame action.
-                    </p>
+                    <div className="mt-2 space-y-2">
+                      <p className="text-[11px] text-[var(--text-muted)]">
+                        Drag crosshair on the monitor to frame action.
+                      </p>
+                      <div>
+                        <div className="flex items-center justify-between text-[11px] text-[var(--text-muted)] mb-1">
+                          <label htmlFor="crop-zoom">Zoom</label>
+                          <span className="font-mono text-[var(--text-main)]">{Math.round(zoom * 100)}%</span>
+                        </div>
+                        <input
+                          id="crop-zoom"
+                          type="range"
+                          min="1"
+                          max="3"
+                          step="0.05"
+                          value={zoom}
+                          onChange={(e) => setZoom(parseFloat(e.target.value))}
+                          className="w-full accent-[#c89c6e]"
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setZoom(1);
+                          setFocalX(0.5);
+                          setFocalY(0.5);
+                        }}
+                        className="font-mono text-[11px] text-[var(--accent-text)] hover:underline"
+                      >
+                        Reset framing
+                      </button>
+                    </div>
                   )}
                 </div>
 
@@ -582,26 +712,30 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="block text-[11px] text-[var(--text-muted)] mb-1">Resolution</label>
-                        <select
+                        <Dropdown
+                          label="Resolution"
                           value={resolution}
-                          onChange={(e) => setResolution(e.target.value as any)}
-                          className="w-full px-2.5 py-1.5 rounded-xl glass-pill text-xs text-[var(--text-main)] outline-none"
-                        >
-                          <option value="720p">720p (Fastest)</option>
-                          <option value="1080p">1080p (Standard HD)</option>
-                        </select>
+                          disabled={!!activePreset}
+                          options={[
+                            { value: "720p", label: "720p (Fastest)" },
+                            { value: "1080p", label: "1080p (Standard HD)" },
+                            { value: "original", label: "Original quality" },
+                          ]}
+                          onChange={(v) => setResolution(v as typeof resolution)}
+                        />
                       </div>
 
                       <div>
                         <label className="block text-[11px] text-[var(--text-muted)] mb-1">Format</label>
-                        <select
+                        <Dropdown
+                          label="Format"
                           value={format}
-                          onChange={(e) => setFormat(e.target.value as any)}
-                          className="w-full px-2.5 py-1.5 rounded-xl glass-pill text-xs text-[var(--text-main)] outline-none"
-                        >
-                          <option value="mp4">MP4 (H.264)</option>
-                          <option value="webm">WebM (VP9)</option>
-                        </select>
+                          options={[
+                            { value: "mp4", label: "MP4 (H.264)" },
+                            { value: "webm", label: "WebM (VP9)" },
+                          ]}
+                          onChange={(v) => setFormat(v as typeof format)}
+                        />
                       </div>
                     </div>
 
@@ -621,6 +755,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                     </div>
                   </div>
                 </details>
+                </fieldset>
 
                 {/* Error Banner */}
                 {errorMessage && (
@@ -692,7 +827,8 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                   <button
                     type="button"
                     onClick={handleConvert}
-                    className="w-full h-12 rounded-full btn-radiant-glow font-bold text-xs uppercase tracking-wider shadow-lg"
+                    disabled={customRatioInvalid}
+                    className="w-full h-12 rounded-full btn-radiant-glow font-bold text-xs uppercase tracking-wider shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Convert to {ratioLabel}
                   </button>
@@ -703,51 +839,22 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
         </div>
       )}
 
-      {/* Hidden by default: Details & Engine Logs bar (Shows ONLY on error or ?debug=1) */}
-      {(isDebug || errorMessage) && (
-        <details className="mt-4 rounded-2xl glass-panel text-xs overflow-hidden" open={Boolean(errorMessage)}>
-          <summary className="px-4 py-2 cursor-pointer font-mono text-[11px] text-[var(--text-muted)] hover:text-[var(--text-main)] select-none flex items-center justify-between">
-            <span>Debug Diagnostics & Log Feed ({debugLogs.length} events)</span>
-            <span className="text-[#c89c6e]">
-              {coreInfo ? `${coreInfo.coreType.toUpperCase()} (${coreInfo.loadTimeMs}ms)` : "DEBUG MODE"}
-            </span>
+      {/* Rejected uploads never reach the workspace, so their error is shown here. */}
+      {!file && errorMessage && (
+        <div role="alert" className="mt-4 p-3.5 bg-red-500/10 border border-red-500/30 rounded-2xl text-xs text-red-600 dark:text-red-400">
+          {errorMessage}
+        </div>
+      )}
+
+      {/* Encode settings, shown only with ?debug=1 */}
+      {isDebug && (
+        <details className="mt-4 rounded-2xl glass-panel text-xs overflow-hidden">
+          <summary className="px-4 py-2 cursor-pointer font-mono text-[11px] text-[var(--text-muted)] hover:text-[var(--text-main)] select-none">
+            Debug: last encode
           </summary>
-          <div className="p-4 border-t border-[var(--color-hairline)] space-y-2 text-[11px]">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pb-2 border-b border-[var(--color-hairline)]">
-              <div>
-                <span className="text-[var(--text-muted)] block">Core Mode:</span>
-                <strong>{coreInfo?.coreType || "Single-thread"}</strong>
-              </div>
-              <div>
-                <span className="text-[var(--text-muted)] block">Engine Load:</span>
-                <strong>{coreInfo?.loadTimeMs ? `${coreInfo.loadTimeMs}ms` : "N/A"}</strong>
-              </div>
-              <div>
-                <span className="text-[var(--text-muted)] block">crossOriginIsolated:</span>
-                <strong>{isIsolated ? "Active (COOP/COEP on)" : "Inactive"}</strong>
-              </div>
-              <div>
-                <span className="text-[var(--text-muted)] block">Assets Origin:</span>
-                <strong>Same-Origin (/public/ffmpeg/)</strong>
-              </div>
-            </div>
-
-            {lastExecutedCommand && (
-              <div>
-                <span className="text-[var(--text-muted)] block font-mono text-[10px] mb-1">Last Executed FFmpeg Command:</span>
-                <code className="text-[var(--text-main)] bg-black/20 p-2 rounded-lg text-[10px] block break-all font-mono border border-[var(--color-hairline)]">
-                  {lastExecutedCommand}
-                </code>
-              </div>
-            )}
-
-            <div>
-              <span className="text-[var(--text-muted)] block mb-1">Recent Engine Logs:</span>
-              <pre className="bg-[#141311] text-emerald-400 p-2.5 rounded-xl font-mono text-[10px] leading-relaxed max-h-40 overflow-y-auto whitespace-pre-wrap select-all">
-                {debugLogs.length > 0 ? debugLogs.slice(-20).join("\n") : "Awaiting job..."}
-              </pre>
-            </div>
-          </div>
+          <code className="block p-4 border-t border-[var(--color-hairline)] font-mono text-[10px] break-all text-[var(--text-main)]">
+            {lastEncodeSummary || "Awaiting job..."}
+          </code>
         </details>
       )}
     </div>

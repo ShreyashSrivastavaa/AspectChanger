@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: `%s | ${BRAND.name}`,
   },
   description:
-    "Change video aspect ratios (16:9 to 9:16, 1:1, 4:5, 21:9) in seconds directly in your browser. 100% private, zero uploads, no watermark. Powered by client-side WebAssembly.",
+    "Change video aspect ratios (16:9 to 9:16, 1:1, 4:5, 21:9) in seconds directly in your browser. 100% private, zero uploads, no watermark. Powered by client-side WebCodecs.",
   keywords: [
     "video aspect ratio changer",
     "change video aspect ratio online",
@@ -117,7 +117,7 @@ export default async function RootLayout({
     url: BRAND.domain,
     applicationCategory: "MultimediaApplication",
     operatingSystem: "Any (Modern Web Browser)",
-    browserRequirements: "Requires WebAssembly support (Chrome, Safari, Firefox, Edge)",
+    browserRequirements: "Requires WebCodecs support (Chrome, Safari, Firefox, Edge)",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -130,6 +130,12 @@ export default async function RootLayout({
   return (
     <html lang={config.hreflang} dir={dir} suppressHydrationWarning>
       <head>
+        {/* Applies the saved theme before first paint so dark mode doesn't flash light on load. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("aspectcut-theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }}

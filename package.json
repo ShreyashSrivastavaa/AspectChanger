@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "postinstall": "node scripts/copy-ffmpeg.js",
-    "test:audio": "node scripts/test-audio.js",
     "test:geometry": "node scripts/test-geometry.js",
     "check:keywords": "node scripts/check-cannibalization.js",
     "check:quality": "node scripts/check-quality-gates.js",
@@ -19,11 +17,13 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@ffmpeg/core": "^0.12.6",
-    "@ffmpeg/core-mt": "^0.12.6",
-    "@ffmpeg/ffmpeg": "^0.12.15",
-    "@ffmpeg/util": "^0.12.2",
+    "@mediabunny/aac-encoder": "^1.65.1",
+    "@mediabunny/ac3": "^1.65.1",
+    "@mediabunny/dts": "^1.65.1",
+    "@mediabunny/prores": "^1.65.1",
+    "@mediabunny/truehd": "^1.65.1",
     "lucide-react": "^1.67.0",
+    "mediabunny": "^1.65.1",
     "motion": "^14.9.0",
     "next": "16.4.5",
     "next-intl": "^4.14.9",

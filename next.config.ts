@@ -4,43 +4,18 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ["@ffmpeg/ffmpeg", "@ffmpeg/util", "@ffmpeg/core", "@ffmpeg/core-mt"],
-  async headers() {
+  async redirects() {
+    const toHome = (source: string, destination = "/") => ({ source, destination, permanent: true });
     return [
-      {
-        source: "/ffmpeg/:path*",
-        headers: [
-          {
-            key: "Cross-Origin-Opener-Policy",
-            value: "same-origin",
-          },
-          {
-            key: "Cross-Origin-Embedder-Policy",
-            value: "require-corp",
-          },
-          {
-            key: "Cross-Origin-Resource-Policy",
-            value: "same-origin",
-          },
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        source: "/:path*",
-        headers: [
-          {
-            key: "Cross-Origin-Opener-Policy",
-            value: "same-origin",
-          },
-          {
-            key: "Cross-Origin-Embedder-Policy",
-            value: "require-corp",
-          },
-        ],
-      },
+      toHome("/faq", "/#faq"),
+      toHome("/calculator/:path*", "/#calculator"),
+      ...[
+        "all-pages", "benchmarks", "changelog", "compare", "convert", "data", "fix", "for", "from",
+        "glossary", "guides", "methodology", "press", "resolution", "tools",
+      ].map((section) => toHome(`/${section}/:path*`)),
+      // Only the home page exists per language.
+      toHome("/en/:path+"),
+      toHome("/:locale(ar|bn|de|es|fr|hi|id|it|ja|ko|nl|pl|pt|ru|th|tr|ur|vi|zh)/:path+", "/:locale"),
     ];
   },
 };

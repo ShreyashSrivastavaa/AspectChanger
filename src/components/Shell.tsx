@@ -10,6 +10,7 @@ import {
   Sun, 
   Moon, 
   Check, 
+  Crop,
   ArrowUpRight,
   Shield,
   Cpu
@@ -110,87 +111,86 @@ export default function Shell({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const toolsList = [
-    { href: "/tools/16-9-to-9-16", label: "16:9 to 9:16 (Landscape to Vertical)" },
-    { href: "/tools/9-16-to-16-9", label: "9:16 to 16:9 (Vertical to Landscape)" },
-    { href: "/tools/16-9-to-1-1", label: "16:9 to 1:1 (Landscape to Square)" },
-    { href: "/tools/16-9-to-4-5", label: "16:9 to 4:5 (Landscape to Portrait)" },
-    { href: "/tools/1-1-to-9-16", label: "1:1 to 9:16 (Square to Vertical)" },
-    { href: "/tools/4-3-to-16-9", label: "4:3 to 16:9 (Classic to Widescreen)" },
-    { href: "/tools/21-9-to-16-9", label: "21:9 to 16:9 (Ultrawide to 16:9)" },
+  // Section links stay on the current language's home page when already on one.
+  const homeBase = /^\/([a-z]{2})?$/.test(pathname) ? "" : "/";
+  const sectionLinks = [
+    { href: `${homeBase}#tool`, label: "Resize a Video" },
+    { href: `${homeBase}#sizes`, label: "All Platforms & Screen Sizes" },
+    { href: `${homeBase}#features`, label: "Features" },
+    { href: `${homeBase}#calculator`, label: "Aspect Ratio Calculator" },
+    { href: `${homeBase}#faq`, label: "FAQ" },
   ];
 
-  const platformsList = [
-    { href: "/for/youtube-shorts", label: "YouTube Shorts (9:16)" },
-    { href: "/for/tiktok", label: "TikTok Video (9:16)" },
-    { href: "/for/instagram-reels", label: "Instagram Reels (9:16)" },
-    { href: "/for/instagram-story", label: "Instagram Story (9:16)" },
-    { href: "/for/instagram-feed", label: "Instagram Post (1:1 / 4:5)" },
-    { href: "/for/linkedin-video", label: "LinkedIn Video (1:1 / 16:9)" },
-    { href: "/for/facebook-video", label: "Facebook Video (4:5 / 1:1)" },
-    { href: "/for/x-twitter-video", label: "X / Twitter Video (16:9 / 1:1)" },
-    { href: "/for/whatsapp-status", label: "WhatsApp Status (9:16)" },
-  ];
-
-  const guidesList = [
-    { href: "/guides/what-is-aspect-ratio", label: "What is Aspect Ratio?" },
-    { href: "/guides/crop-vs-letterbox-vs-blur-background", label: "Crop vs Blur vs Bars" },
-    { href: "/guides/how-to-change-video-aspect-ratio-without-losing-quality", label: "Keep Quality Lossless" },
-    { href: "/guides/aspect-ratio-cheat-sheet", label: "2026 Aspect Ratio Cheat Sheet" },
-    { href: "/guides/best-video-aspect-ratio-for-tiktok", label: "Best Ratio for TikTok" },
-    { href: "/guides/best-video-aspect-ratio-for-instagram-reels", label: "Best Ratio for Reels" },
+  const headerLinks = [
+    { href: `${homeBase}#tool`, label: "Resize" },
+    { href: `${homeBase}#sizes`, label: "Sizes" },
+    { href: `${homeBase}#features`, label: "Features" },
+    { href: `${homeBase}#calculator`, label: "Calculator" },
+    { href: `${homeBase}#faq`, label: "FAQ" },
   ];
 
   return (
     <div className="min-h-screen flex flex-col studio-background transition-colors duration-300 relative" suppressHydrationWarning>
       
       {/* Floating Frosted Glass Header (Stays at the top of the page, does not follow scroll) */}
-      <div className="w-full px-4 sm:px-6 absolute top-3 left-0 right-0 z-30 pointer-events-none" suppressHydrationWarning>
-        <header className="max-w-4xl mx-auto px-5 py-2.5 rounded-full glass-header flex items-center justify-between pointer-events-auto">
-          
-          {/* Brand Mark (with mineral tag) */}
-          <Link href="/" className="flex items-center gap-2 select-none group">
-            <span className="font-semibold text-sm sm:text-base tracking-tight text-[var(--text-main)]">
-              AspectCut
-            </span>
-            <span className="text-[11px] font-mono text-[var(--text-muted)] tracking-wider">
-              / Wasm
-            </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#c89c6e] group-hover:scale-125 transition-transform shadow-[0_0_8px_#c89c6e]" />
-            <span className="hidden xl:inline-flex text-[10px] font-mono text-[#c89c6e] border border-[rgba(200,156,110,0.3)] bg-[rgba(200,156,110,0.08)] px-2 py-0.5 rounded-full">
-              by ZenithDistrict
-            </span>
-          </Link>
+      <div className="w-full px-3 sm:px-6 absolute top-3 left-0 right-0 z-30 pointer-events-none" suppressHydrationWarning>
+        <header className="max-w-6xl mx-auto ps-3 pe-2 sm:ps-4 py-2 rounded-full glass-header flex items-center justify-between gap-3 pointer-events-auto">
 
-          {/* Center Indicators */}
-          <div className="hidden md:flex items-center gap-6 text-xs text-[var(--text-muted)] font-medium">
-            <span className="hover:text-[var(--text-main)] transition-colors cursor-default">
-              Client Engine
-            </span>
-            <span className="hover:text-[var(--text-main)] transition-colors cursor-default">
-              Zero Upload
-            </span>
-            <span className="hover:text-[var(--text-main)] transition-colors cursor-default">
-              Lossless Reframe
-            </span>
+          {/* Brand: mark, name and parent company */}
+          <div className="flex items-center gap-2.5 min-w-0">
+            <Link href="/" tabIndex={-1} aria-hidden="true" className="w-8 h-8 rounded-full bg-[#c89c6e]/15 border border-[#c89c6e]/30 flex items-center justify-center flex-shrink-0 transition-transform hover:scale-105">
+              <Crop className="w-4 h-4 text-[var(--accent-text)]" />
+            </Link>
+            {/* Stacked on phones, side by side from sm up */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2.5 min-w-0">
+              <Link href="/" className="font-semibold text-sm leading-tight sm:text-base tracking-tight text-[var(--text-main)] select-none">
+                AspectCut
+              </Link>
+              <a
+                href="https://zenithdistrict.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whitespace-nowrap text-[9px] sm:text-[10px] leading-tight font-mono text-[var(--accent-text)] sm:border sm:border-[rgba(200,156,110,0.3)] sm:bg-[rgba(200,156,110,0.08)] sm:hover:bg-[rgba(200,156,110,0.16)] transition-colors sm:px-2 sm:py-0.5 rounded-full"
+              >
+                by ZenithDistrict
+              </a>
+            </div>
           </div>
 
-          {/* Right Controls (matching top header layout of reference) */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Multilingual Selector */}
+          {/* Section Navigation */}
+          <nav aria-label="Primary" className="hidden lg:flex items-center gap-0.5 text-xs font-medium text-[var(--text-muted)]">
+            {headerLinks.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="px-3 py-1.5 rounded-full whitespace-nowrap hover:text-[var(--text-main)] hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Right Controls */}
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+            <div
+              className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1 font-mono text-[11px] text-[var(--text-muted)] whitespace-nowrap select-none"
+              title="Maximum file size. Videos stay on your device."
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span>Max 500 MB</span>
+            </div>
+
             <LanguageSwitcher variant="pill" />
 
-            {/* Quick Dark Mode Switcher */}
             <button
               type="button"
               onClick={toggleTheme}
-              className="p-2 rounded-full glass-pill text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
+              className="p-2 rounded-full glass-pill text-[var(--text-main)] hover:text-[var(--accent-text)] transition-colors"
               aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
             >
-              {darkMode ? <Sun className="w-3.5 h-3.5 text-[#e8c7a2]" /> : <Moon className="w-3.5 h-3.5 text-[#74675b]" />}
+              {darkMode ? <Sun className="w-4 h-4 text-[#e8c7a2]" /> : <Moon className="w-4 h-4 text-[#74675b]" />}
             </button>
 
-            {/* Hamburger Trigger Button */}
             <button
               ref={menuButtonRef}
               type="button"
@@ -198,22 +198,16 @@ export default function Shell({ children }: { children: React.ReactNode }) {
               aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={menuOpen}
               aria-controls="navigation-drawer"
-              className="p-2 rounded-full glass-pill text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
+              className="p-2 rounded-full glass-pill text-[var(--text-main)] hover:text-[var(--accent-text)] transition-colors"
             >
               {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
-
-            {/* Prominent White Glass Pill Button on the far right (like "max 5 ins" in reference) */}
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full glass-pill font-mono text-[11px] text-[var(--text-main)] font-semibold select-none shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Max 500 MB</span>
-            </div>
           </div>
         </header>
       </div>
 
       {/* Main Content Area */}
-      <main className="flex-1 w-full pt-20 sm:pt-24" suppressHydrationWarning>
+      <main className="flex-1 w-full pt-[72px]" suppressHydrationWarning>
         {children}
       </main>
 
@@ -260,7 +254,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             <button
               type="button"
               onClick={closeMenu}
-              className="p-1.5 text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
+              className="p-1.5 text-[var(--text-main)] hover:text-[var(--accent-text)] transition-colors"
               aria-label="Close menu"
             >
               <X className="w-5 h-5" />
@@ -270,87 +264,22 @@ export default function Shell({ children }: { children: React.ReactNode }) {
 
         {/* Drawer Navigation Links */}
         <div className="p-6 space-y-7 flex-1">
-          {/* Tools Group */}
+          {/* Home Sections */}
           <div className="space-y-2">
-            <div className="flex items-center justify-between pb-1 border-b border-[var(--color-hairline)]">
-              <span className="font-mono text-[10px] uppercase tracking-wider text-[#c89c6e] font-semibold">
-                01 / Ratio Converters
+            <div className="pb-1 border-b border-[var(--color-hairline)]">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--accent-text)] font-semibold">
+                01 / On This Site
               </span>
-              <Link
-                href="/tools"
-                onClick={closeMenu}
-                className="font-mono text-[11px] text-[var(--text-muted)] hover:text-[#c89c6e] flex items-center gap-0.5"
-              >
-                All Tools <ArrowUpRight className="w-3 h-3" />
-              </Link>
             </div>
             <ul className="space-y-1.5 text-xs">
-              {toolsList.map((tool) => (
-                <li key={tool.href}>
+              {sectionLinks.map((item) => (
+                <li key={item.label}>
                   <Link
-                    href={tool.href}
+                    href={item.href}
                     onClick={closeMenu}
-                    className="block py-1 text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
+                    className="block py-1 text-[var(--text-main)] hover:text-[var(--accent-text)] transition-colors"
                   >
-                    {tool.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Platforms Group */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between pb-1 border-b border-[var(--color-hairline)]">
-              <span className="font-mono text-[10px] uppercase tracking-wider text-[#c89c6e] font-semibold">
-                02 / Platform Standards
-              </span>
-              <Link
-                href="/for"
-                onClick={closeMenu}
-                className="font-mono text-[11px] text-[var(--text-muted)] hover:text-[#c89c6e] flex items-center gap-0.5"
-              >
-                All Platforms <ArrowUpRight className="w-3 h-3" />
-              </Link>
-            </div>
-            <ul className="space-y-1.5 text-xs">
-              {platformsList.map((plat) => (
-                <li key={plat.href}>
-                  <Link
-                    href={plat.href}
-                    onClick={closeMenu}
-                    className="block py-1 text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
-                  >
-                    {plat.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Guides Group */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between pb-1 border-b border-[var(--color-hairline)]">
-              <span className="font-mono text-[10px] uppercase tracking-wider text-[#c89c6e] font-semibold">
-                03 / Technical Guides
-              </span>
-              <Link
-                href="/guides"
-                onClick={closeMenu}
-                className="font-mono text-[11px] text-[var(--text-muted)] hover:text-[#c89c6e] flex items-center gap-0.5"
-              >
-                All Guides <ArrowUpRight className="w-3 h-3" />
-              </Link>
-            </div>
-            <ul className="space-y-1.5 text-xs">
-              {guidesList.map((guide) => (
-                <li key={guide.href}>
-                  <Link
-                    href={guide.href}
-                    onClick={closeMenu}
-                    className="block py-1 text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
-                  >
-                    {guide.label}
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -360,38 +289,38 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           {/* Company Group */}
           <div className="space-y-2">
             <div className="pb-1 border-b border-[var(--color-hairline)]">
-              <span className="font-mono text-[10px] uppercase tracking-wider text-[#c89c6e] font-semibold">
-                04 / Utility & Privacy
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--accent-text)] font-semibold">
+                02 / Utility & Privacy
               </span>
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs">
               <Link
                 href="/about"
                 onClick={closeMenu}
-                className="py-1 text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
+                className="py-1 text-[var(--text-main)] hover:text-[var(--accent-text)] transition-colors"
               >
-                About Wasm
+                About Engine
               </Link>
               <Link
                 href="/privacy"
                 onClick={closeMenu}
-                className="py-1 text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
+                className="py-1 text-[var(--text-main)] hover:text-[var(--accent-text)] transition-colors"
               >
                 Privacy Sandbox
               </Link>
               <Link
-                href="/faq"
-                onClick={closeMenu}
-                className="py-1 text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
-              >
-                FAQ
-              </Link>
-              <Link
                 href="/contact"
                 onClick={closeMenu}
-                className="py-1 text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
+                className="py-1 text-[var(--text-main)] hover:text-[var(--accent-text)] transition-colors"
               >
                 Support
+              </Link>
+              <Link
+                href="/terms"
+                onClick={closeMenu}
+                className="py-1 text-[var(--text-main)] hover:text-[var(--accent-text)] transition-colors"
+              >
+                Terms
               </Link>
             </div>
           </div>
@@ -400,7 +329,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           <div className="p-4 rounded-2xl glass-panel space-y-2">
             <div className="font-semibold text-xs text-[var(--text-main)] flex items-center gap-1.5">
               <span>AspectCut Pro Waitlist</span>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-[#c89c6e]/20 text-[#c89c6e]">Batch GPU</span>
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-[#c89c6e]/20 text-[var(--accent-text)]">Batch GPU</span>
             </div>
             <p className="text-[11px] text-[var(--text-muted)] leading-relaxed">
               Batch processing, 4K rendering, and AI auto-reframing for teams.
@@ -434,7 +363,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
 
         {/* Drawer Footer */}
         <div className="p-6 border-t border-[var(--color-hairline)] text-[11px] font-mono text-[var(--text-muted)] flex items-center justify-between">
-          <span>Client-Side Wasm v0.12</span>
+          <span>Client-Side WebCodecs</span>
           <span>100% Private Sandbox</span>
         </div>
       </div>

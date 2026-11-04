@@ -10,7 +10,7 @@ AspectCut is a production-ready, client-side micro-SaaS engineered to reframe an
 ## 1. Product Capabilities & Specifications
 
 - **Above-The-Fold Live Workspace:** Drag-and-drop or click-to-upload tool sits immediately above the fold on the homepage and every programmatic converter page.
-- **Accepted Formats & Limits:** Accepts MP4, MOV, WebM, MKV, and AVI containers up to 500 MB.
+- **Accepted Formats & Limits:** Accepts MP4, MOV, WebM, and MKV containers up to 500 MB.
 - **Aspect Ratio Presets:**
   - `16:9` (Landscape widescreen for YouTube, desktop, TV)
   - `9:16` (Vertical for Shorts, Reels, TikTok)
@@ -26,7 +26,7 @@ AspectCut is a production-ready, client-side micro-SaaS engineered to reframe an
   2. **Focal Center Crop:** Crops into the footage to completely fill the target aspect ratio, featuring an interactive draggable crosshair focal point.
   3. **Solid Color / Letterbox:** Adds clean matte bars with an integrated color picker and quick monochrome presets.
 - **Quality & Format Controls:** Output resolution (`1080p`, `720p`, `Original`), container (`MP4 H.264` default, `WebM VP9`), CRF compression quality slider (`18` archival down to `28` compressed). Keeps source audio stream untouched (`-c:a copy`) to eliminate generational distortion.
-- **Client-Side WASM Core:** Powered by `@ffmpeg/ffmpeg` compiled to WebAssembly. Multi-threaded execution enabled via `SharedArrayBuffer` when COOP/COEP headers are present; automatically falls back to single-threaded WebAssembly in constrained environments.
+- **Client-Side Engine:** Encodes with WebCodecs through Mediabunny (`src/lib/video-engine.ts`). Runs in the browser. Mediabunny add-ons for ProRes, AC-3/E-AC-3, DTS, TrueHD, and AAC encoding load only when a file needs them.
 - **Pro Tier Monetization Hook:** Unobtrusive "AspectCut Pro" waitlist modal for batch processing and 4K exports.
 
 ---
@@ -56,45 +56,13 @@ AspectCut deliberately avoids typical "AI-generated SaaS" patterns (no purple-to
 - **Answer-First Copy & `llms.txt`:** Direct answer paragraphs within the first 40–60 words for AI Overviews and Google featured snippets, plus a dedicated `/llms.txt`.
 - **JSON-LD Structured Data:** Validated schemas for `WebApplication`, `FAQPage`, `BreadcrumbList`, `Organization`, and `HowTo`.
 - **Dynamic OG Images:** `src/app/api/og/route.tsx` using `@vercel/og` to render custom branded previews with ratio geometry.
-- **Core Web Vitals:** Static HTML delivery, zero external ad trackers, lightweight SVGs, lazy-loaded WASM binary only on user interaction.
+- **Core Web Vitals:** Static HTML delivery, zero external ad trackers, lightweight SVGs, no heavy engine download.
 
 ---
 
 ## 4. Deploying to Vercel or Cloudflare Pages
 
-### Crucial: COOP/COEP Headers for Multi-Threaded WASM
-To enable `SharedArrayBuffer` for multi-threaded FFmpeg, the server must supply cross-origin isolation headers.
-
-In `next.config.ts`:
-\`\`\`typescript
-const nextConfig: NextConfig = {
-  serverExternalPackages: ["@ffmpeg/ffmpeg", "@ffmpeg/util"],
-  async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: [
-          {
-            key: "Cross-Origin-Opener-Policy",
-            value: "same-origin",
-          },
-          {
-            key: "Cross-Origin-Embedder-Policy",
-            value: "require-corp",
-          },
-        ],
-      },
-    ];
-  },
-};
-\`\`\`
-
-If deploying on **Cloudflare Pages**, add a `_headers` file in your `public/` directory:
-\`\`\`text
-/*
-  Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Embedder-Policy: require-corp
-\`\`\`
+No special headers are needed: WebCodecs does not require cross-origin isolation.
 
 ---
 

@@ -31,7 +31,7 @@ export const FORMATS_DATA: Record<string, FormatConverterDetail> = {
       "The tool auto-selects 9:16 vertical target ratio (1080×1920 pixels).",
       "Choose 'Crop' to reframe the center subject or 'Blur' to keep the full landscape width with ambient borders.",
       "Check the real-time preview on the canvas player.",
-      "Click Convert Video to execute local WebAssembly encoding and download your optimized MP4."
+      "Click Convert Video to execute local WebCodecs encoding and download your optimized MP4."
     ],
     faqs: [
       {
@@ -62,7 +62,7 @@ export const FORMATS_DATA: Record<string, FormatConverterDetail> = {
     h1: "Convert MKV Video to 16:9 Widescreen MP4",
     metaDescription: "Convert MKV videos to 16:9 widescreen MP4 online without uploading. Reframe OBS recordings, remove black bars, and remux for YouTube and TV.",
     summary: "Matroska (.MKV) is a powerful, open-standard container format widely favored by OBS Studio streamers, screen recorders, and movie archivists because it prevents file corruption if a recording is abruptly interrupted. However, consumer web browsers, Apple editing tools (Final Cut Pro, iMovie), and popular video platforms often fail to import or play MKV files natively. AspectCut converts MKV files into standard 16:9 MP4s, adjusting aspect ratios, removing letterbox bars, and ensuring seamless compatibility across all media players and video platforms without requiring external software installations.",
-    codecHandlingDetails: "AspectCut demuxes the MKV container and transcodes or scales the video stream to standard 16:9 dimensions (1920×1080 or 3840×2160) using WebAssembly-powered FFmpeg. Even-integer pixel boundaries are enforced to guarantee smooth hardware acceleration during playback.",
+    codecHandlingDetails: "AspectCut demuxes the MKV container and transcodes or scales the video stream to standard 16:9 dimensions (1920×1080 or 3840×2160) using WebCodecs. Even-integer pixel boundaries are enforced to guarantee smooth hardware acceleration during playback.",
     audioHandlingDetails: "MKV files frequently house specialized multi-channel audio tracks such as AC3, E-AC3, DTS, Vorbis, or lossless FLAC. Because consumer web players cannot decode surround sound AC3 or FLAC streams natively, AspectCut automatically mixes and converts these tracks into universally compatible 48kHz stereo AAC audio.",
     workflowSteps: [
       "Import your MKV video file into AspectCut directly from your disk.",
@@ -86,7 +86,7 @@ export const FORMATS_DATA: Record<string, FormatConverterDetail> = {
       },
       {
         q: "Is my MKV video uploaded to a cloud server?",
-        a: "No. AspectCut runs 100% locally on your computer using WebAssembly."
+        a: "No. AspectCut runs 100% locally on your computer using WebCodecs."
       }
     ]
   },
@@ -100,14 +100,14 @@ export const FORMATS_DATA: Record<string, FormatConverterDetail> = {
     h1: "Convert WebM to 9:16 Vertical Video MP4",
     metaDescription: "Convert WebM videos to 9:16 vertical MP4 format online without uploading. Reframe browser screen captures for TikTok, Reels, and Shorts.",
     summary: "WebM is Google's open-source video container format specifically designed for HTML5 web streaming and browser-based screen recorders (such as Loom, OBS browser sources, Chrome extensions, and MediaRecorder APIs). While WebM is efficient for web playback, mobile social media applications like TikTok, Instagram Reels, and Snapchat do not support direct WebM uploads. Creators who record tutorials or reaction videos in WebM format need a fast way to convert these files into vertical 9:16 MP4s. AspectCut converts horizontal WebM recordings into vertical 9:16 MP4s directly in your browser, adding blurred backgrounds or focal crops with zero quality degradation.",
-    codecHandlingDetails: "WebM files encode video using VP8, VP9, or AV1 codecs. AspectCut's WebAssembly engine decodes these open codecs and transcodes them into standard H.264 (AVC) MP4 video with strict yuv420p color subsampling, ensuring universal compatibility across iOS and Android devices.",
+    codecHandlingDetails: "WebM files encode video using VP8, VP9, or AV1 codecs. AspectCut's WebCodecs engine decodes these open codecs and transcodes them into standard H.264 (AVC) MP4 video with strict yuv420p color subsampling, ensuring universal compatibility across iOS and Android devices.",
     audioHandlingDetails: "WebM files almost universally pair video with Opus or Vorbis audio codecs. Because standard MP4 containers require AAC audio for guaranteed mobile playback, AspectCut decodes the Opus stream and encodes it into crystal-clear 192 kbps stereo AAC audio at 48kHz.",
     workflowSteps: [
       "Select your WebM video file directly from your device.",
       "Select 9:16 Vertical target ratio.",
       "Choose 'Blur' to show the complete horizontal screen or 'Crop' to zoom in on code or UI controls.",
       "Preview the result in the interactive canvas player.",
-      "Render locally via WebAssembly and download your 1080×1920 MP4 video."
+      "Render locally via WebCodecs and download your 1080×1920 MP4 video."
     ],
     faqs: [
       {
@@ -129,41 +129,5 @@ export const FORMATS_DATA: Record<string, FormatConverterDetail> = {
     ]
   },
 
-  "avi-to-16-9": {
-    slug: "avi-to-16-9",
-    sourceFormat: "Audio Video Interleave (.AVI)",
-    targetFormat: "MPEG-4 (.MP4)",
-    targetRatio: "16:9 Widescreen",
-    title: "Convert AVI to 16:9 Widescreen Video Online - Modernize Legacy AVI",
-    h1: "Convert Legacy AVI Video to 16:9 Widescreen MP4",
-    metaDescription: "Convert legacy AVI videos to modern 16:9 widescreen MP4 online without uploading. Unstretch retro 4:3 footage, remove black bars, and restore proper geometry.",
-    summary: "Audio Video Interleave (.AVI) is a legacy multimedia container format introduced by Microsoft in 1992, widely utilized throughout the 1990s and 2000s in early digital camcorders, digital cameras, and desktop video libraries. Legacy AVI files frequently suffer from severe compatibility and geometry issues: non-square pixel aspect ratio distortions, 4:3 display mismatches on modern displays, bloated file sizes, and obsolete video codecs like DivX, XviD, or Indeo that modern operating systems refuse to play. AspectCut converts legacy AVI files into modern 16:9 widescreen MP4s, restoring proper geometric proportions, eliminating playback errors, and optimizing files for modern YouTube and TV streaming.",
-    codecHandlingDetails: "AspectCut's comprehensive FFmpeg WebAssembly build supports legacy AVI video decoders (MPEG-4 Part 2, DivX, XviD, Motion JPEG, DV, and Cinepak) and transcodes them into standard H.264 video with modern macroblock alignment and progressive frame structure.",
-    audioHandlingDetails: "Legacy AVI files commonly contain MP3, uncompressed PCM, or ADPCM audio tracks. AspectCut transcodes these aging audio formats into modern high-efficiency AAC stereo audio, eliminating audio drift and sync errors during playback.",
-    workflowSteps: [
-      "Choose your legacy AVI video file from your computer.",
-      "Select 16:9 Widescreen target ratio.",
-      "Choose 'Crop' to fill modern widescreen displays or 'Blur' to maintain vintage 4:3 composition.",
-      "Adjust focal framing if using crop mode.",
-      "Execute instant local WebAssembly rendering and save your universal 1080p MP4 video."
-    ],
-    faqs: [
-      {
-        q: "Why won't my AVI video open on modern smartphones?",
-        a: "Modern mobile operating systems have phased out native support for legacy AVI containers and DivX codecs. Converting to MP4 restores complete compatibility."
-      },
-      {
-        q: "How do I convert a 4:3 AVI file to 16:9 widescreen without distortion?",
-        a: "Use AspectCut's 'Crop' or 'Blurred Background' mode. AspectCut never stretches video, ensuring people and objects maintain realistic proportions."
-      },
-      {
-        q: "Can I convert large vintage AVI files?",
-        a: "Yes. AspectCut handles large multi-gigabyte files locally in your browser memory."
-      },
-      {
-        q: "Is AspectCut free with no watermark?",
-        a: "Yes. AspectCut is 100% free and never stamps watermarks on your footage."
-      }
-    ]
-  }
+
 };

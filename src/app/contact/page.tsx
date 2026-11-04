@@ -42,20 +42,20 @@ export default function ContactPage() {
           Contact AspectCut
         </h1>
         <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-          AspectCut is maintained by independent software engineers dedicated to high-performance client-side WebAssembly video tools.
+          AspectCut is maintained by independent software engineers dedicated to high-performance client-side WebCodecs video tools.
         </p>
       </div>
 
       <div className="p-6 rounded-3xl glass-panel space-y-5 text-xs">
         <div className="flex items-start gap-3">
-          <div className="p-2.5 rounded-2xl glass-pill text-[#c89c6e]">
+          <div className="p-2.5 rounded-2xl glass-pill text-[var(--accent-text)]">
             <Mail className="w-5 h-5" />
           </div>
           <div>
             <span className="font-mono text-[11px] text-[var(--text-muted)] uppercase tracking-wider block mb-1">
               Direct Support Email
             </span>
-            <a href={`mailto:${BRAND.contactEmail}`} className="font-semibold text-[#c89c6e] text-sm hover:underline">
+            <a href={`mailto:${BRAND.contactEmail}`} className="font-semibold text-[var(--accent-text)] text-sm hover:underline">
               {BRAND.contactEmail}
             </a>
           </div>
@@ -65,15 +65,15 @@ export default function ContactPage() {
           <span className="font-semibold text-[var(--text-main)] block">Troubleshooting Checklist:</span>
           <div className="space-y-1.5 pl-1">
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#c89c6e]" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent-text)]" />
               <span>Ensure hardware acceleration is enabled in browser settings</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#c89c6e]" />
-              <span>Verify your browser supports SharedArrayBuffer (Chrome, Safari 15.2+, Firefox, Edge)</span>
+              <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent-text)]" />
+              <span>Verify you are on the latest version of Chrome, Edge, Safari, or Firefox</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#c89c6e]" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent-text)]" />
               <span>For files over 200MB, ensure at least 4GB of available RAM</span>
             </div>
           </div>

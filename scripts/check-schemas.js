@@ -4,7 +4,7 @@
 const BRAND = {
   name: "AspectCut",
   domain: process.env.NEXT_PUBLIC_SITE_URL || "https://aspectcut.vercel.app",
-  entityStatement: "AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebAssembly; videos are not uploaded to a server.",
+  entityStatement: "AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebCodecs; videos are not uploaded to a server.",
 };
 
 console.log("\n📐 Testing AspectCut Schema.org JSON-LD Generators...\n");
@@ -41,7 +41,7 @@ const softwareApp = {
   url: BRAND.domain,
   applicationCategory: "MultimediaApplication",
   operatingSystem: "Web Browser",
-  browserRequirements: "Requires WebAssembly & SharedArrayBuffer",
+  browserRequirements: "Requires WebCodecs",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -58,7 +58,7 @@ const howTo = {
   step: [
     { "@type": "HowToStep", position: 1, name: "Upload Video", text: "Drop your video file into the browser." },
     { "@type": "HowToStep", position: 2, name: "Choose Ratio", text: "Select 9:16 target ratio." },
-    { "@type": "HowToStep", position: 3, name: "Convert", text: "Render your video locally in WebAssembly." }
+    { "@type": "HowToStep", position: 3, name: "Convert", text: "Render your video locally in WebCodecs." }
   ],
 };
 validateJson("HowTo", howTo);

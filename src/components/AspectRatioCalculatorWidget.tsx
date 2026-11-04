@@ -33,12 +33,12 @@ export default function AspectRatioCalculatorWidget() {
     <div className="w-full rounded-3xl glass-panel p-6 sm:p-8 space-y-6">
       <div className="flex items-center justify-between border-b border-[var(--color-hairline)] pb-4">
         <div className="flex items-center gap-2.5">
-          <Calculator className="w-5 h-5 text-[#c89c6e]" />
+          <Calculator className="w-5 h-5 text-[var(--accent-text)]" />
           <h2 className="text-base sm:text-lg font-semibold text-[var(--text-main)]">
             Interactive Aspect Ratio & Resolution Calculator
           </h2>
         </div>
-        <div className="font-mono text-xs text-[#c89c6e] font-bold px-2.5 py-1 rounded-full bg-[#c89c6e]/10">
+        <div className="font-mono text-xs text-[var(--accent-text)] font-bold px-2.5 py-1 rounded-full bg-[#c89c6e]/10">
           Even-Integer Mode
         </div>
       </div>
@@ -56,7 +56,7 @@ export default function AspectRatioCalculatorWidget() {
                 type="number"
                 value={width}
                 onChange={(e) => setWidth(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/10 font-mono text-sm text-[var(--text-main)] focus:outline-none focus:border-[#c89c6e]"
+                className="w-full px-3 py-2 rounded-xl bg-[var(--surface-soft)] border border-[var(--color-hairline-strong)] font-mono text-sm text-[var(--text-main)] focus:outline-none focus:border-[#c89c6e]"
               />
             </div>
             <div>
@@ -65,7 +65,7 @@ export default function AspectRatioCalculatorWidget() {
                 type="number"
                 value={height}
                 onChange={(e) => setHeight(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/10 font-mono text-sm text-[var(--text-main)] focus:outline-none focus:border-[#c89c6e]"
+                className="w-full px-3 py-2 rounded-xl bg-[var(--surface-soft)] border border-[var(--color-hairline-strong)] font-mono text-sm text-[var(--text-main)] focus:outline-none focus:border-[#c89c6e]"
               />
             </div>
           </div>
@@ -73,25 +73,25 @@ export default function AspectRatioCalculatorWidget() {
           <div className="flex flex-wrap gap-2 pt-1">
             <button
               onClick={() => { setWidth(1920); setHeight(1080); }}
-              className="text-[11px] font-mono px-2 py-1 rounded-md bg-white/5 hover:bg-white/10 text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
+              className="text-[11px] font-mono px-2 py-1 rounded-md bg-[var(--surface-soft)] hover:bg-[var(--surface-strong)] text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
             >
               1080p (16:9)
             </button>
             <button
               onClick={() => { setWidth(1080); setHeight(1920); }}
-              className="text-[11px] font-mono px-2 py-1 rounded-md bg-white/5 hover:bg-white/10 text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
+              className="text-[11px] font-mono px-2 py-1 rounded-md bg-[var(--surface-soft)] hover:bg-[var(--surface-strong)] text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
             >
               Vertical (9:16)
             </button>
             <button
               onClick={() => { setWidth(1080); setHeight(1080); }}
-              className="text-[11px] font-mono px-2 py-1 rounded-md bg-white/5 hover:bg-white/10 text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
+              className="text-[11px] font-mono px-2 py-1 rounded-md bg-[var(--surface-soft)] hover:bg-[var(--surface-strong)] text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
             >
               Square (1:1)
             </button>
             <button
               onClick={() => { setWidth(3840); setHeight(2160); }}
-              className="text-[11px] font-mono px-2 py-1 rounded-md bg-white/5 hover:bg-white/10 text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
+              className="text-[11px] font-mono px-2 py-1 rounded-md bg-[var(--surface-soft)] hover:bg-[var(--surface-strong)] text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
             >
               4K UHD
             </button>
@@ -99,12 +99,12 @@ export default function AspectRatioCalculatorWidget() {
         </div>
 
         {/* Calculated Ratio Result */}
-        <div className="space-y-4 p-5 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-col justify-center">
+        <div className="space-y-4 p-5 rounded-2xl bg-[var(--surface-soft)] border border-[var(--color-hairline)] flex flex-col justify-center">
           <div className="font-mono text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
             Derived Proportions
           </div>
           <div className="flex items-baseline gap-3">
-            <span className="text-3xl sm:text-4xl font-mono font-bold text-[#c89c6e]">
+            <span className="text-3xl sm:text-4xl font-mono font-bold text-[var(--accent-text)]">
               {ratioW}:{ratioH}
             </span>
             <span className="font-mono text-sm text-[var(--text-muted)]">
@@ -112,7 +112,7 @@ export default function AspectRatioCalculatorWidget() {
             </span>
           </div>
           <div className="text-xs text-[var(--text-muted)]">
-            Total Pixel Volume: <span className="font-mono text-[var(--text-main)]">{(safeW * safeH).toLocaleString()} px</span> ({((safeW * safeH) / 1000000).toFixed(2)} Megapixels)
+            Total Pixel Volume: <span className="font-mono text-[var(--text-main)]">{(safeW * safeH).toLocaleString("en-US")} px</span> ({((safeW * safeH) / 1000000).toFixed(2)} Megapixels)
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@ export default function AspectRatioCalculatorWidget() {
           Proportional Scaler (Keeps Exact Aspect Ratio)
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="p-4 rounded-xl bg-white/5 space-y-2">
+          <div className="p-4 rounded-xl bg-[var(--surface-soft)] space-y-2">
             <span className="text-xs font-semibold text-[var(--text-main)]">Scale by Width</span>
             <div className="flex items-center gap-2">
               <input
@@ -134,17 +134,17 @@ export default function AspectRatioCalculatorWidget() {
                   setNewWidth(val);
                   setNewHeight(calculateProportionalHeight(val));
                 }}
-                className="w-full px-3 py-1.5 rounded-lg bg-black/20 border border-white/10 font-mono text-xs text-[var(--text-main)]"
+                className="w-full px-3 py-1.5 rounded-lg bg-[var(--surface-soft)] border border-[var(--color-hairline-strong)] font-mono text-xs text-[var(--text-main)]"
                 placeholder="Width"
               />
-              <ArrowRight className="w-4 h-4 text-[#c89c6e] shrink-0" />
-              <div className="w-full px-3 py-1.5 rounded-lg bg-black/40 border border-white/5 font-mono text-xs text-[#c89c6e] font-bold">
+              <ArrowRight className="w-4 h-4 text-[var(--accent-text)] shrink-0" />
+              <div className="w-full px-3 py-1.5 rounded-lg bg-[var(--surface-strong)] border border-[var(--color-hairline)] font-mono text-xs text-[var(--accent-text)] font-bold">
                 {calculateProportionalHeight(newWidth)} px
               </div>
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-white/5 space-y-2">
+          <div className="p-4 rounded-xl bg-[var(--surface-soft)] space-y-2">
             <span className="text-xs font-semibold text-[var(--text-main)]">Scale by Height</span>
             <div className="flex items-center gap-2">
               <input
@@ -155,11 +155,11 @@ export default function AspectRatioCalculatorWidget() {
                   setNewHeight(val);
                   setNewWidth(calculateProportionalWidth(val));
                 }}
-                className="w-full px-3 py-1.5 rounded-lg bg-black/20 border border-white/10 font-mono text-xs text-[var(--text-main)]"
+                className="w-full px-3 py-1.5 rounded-lg bg-[var(--surface-soft)] border border-[var(--color-hairline-strong)] font-mono text-xs text-[var(--text-main)]"
                 placeholder="Height"
               />
-              <ArrowRight className="w-4 h-4 text-[#c89c6e] shrink-0" />
-              <div className="w-full px-3 py-1.5 rounded-lg bg-black/40 border border-white/5 font-mono text-xs text-[#c89c6e] font-bold">
+              <ArrowRight className="w-4 h-4 text-[var(--accent-text)] shrink-0" />
+              <div className="w-full px-3 py-1.5 rounded-lg bg-[var(--surface-strong)] border border-[var(--color-hairline)] font-mono text-xs text-[var(--accent-text)] font-bold">
                 {calculateProportionalWidth(newHeight)} px
               </div>
             </div>

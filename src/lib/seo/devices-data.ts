@@ -24,7 +24,7 @@ export const DEVICES_DATA: Record<string, DeviceDetail> = {
     nativeResolutions: ["1080p @ 30/60fps", "4K UHD @ 24/30/60fps", "ProRes 4K"],
     title: "Resize iPhone Video Aspect Ratio - Convert iPhone Video Online",
     h1: "Resize Apple iPhone Video Aspect Ratio",
-    metaDescription: "Resize iPhone videos to 9:16, 16:9, or 1:1 online without uploading. Convert 4K QuickTime MOV and HEVC footage directly in your browser with WebAssembly.",
+    metaDescription: "Resize iPhone videos to 9:16, 16:9, or 1:1 online without uploading. Convert 4K QuickTime MOV and HEVC footage directly in your browser with WebCodecs.",
     summary: "iPhones record high-bitrate video in Apple QuickTime (.MOV) containers using H.264, HEVC (H.265), or ProRes codecs. While horizontal recordings produce pristine 16:9 widescreen footage, publishing them to vertical platforms like TikTok or Instagram Reels requires intelligent aspect ratio conversion. AspectCut reads native iPhone MOV files directly in your browser, enabling fast focal cropping or blurred background reframing without uploading massive multi-gigabyte files to the cloud.",
     reframeAdvice: "When reframing horizontal iPhone footage for vertical reels, use AspectCut's draggable focal point to track speakers. If your clip was recorded with iPhone Cinematic Mode, the shallow depth-of-field looks spectacular in centered vertical crops.",
     hardwareConsiderations: [
@@ -54,7 +54,7 @@ export const DEVICES_DATA: Record<string, DeviceDetail> = {
       },
       {
         q: "Will my iPhone videos be stored or uploaded anywhere?",
-        a: "No. AspectCut executes client-side WebAssembly inside your browser; zero bytes are transmitted to any remote server."
+        a: "No. AspectCut executes client-side WebCodecs inside your browser; zero bytes are transmitted to any remote server."
       }
     ]
   },
@@ -123,7 +123,7 @@ export const DEVICES_DATA: Record<string, DeviceDetail> = {
       "Load the GoPro clip into AspectCut.",
       "Choose 16:9 (YouTube) or 9:16 (TikTok/Reels/Shorts).",
       "Adjust the focal point slider to center the athlete or vehicle.",
-      "Export locally via WebAssembly with zero quality degradation."
+      "Export locally via WebCodecs with zero quality degradation."
     ],
     faqs: [
       {
@@ -140,7 +140,7 @@ export const DEVICES_DATA: Record<string, DeviceDetail> = {
       },
       {
         q: "Does AspectCut support high-bitrate GoPro 4K and 5.3K files?",
-        a: "Yes. AspectCut leverages client-side WebAssembly to process high-resolution video directly on your CPU hardware."
+        a: "Yes. AspectCut leverages client-side WebCodecs to process high-resolution video directly on your CPU hardware."
       }
     ]
   },
@@ -209,7 +209,7 @@ export const DEVICES_DATA: Record<string, DeviceDetail> = {
       "Import the video file into AspectCut.",
       "Choose 9:16 Vertical as target ratio.",
       "Select 'Blur' to show the full screen, or 'Crop' to zoom in on code or UI controls.",
-      "Render locally via WebAssembly."
+      "Render locally via WebCodecs."
     ],
     faqs: [
       {
@@ -269,7 +269,7 @@ export const DEVICES_DATA: Record<string, DeviceDetail> = {
       },
       {
         q: "Are company meetings kept private during conversion?",
-        a: "Yes. AspectCut runs completely client-side via WebAssembly; proprietary corporate meetings are never uploaded to any cloud server."
+        a: "Yes. AspectCut runs completely client-side via WebCodecs; proprietary corporate meetings are never uploaded to any cloud server."
       }
     ]
   }

@@ -24,8 +24,8 @@ export function buildLocalizedSoftwareApplicationSchema({
     url: pageUrl,
     inLanguage: config.hreflang,
     applicationCategory: "MultimediaApplication",
-    operatingSystem: "Any (Modern Web Browser with WebAssembly)",
-    browserRequirements: "Requires WebAssembly support (Chrome, Safari, Firefox, Edge)",
+    operatingSystem: "Any (Modern Web Browser with WebCodecs)",
+    browserRequirements: "Requires WebCodecs support (Chrome, Safari, Firefox, Edge)",
     offers: {
       "@type": "Offer",
       price: "0",

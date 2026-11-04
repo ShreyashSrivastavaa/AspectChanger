@@ -31,7 +31,7 @@ export function buildSoftwareApplicationSchema({
   applicationCategory = "MultimediaApplication",
   featureList = [
     "Client-side video aspect ratio reframing",
-    "Zero cloud video uploads (100% private WebAssembly processing)",
+    "Zero cloud video uploads (100% private WebCodecs processing)",
     "Focal point crop framing with draggable selector",
     "Dynamic blurred background mirror extensions",
     "Pillarbox and letterbox padding with even-integer macroblock alignment",
@@ -54,7 +54,7 @@ export function buildSoftwareApplicationSchema({
     url,
     applicationCategory,
     operatingSystem,
-    browserRequirements: "Requires WebAssembly and SharedArrayBuffer support",
+    browserRequirements: "Requires WebCodecs support",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -95,7 +95,7 @@ export function buildHowToSchema({
     tool: [
       {
         "@type": "HowToTool",
-        name: "AspectCut WebAssembly Video Engine",
+        name: "AspectCut WebCodecs Video Engine",
       },
     ],
     step: steps.map((s, idx) => {
@@ -171,7 +171,7 @@ export function buildOrganizationSchema() {
     },
     knowsAbout: [
       "Video aspect ratio transformation",
-      "FFmpeg WebAssembly compilation",
+      "WebCodecs compilation",
       "H.264, HEVC, and VP9 video codecs",
       "Social media video formats (TikTok, Reels, Shorts)",
       "Client-side media privacy",

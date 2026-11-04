@@ -18,11 +18,11 @@ export default function Footer() {
             <p className="text-xs leading-relaxed text-[var(--text-muted)]">
               {BRAND.canonicalEntityStatement}
             </p>
-            <div className="text-[11px] font-mono text-[#e8c89b]">
-              A product of <a href="https://zenithdistrict.com" target="_blank" rel="noopener noreferrer" className="underline font-semibold hover:text-white transition-colors">ZenithDistrict</a>
+            <div className="text-[11px] font-mono text-[var(--accent-text)]">
+              A product of <a href="https://zenithdistrict.com" target="_blank" rel="noopener noreferrer" className="underline font-semibold hover:text-[var(--text-main)] transition-colors">ZenithDistrict</a>
             </div>
             <div className="text-[11px] font-mono text-[var(--text-main)]">
-              Support: <a href={`mailto:${BRAND.contactEmail}`} className="underline hover:text-[#c89c6e]">{BRAND.contactEmail}</a>
+              Support: <a href={`mailto:${BRAND.contactEmail}`} className="underline hover:text-[var(--accent-text)]">{BRAND.contactEmail}</a>
             </div>
           </div>
 
@@ -33,32 +33,32 @@ export default function Footer() {
             </span>
             <ul className="space-y-2.5 font-mono text-[11px]">
               <li>
-                <Link href="/tools/16-9-to-9-16" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/tools/16-9-to-9-16" className="hover:text-[var(--accent-text)] transition-colors">
                   16:9 to 9:16 Vertical
                 </Link>
               </li>
               <li>
-                <Link href="/tools/9-16-to-16-9" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/tools/9-16-to-16-9" className="hover:text-[var(--accent-text)] transition-colors">
                   9:16 to 16:9 Widescreen
                 </Link>
               </li>
               <li>
-                <Link href="/tools/16-9-to-1-1" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/tools/16-9-to-1-1" className="hover:text-[var(--accent-text)] transition-colors">
                   16:9 to 1:1 Square
                 </Link>
               </li>
               <li>
-                <Link href="/tools/16-9-to-4-5" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/tools/16-9-to-4-5" className="hover:text-[var(--accent-text)] transition-colors">
                   16:9 to 4:5 Portrait
                 </Link>
               </li>
               <li>
-                <Link href="/tools/4-3-to-16-9" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/tools/4-3-to-16-9" className="hover:text-[var(--accent-text)] transition-colors">
                   4:3 to 16:9 Standard
                 </Link>
               </li>
               <li>
-                <Link href="/tools" className="text-[#c89c6e] hover:underline pt-1 inline-block">
+                <Link href="/tools" className="text-[var(--accent-text)] hover:underline pt-1 inline-block">
                   View all 15 converters &rarr;
                 </Link>
               </li>
@@ -72,32 +72,32 @@ export default function Footer() {
             </span>
             <ul className="space-y-2.5 font-mono text-[11px]">
               <li>
-                <Link href="/for/youtube-shorts" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/for/youtube-shorts" className="hover:text-[var(--accent-text)] transition-colors">
                   YouTube Shorts Specs
                 </Link>
               </li>
               <li>
-                <Link href="/for/tiktok" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/for/tiktok" className="hover:text-[var(--accent-text)] transition-colors">
                   TikTok Video Dimensions
                 </Link>
               </li>
               <li>
-                <Link href="/for/instagram-reels" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/for/instagram-reels" className="hover:text-[var(--accent-text)] transition-colors">
                   Instagram Reels Safe Zones
                 </Link>
               </li>
               <li>
-                <Link href="/calculator/aspect-ratio" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/calculator/aspect-ratio" className="hover:text-[var(--accent-text)] transition-colors">
                   Aspect Ratio Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/data/platform-specs" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/data/platform-specs" className="hover:text-[var(--accent-text)] transition-colors">
                   Open Specs Dataset (CSV/JSON)
                 </Link>
               </li>
               <li>
-                <Link href="/for" className="text-[#c89c6e] hover:underline pt-1 inline-block">
+                <Link href="/for" className="text-[var(--accent-text)] hover:underline pt-1 inline-block">
                   All 11 platform presets &rarr;
                 </Link>
               </li>
@@ -111,32 +111,27 @@ export default function Footer() {
             </span>
             <ul className="space-y-2.5 font-mono text-[11px]">
               <li>
-                <Link href="/guides/what-is-aspect-ratio" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/guides/what-is-aspect-ratio" className="hover:text-[var(--accent-text)] transition-colors">
                   What is Aspect Ratio?
                 </Link>
               </li>
               <li>
-                <Link href="/guides/aspect-ratio-cheat-sheet" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/guides/aspect-ratio-cheat-sheet" className="hover:text-[var(--accent-text)] transition-colors">
                   2026 Aspect Ratio Cheat Sheet
                 </Link>
               </li>
               <li>
-                <Link href="/methodology" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/methodology" className="hover:text-[var(--accent-text)] transition-colors">
                   Engineering Methodology
                 </Link>
               </li>
               <li>
-                <Link href="/benchmarks" className="hover:text-[#c89c6e] transition-colors">
-                  WASM Speed Benchmarks
-                </Link>
-              </li>
-              <li>
-                <Link href="/glossary" className="hover:text-[#c89c6e] transition-colors">
+                <Link href="/glossary" className="hover:text-[var(--accent-text)] transition-colors">
                   Video Engineering Glossary
                 </Link>
               </li>
               <li>
-                <Link href="/all-pages" className="text-[#c89c6e] hover:underline pt-1 inline-block">
+                <Link href="/all-pages" className="text-[var(--accent-text)] hover:underline pt-1 inline-block">
                   Complete HTML Sitemap (112 pages) &rarr;
                 </Link>
               </li>
@@ -148,7 +143,7 @@ export default function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-[var(--text-muted)] gap-4">
           <div className="flex items-center gap-4">
             <div>
-              &copy; {new Date().getFullYear()} {BRAND.name}. A product of <a href="https://zenithdistrict.com" target="_blank" rel="noopener noreferrer" className="text-[#c89c6e] hover:underline font-semibold">ZenithDistrict</a>. 100% In-Browser WebAssembly.
+              &copy; {new Date().getFullYear()} {BRAND.name}. A product of <a href="https://zenithdistrict.com" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-text)] hover:underline font-semibold">ZenithDistrict</a>. 100% In-Browser WebCodecs.
             </div>
             <LanguageSwitcher variant="footer" />
           </div>
@@ -160,7 +155,7 @@ export default function Footer() {
             <Link href="/terms" className="hover:text-[var(--text-main)] transition-colors">Terms</Link>
             <Link href="/press" className="hover:text-[var(--text-main)] transition-colors">Press Kit</Link>
             <Link href="/changelog" className="hover:text-[var(--text-main)] transition-colors">Changelog</Link>
-            <Link href="/llms.txt" className="text-[#c89c6e] hover:underline font-semibold">llms.txt</Link>
+            <Link href="/llms.txt" className="text-[var(--accent-text)] hover:underline font-semibold">llms.txt</Link>
           </div>
         </div>
 

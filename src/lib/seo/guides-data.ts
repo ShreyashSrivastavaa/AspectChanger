@@ -357,7 +357,7 @@ Mobile social media algorithms evaluate viewer watch-time in fractional seconds.
       {
         id: "ffmpeg-filters",
         title: "7. Filter Graph Architecture & Performance",
-        content: `Understanding how these transformations are executed technically reveals why AspectCut operates so efficiently:
+        content: `If you prefer the command line, these are the equivalent FFmpeg filters for each mode:
 
 \`\`\`bash
 # 1. Direct Crop Filter
@@ -373,7 +373,7 @@ Mobile social media algorithms evaluate viewer watch-time in fractional seconds.
 [bg][fg]overlay=(W-w)/2:(H-h)/2[outv]
 \`\`\`
 
-In AspectCut, this filter graph is compiled into WebAssembly and runs directly across your CPU cores via pthreads and Web Workers, producing rendering speeds of 0.8x to 1.5x realtime on consumer laptops without cloud upload delays.`
+AspectCut does the same work in your browser with WebCodecs and a canvas, using your device's video hardware when available, so there is no install and no cloud upload.`
       },
       {
         id: "decision-matrix",
@@ -405,7 +405,7 @@ In AspectCut, this filter graph is compiled into WebAssembly and runs directly a
       },
       {
         q: "Does adding a blur background slow down conversion?",
-        a: "No. AspectCut's multi-threaded WebAssembly engine renders blurred backgrounds in near real-time on modern multi-core CPUs."
+        a: "No. AspectCut's hardware-accelerated WebCodecs engine renders blurred backgrounds in near real-time on modern multi-core CPUs."
       }
     ]
   },
@@ -426,7 +426,7 @@ In AspectCut, this filter graph is compiled into WebAssembly and runs directly a
       { id: "audio-stream-copy", title: "4. Audio Stream Copying vs. Destructive Re-encoding" },
       { id: "color-space", title: "5. Color Space & Chroma Subsampling Preservation" },
       { id: "faststart-container", title: "6. MP4 FastStart & MOOV Atom Web Optimization" },
-      { id: "client-vs-cloud", title: "7. Client-Side WebAssembly vs. Cloud Compression" },
+      { id: "client-vs-cloud", title: "7. Client-Side WebCodecs vs. Cloud Compression" },
       { id: "step-by-step", title: "8. Step-by-Step Lossless Workflow in AspectCut" }
     ],
     introduction: "Every time digital video is decoded and re-encoded, lossy mathematical quantization can discard high-frequency spatial detail, leading to generational loss: macroblocking in shadows, banding in skies and gradients, ringing around high-contrast edges, and smeared motion vectors. By mastering rate control, pixel alignment, and stream remuxing, you can execute aspect ratio conversions that are visually transparent and indistinguishable from camera master footage.",
@@ -501,13 +501,13 @@ This ensures that the exact contrast curve, skin tones, and dynamic range captur
       },
       {
         id: "client-vs-cloud",
-        title: "7. Client-Side WebAssembly vs. Cloud Compression",
+        title: "7. Client-Side WebCodecs vs. Cloud Compression",
         content: `Why do cloud converters often produce degraded video?
 1. **Bandwidth Throttling:** Cloud providers must pay for server egress bandwidth. To save money, they compress user exports aggressively.
 2. **CPU Starvation:** Cloud workers are throttled to run thousands of jobs simultaneously on shared virtual machines.
 3. **Double Compression:** Your file is compressed during upload and recompressed during download.
 
-Because AspectCut executes locally on your device CPU via WebAssembly, there are zero server bandwidth constraints, allowing us to encode at high CRF quality without restriction. Furthermore, browser-local processing eliminates the security vulnerability of exposing proprietary, private, or confidential B-roll footage to third-party cloud storage buckets.`
+Because AspectCut executes locally on your device CPU via WebCodecs, there are zero server bandwidth constraints, allowing us to encode at high CRF quality without restriction. Furthermore, browser-local processing eliminates the security vulnerability of exposing proprietary, private, or confidential B-roll footage to third-party cloud storage buckets.`
       },
       {
         id: "step-by-step",
@@ -518,7 +518,7 @@ Because AspectCut executes locally on your device CPU via WebAssembly, there are
 3. **Select your desired fitting mode:** Opt for 'Crop' with precise interactive focal framing for character-driven action, or 'Blur' for full-canvas preservation without letterbox bars.
 4. **Choose your scaling filter:** AspectCut automatically applies high-quality bicubic interpolation with even-integer pixel boundary rounding.
 5. **Verify quality parameters:** Ensure quality is set to High (CRF 20) or Maximum (CRF 18) for visually lossless output.
-6. **Click 'Convert Video':** The file renders entirely in browser RAM using multi-threaded WebAssembly, producing an optimized MP4 ready for immediate broadcast.`
+6. **Click 'Convert Video':** The file renders entirely in browser RAM using hardware-accelerated WebCodecs, producing an optimized MP4 ready for immediate broadcast.`
       }
     ],
     faqs: [
@@ -535,8 +535,8 @@ Because AspectCut executes locally on your device CPU via WebAssembly, there are
         a: "AspectCut detects compliant AAC audio streams and stream-copies them without re-encoding, eliminating generational audio degradation."
       },
       {
-        q: "Is WebAssembly video conversion as good as desktop video editing software?",
-        a: "Yes. AspectCut compiles the exact same FFmpeg and libx264 libraries used by professional desktop video software into WebAssembly."
+        q: "Is WebCodecs video conversion as good as desktop video editing software?",
+        a: "For social video, yes. WebCodecs uses your device's H.264 encoder, and the Quality setting lets you trade file size for detail."
       }
     ]
   },
@@ -636,7 +636,7 @@ In these scenarios, standard cropping will eliminate one participant entirely. I
 2. **Import Video:** Drag and drop your horizontal video file (MP4, MOV, WebM, or MKV) into the dropzone.
 3. **Select Ratio:** Select '9:16 Vertical' from the aspect ratio presets.
 4. **Choose Framing Mode:** Choose 'Crop' and adjust your focal framing using the interactive draggable target, or select 'Blur' to keep the full landscape screen visible with atmospheric blurred margins.
-5. **Convert Locally:** Click 'Convert Video' to render your 1080×1920 MP4 locally via WebAssembly, and download your export instantly.`
+5. **Convert Locally:** Click 'Convert Video' to render your 1080×1920 MP4 locally via WebCodecs, and download your export instantly.`
       }
     ],
     faqs: [
@@ -745,7 +745,7 @@ When a horizontal 16:9 video is uploaded to TikTok, it occupies only one-third o
         title: "8. Eliminating Variable Frame Rate (VFR) Sync Drift",
         content: `Smartphone cameras (especially iPhones recording in low light) often record video in Variable Frame Rate (VFR) to dynamically compensate for exposure. When uploaded to TikTok's ingestion pipelines, VFR files frequently experience audio-video sync drift, where dialogue slips out of sync with lip movements over the duration of the clip.
 
-AspectCut automatically converts incoming footage to strict **Constant Frame Rate (CFR)** (e.g. 30.000 fps or 60.000 fps progressive) during WebAssembly export. This locks audio packets to precise video PTS timestamps, guaranteeing rock-solid lip sync across all mobile devices.`
+AspectCut keeps each frame's original timestamp during export, so audio stays aligned with the video. If a platform still shows drift, record at a fixed frame rate in your camera settings.`
       },
       {
         id: "organic-vs-ads",
@@ -978,7 +978,7 @@ Keep all essential text callouts and face framing safely centered within the mid
 1. Select your 16:9 video in AspectCut.
 2. Choose 9:16 Vertical (1080×1920).
 3. Use 'Crop' with focal tracking to frame the speaker, or 'Blur' to keep the full landscape screen visible.
-4. Render locally via WebAssembly with zero quality loss.
+4. Render locally via WebCodecs with zero quality loss.
 5. Upload to YouTube and link the Short directly to your related long-form video.`
       },
       {

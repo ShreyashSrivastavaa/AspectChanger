@@ -11,7 +11,7 @@ export default function Navbar() {
           <span className="w-2 h-2 bg-[#ff4400] inline-block" />
           <span>{BRAND.name}</span>
           <span className="text-[10px] text-[#c0bfbe] border border-[#222222] px-1.5 py-0.5 tracking-normal">
-            CORE WASM
+            WEBCODECS
           </span>
         </Link>
 

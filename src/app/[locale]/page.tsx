@@ -1,6 +1,8 @@
 import { setRequestLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import VideoProcessor from "@/components/VideoProcessor";
+import AspectRatioCalculatorWidget from "@/components/AspectRatioCalculatorWidget";
+import { PRESET_GROUPS } from "@/lib/video-presets";
 import {
   buildLocalizedSoftwareApplicationSchema,
   buildLocalizedFAQSchema,
@@ -22,7 +24,6 @@ export default async function HomePage({
   const tFaq = messages.faq || {};
   const tHero = messages.hero || {};
   const tBrand = messages.brand || {};
-  const tNav = messages.nav || {};
   const tFooter = messages.footer || {};
 
   const homeFaqs = [
@@ -45,14 +46,24 @@ export default async function HomePage({
   });
   const jsonLdOrg = buildOrganizationSchema();
 
-  const popularConversions = [
-    { href: "/tools/16-9-to-9-16", label: "16:9 to 9:16" },
-    { href: "/tools/9-16-to-16-9", label: "9:16 to 16:9" },
-    { href: "/tools/16-9-to-1-1", label: "16:9 to 1:1" },
-    { href: "/tools/16-9-to-4-5", label: "16:9 to 4:5" },
-    { href: "/tools/1-1-to-9-16", label: "1:1 to 9:16" },
-    { href: "/tools/4-3-to-16-9", label: "4:3 to 16:9" },
+  const features = [
+    { title: "Every platform size", text: "Instagram, TikTok, YouTube, Facebook, X, LinkedIn, Snapchat, Pinterest, WhatsApp and common screens, exported at exact pixels." },
+    { title: "Blur, crop or bars", text: "Fill the frame with a blurred background, crop to fit, or add bars in any color." },
+    { title: "Zoom and reframe", text: "Drag the crosshair and zoom up to 300% to keep your subject in the shot." },
+    { title: "Custom ratios", text: "Enter any ratio up to 4:1, including decimals such as 2.35:1." },
+    { title: "Private by design", text: "Your video is processed inside your browser and is never uploaded to a server." },
+    { title: "Free, no watermark", text: "No account and no watermark on your exported video." },
+    { title: "MP4 and WebM export", text: "Open MP4, MOV, WebM or MKV up to 500 MB, then export H.264 MP4 or VP9 WebM." },
+    { title: "Sound stays in", text: "Your audio track is carried into the exported file automatically." },
   ];
+
+  const steps = [
+    { title: "Add your video", text: "Choose or drop a clip. It stays on your device." },
+    { title: "Pick a size", text: "Choose a platform, a screen size, or a custom ratio, then frame it." },
+    { title: "Convert and download", text: "Your browser does the encoding, then the file is ready to save." },
+  ];
+
+  const sectionTitle = "text-xl sm:text-2xl font-semibold tracking-tight text-[var(--text-main)]";
 
   return (
     <div className="w-full text-[var(--text-main)] relative overflow-hidden" suppressHydrationWarning>
@@ -79,12 +90,7 @@ export default async function HomePage({
 
         {/* Floating 3D Plate 1: Top Left */}
         <div 
-          className="hidden lg:block absolute top-10 left-[-3%] xl:left-[1%] w-52 xl:w-64 h-36 xl:h-44 rounded-3xl border border-white/80 opacity-70 -rotate-12 transition-transform duration-500 hover:rotate-[-8deg]"
-          style={{
-            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 238, 230, 0.25) 100%)",
-            backdropFilter: "blur(18px)",
-            boxShadow: "0 30px 65px -10px rgba(130, 105, 80, 0.18), inset 0 1.5px 2px rgba(255, 255, 255, 0.95)",
-          }}
+          className="hidden lg:block absolute top-10 left-[-3%] xl:left-[1%] w-52 xl:w-64 h-36 xl:h-44 rounded-3xl border hero-plate opacity-70 -rotate-12 transition-transform duration-500 hover:rotate-[-8deg]"
         >
           <svg className="w-full h-full" viewBox="0 0 240 160" fill="none">
             <path 
@@ -114,12 +120,7 @@ export default async function HomePage({
 
         {/* Floating 3D Plate 2: Top Right */}
         <div 
-          className="hidden lg:block absolute top-12 right-[-2%] xl:right-[2%] w-56 xl:w-72 h-40 xl:h-48 rounded-3xl border border-white/80 opacity-70 rotate-6 transition-transform duration-500 hover:rotate-3"
-          style={{
-            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 238, 230, 0.25) 100%)",
-            backdropFilter: "blur(18px)",
-            boxShadow: "0 30px 65px -10px rgba(130, 105, 80, 0.18), inset 0 1.5px 2px rgba(255, 255, 255, 0.95)",
-          }}
+          className="hidden lg:block absolute top-12 right-[-2%] xl:right-[2%] w-56 xl:w-72 h-40 xl:h-48 rounded-3xl border hero-plate opacity-70 rotate-6 transition-transform duration-500 hover:rotate-3"
         >
           <svg className="w-full h-full" viewBox="0 0 260 180" fill="none">
             <circle cx="210" cy="50" r="100" stroke="#c89c6e" strokeWidth="1" opacity="0.4" strokeDasharray="3 7" />
@@ -146,17 +147,17 @@ export default async function HomePage({
         />
       </div>
 
-      <div className="max-w-[1020px] mx-auto px-4 sm:px-6 pt-5 pb-12 space-y-6 relative z-10" suppressHydrationWarning>
+      <div className="max-w-[1020px] mx-auto px-4 sm:px-6 pt-2 pb-12 space-y-4 relative z-10" suppressHydrationWarning>
         
         {/* Spatial Central Title Header */}
-        <div className="text-center space-y-2 max-w-2xl mx-auto pt-2">
+        <div className="text-center space-y-2 max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-[11px] font-mono text-[var(--text-muted)] select-none">
             <span className="w-1.5 h-1.5 rounded-full bg-[#c89c6e] shadow-[0_0_8px_#c89c6e]" />
-            <span>{tBrand.clientEngine || "Client-Side WebAssembly Studio"}</span>
+            <span>{tBrand.clientEngine || "Client-Side WebCodecs Studio"}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[var(--text-main)]">
-            Video Aspect Ratio <span className="font-serif italic font-normal text-[#c89c6e]">Changer</span>
+            Video Aspect Ratio <span className="font-serif italic font-normal text-[var(--accent-text)]">Changer</span>
           </h1>
 
           <p className="text-xs sm:text-sm text-[var(--text-muted)] max-w-lg mx-auto leading-relaxed">
@@ -165,7 +166,7 @@ export default async function HomePage({
         </div>
 
         {/* Central Frosted Tool */}
-        <section aria-label="Aspect Ratio Tool" className="relative" suppressHydrationWarning>
+        <section id="tool" aria-label="Aspect Ratio Tool" className="relative scroll-mt-4" suppressHydrationWarning>
           <VideoProcessor initialRatio={{ w: 9, h: 16 }} />
         </section>
 
@@ -176,76 +177,101 @@ export default async function HomePage({
           <div className="flex justify-center">
             <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full glass-pill text-xs font-mono text-[var(--text-muted)] text-center shadow-sm">
               <span className="text-[var(--text-main)] font-medium">{tHero.noUpload || "No upload"}</span>
-              <span className="text-[#c89c6e]">·</span>
+              <span className="text-[var(--accent-text)]">·</span>
               <span className="text-[var(--text-main)] font-medium">{tHero.noWatermark || "No watermark"}</span>
-              <span className="text-[#c89c6e]">·</span>
+              <span className="text-[var(--accent-text)]">·</span>
               <span className="text-[var(--text-main)] font-medium">{tHero.upTo500mb || "Up to 500 MB"}</span>
             </div>
           </div>
 
-          {/* Row 2: Popular Conversions (Frosted Pill Chips) */}
-          <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-mono">
-            <span className="text-[var(--text-muted)] uppercase tracking-wider text-[10px] mr-1">
-              {tHero.popularConversions || "Conversions:"}
-            </span>
-            {popularConversions.map((conv) => (
-              <Link
-                key={conv.href}
-                href={conv.href as any}
-                className="px-3 py-1 rounded-full glass-pill text-[var(--text-main)] hover:border-[#c89c6e] hover:text-[#c89c6e] transition-colors"
-              >
-                {conv.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Row 3: Collapsible Answer-First Crawlable SEO Block */}
-          <div className="pt-2">
-            <details className="group text-left glass-panel rounded-2xl p-4 text-xs transition-colors">
-              <summary className="cursor-pointer font-mono text-[11px] uppercase tracking-wider text-[var(--text-muted)] group-hover:text-[#c89c6e] transition-colors select-none flex items-center justify-between">
-                <span>{tHero.aboutArchitecture || "About In-Browser Aspect Ratio Reframing & Architecture"}</span>
-                <span className="text-xs group-open:rotate-180 transition-transform">▾</span>
-              </summary>
-              <div className="pt-3 text-[var(--text-muted)] leading-relaxed space-y-2.5">
-                {homeFaqs.slice(0, 3).map((faq, idx) => (
-                  <div key={idx} className="space-y-1">
-                    <h2 className="font-semibold text-[var(--text-main)] text-xs">{faq.q}</h2>
-                    <p>{faq.a}</p>
-                  </div>
-                ))}
-                <div className="pt-2 border-t border-[var(--color-hairline)] grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
-                  <div>
-                    <span className="font-semibold text-[var(--text-main)]">Supported Inputs:</span> MP4, MOV, WebM, MKV, AVI
-                  </div>
-                  <div>
-                    <span className="font-semibold text-[var(--text-main)]">Privacy Architecture:</span> 100% In-Browser Memory (COOP/COEP Sandbox)
-                  </div>
+          {/* All sizes */}
+          <section id="sizes" className="pt-8 space-y-4 scroll-mt-4">
+            <div className="text-center space-y-1">
+              <h2 className={sectionTitle}>Every platform and screen size</h2>
+              <p className="text-xs sm:text-sm text-[var(--text-muted)]">Select a size to load it into the tool.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {PRESET_GROUPS.map((group) => (
+                <div key={group.id} className="glass-panel rounded-2xl p-4">
+                  <h3 className="font-semibold text-sm text-[var(--text-main)] mb-2">{group.name}</h3>
+                  <ul className="text-xs">
+                    {group.presets.map((preset) => (
+                      <li key={preset.id}>
+                        <a
+                          href={`#size=${preset.id}`}
+                          className="flex items-center justify-between gap-3 py-1.5 text-[var(--text-main)] hover:text-[var(--accent-text)] transition-colors"
+                        >
+                          <span>{preset.label}</span>
+                          <span className="font-mono text-[11px] text-[var(--text-muted)] whitespace-nowrap">
+                            {preset.ratio} · {preset.width}×{preset.height}
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
-            </details>
-          </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Features */}
+          <section id="features" className="pt-8 space-y-4 scroll-mt-4">
+            <h2 className={`${sectionTitle} text-center`}>Everything you need to reframe a video</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {features.map((feature) => (
+                <div key={feature.title} className="glass-panel rounded-2xl p-4">
+                  <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">{feature.title}</h3>
+                  <p className="text-xs leading-relaxed text-[var(--text-muted)]">{feature.text}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* How it works */}
+          <section id="how-it-works" className="pt-8 space-y-4 scroll-mt-4">
+            <h2 className={`${sectionTitle} text-center`}>How it works</h2>
+            <ol className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {steps.map((step, index) => (
+                <li key={step.title} className="glass-panel rounded-2xl p-4">
+                  <span className="font-mono text-xs text-[var(--accent-text)]">0{index + 1}</span>
+                  <h3 className="font-semibold text-sm text-[var(--text-main)] mt-1 mb-1">{step.title}</h3>
+                  <p className="text-xs leading-relaxed text-[var(--text-muted)]">{step.text}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          {/* Calculator */}
+          <section id="calculator" className="pt-8 scroll-mt-4">
+            <AspectRatioCalculatorWidget />
+          </section>
+
+          {/* FAQ */}
+          <section id="faq" className="pt-8 space-y-4 scroll-mt-4">
+            <h2 className={`${sectionTitle} text-center`}>Frequently asked questions</h2>
+            <div className="space-y-2">
+              {homeFaqs.map((faq) => (
+                <details key={faq.q} className="group glass-panel rounded-2xl p-4 text-xs">
+                  <summary className="cursor-pointer font-semibold text-[var(--text-main)] select-none flex items-center justify-between gap-3">
+                    <h3>{faq.q}</h3>
+                    <span className="group-open:rotate-180 transition-transform">▾</span>
+                  </summary>
+                  <p className="pt-2 leading-relaxed text-[var(--text-muted)]">{faq.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
 
           {/* Frosted Glass Footer */}
           <footer className="pt-3 pb-2 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono text-[var(--text-muted)]">
             <div className="flex items-center gap-1.5">
               <span>© {new Date().getFullYear()} {BRAND.name}. {tFooter?.tagline || "Spatial Client-Side Processing."}</span>
             </div>
-            <div className="flex items-center gap-4">
-              <Link href="/tools" className="hover:text-[#c89c6e] transition-colors">
-                {tNav.tools || "All Tools"}
-              </Link>
-              <Link href="/for" className="hover:text-[#c89c6e] transition-colors">
-                {tNav.platforms || "Platforms"}
-              </Link>
-              <Link href="/guides" className="hover:text-[#c89c6e] transition-colors">
-                {tNav.guides || "Guides"}
-              </Link>
-              <Link href="/privacy" className="hover:text-[#c89c6e] transition-colors">
-                {tNav.privacy || "Privacy"}
-              </Link>
-              <Link href="/contact" className="hover:text-[#c89c6e] transition-colors">
-                {tNav.contact || "Contact"}
-              </Link>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Link href="/about" className="hover:text-[var(--accent-text)] transition-colors">About</Link>
+              <Link href="/privacy" className="hover:text-[var(--accent-text)] transition-colors">Privacy</Link>
+              <Link href="/terms" className="hover:text-[var(--accent-text)] transition-colors">Terms</Link>
+              <Link href="/contact" className="hover:text-[var(--accent-text)] transition-colors">Contact</Link>
             </div>
           </footer>
         </div>

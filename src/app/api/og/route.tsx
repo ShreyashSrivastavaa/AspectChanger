@@ -83,7 +83,7 @@ export async function GET(request: Request) {
                   marginLeft: "8px",
                 }}
               >
-                WASM Engine
+                WebCodecs Engine
               </span>
             </div>
 

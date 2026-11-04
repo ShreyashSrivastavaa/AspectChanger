@@ -16,7 +16,7 @@ export const PROBLEMS_DATA: Record<string, ProblemDetail> = {
     slug: "remove-black-bars",
     problemTitle: "How to Remove Black Bars from Video Online",
     h1: "How to Remove Black Bars from Video Online",
-    metaDescription: "Remove black bars (letterboxing & pillarboxing) from your videos online without uploading. Reframe to 16:9, 9:16, or 1:1 with WebAssembly.",
+    metaDescription: "Remove black bars (letterboxing & pillarboxing) from your videos online without uploading. Reframe to 16:9, 9:16, or 1:1 with WebCodecs.",
     rootCause: "Black bars appear when a video's aspect ratio does not match the player's display window. Horizontal bars (letterboxing) appear when a widescreen video is played on a taller screen; vertical bars (pillarboxing) appear when a narrow video is shown on a widescreen display; and four-sided bars (windowboxing) occur when a video with hard-coded bars is embedded in a mismatched player. Uploading a video that already contains hard-coded black bars causes double letterboxing when played on mobile devices.",
     detailedFix: "To eliminate black bars permanently, you must either geometrically crop the footage to match the destination aspect ratio exactly, or replace the empty black bars with a dynamic blurred background extension. AspectCut calculates the exact pixel boundary of the active video area, allowing you to crop away dead borders or fill the frame with ambient blur without any quality degradation. The tool recalculates pixel aspect ratios and applies clean even-integer macroblock scaling, eliminating all black borders permanently.",
     recommendedWorkflow: [
@@ -24,7 +24,7 @@ export const PROBLEMS_DATA: Record<string, ProblemDetail> = {
       "Select your intended target aspect ratio (e.g., 9:16 for phones or 16:9 for widescreen).",
       "Select 'Crop' mode to zoom in and discard the black borders completely, or choose 'Blur' to replace harsh black bands with smooth ambient video.",
       "Preview the result in the interactive canvas to confirm that all borders are eliminated.",
-      "Click Convert Video to render your clean, borderless video locally using client-side WebAssembly."
+      "Click Convert Video to render your clean, borderless video locally using client-side WebCodecs."
     ],
     preventativeTips: [
       "Never export video with burned-in black bars from your video editor; always export matching the native content dimensions.",
@@ -47,7 +47,7 @@ export const PROBLEMS_DATA: Record<string, ProblemDetail> = {
       },
       {
         q: "Does AspectCut upload my video to remove black bars?",
-        a: "No. AspectCut runs WebAssembly-compiled FFmpeg directly in your web browser. Your video never leaves your computer."
+        a: "No. AspectCut runs WebCodecs video processing directly in your web browser. Your video never leaves your computer."
       }
     ]
   },
@@ -58,14 +58,14 @@ export const PROBLEMS_DATA: Record<string, ProblemDetail> = {
     h1: "How to Add a Blurred Background to Video Online",
     metaDescription: "Add aesthetic blurred sidebars and backgrounds to your videos online without uploading. Perfect for converting landscape 16:9 clips for TikTok, Reels, and Shorts.",
     rootCause: "When repurposing landscape 16:9 video for vertical 9:16 mobile feeds, creators face a dilemma: direct cropping cuts off 68.36% of the video, while leaving black bars looks unfinished and harms viewer retention. Mobile users perceive black letterbox bars as a sign of amateur, un-adapted content, causing rapid swipe-aways within the first two seconds. Social media algorithms strongly favor full-screen vertical content that captures the viewer's entire attention span.",
-    detailedFix: "Adding a blurred background is the broadcast and social media standard solution. The original video is scaled down to fit inside the vertical frame, while a duplicate copy is zoomed to fill the entire background and blurred with an ambient gaussian filter. This preserves 100% of the active footage while creating an aesthetically cohesive, modern vertical video. In AspectCut, this filter chain is computed natively in real-time using FFmpeg's split, scale, and boxblur filter graphs directly inside your browser's WebAssembly sandbox.",
+    detailedFix: "Adding a blurred background is the broadcast and social media standard solution. The original video is scaled down to fit inside the vertical frame, while a duplicate copy is zoomed to fill the entire background and blurred with an ambient gaussian filter. This preserves 100% of the active footage while creating an aesthetically cohesive, modern vertical video. In AspectCut, this filter chain is computed natively in real-time using canvas compositing and WebCodecs directly inside your browser.",
     recommendedWorkflow: [
       "Select your landscape or square video in AspectCut directly from your drive.",
       "Choose 9:16 Vertical as your target ratio.",
       "Select 'Blur' mode under the Fit options in the interface.",
       "Check the real-time preview canvas to see your original video framed with blurred ambient motion.",
       "Adjust output quality if needed (default CRF 20 ensures crisp playback).",
-      "Export locally via WebAssembly to download your 1080×1920 MP4 with zero upload wait time."
+      "Export locally via WebCodecs to download your 1080×1920 MP4 with zero upload wait time."
     ],
     preventativeTips: [
       "Ensure the original footage has adequate contrast against the blurred background.",
@@ -138,7 +138,7 @@ export const PROBLEMS_DATA: Record<string, ProblemDetail> = {
     slug: "stretched-video",
     problemTitle: "How to Fix Stretched Video - Restore Aspect Ratio Online",
     h1: "How to Fix Stretched Video & Restore Natural Proportions",
-    metaDescription: "Unstretch distorted video online without uploading. Fix DAR/SAR aspect ratio mismatches, restore natural human proportions, and reframe with WebAssembly.",
+    metaDescription: "Unstretch distorted video online without uploading. Fix DAR/SAR aspect ratio mismatches, restore natural human proportions, and reframe with WebCodecs.",
     rootCause: "Stretched video happens when a video file's Display Aspect Ratio (DAR) does not match its Sample Aspect Ratio (SAR) or storage dimensions. For example, legacy anamorphic DVDs stored 16:9 widescreen in a 720×480 (3:2) pixel container with non-square pixels. When modern web players or editing tools interpret these pixels as square (1:1), the image appears squashed horizontally (tall and skinny) or stretched vertically (short and fat). Distortions also occur when users export video with incorrect pixel aspect ratio flags in editing software.",
     detailedFix: "To fix stretched video, you must decode the video and re-encode it with square pixels (SAR 1:1) at its correct physical display dimensions (e.g. 1920×1080 or 1440×1080). AspectCut strips incorrect pixel aspect ratio metadata, enforces square pixels, and rescales the canvas to mathematically true aspect ratios. The engine applies high-precision bicubic interpolation to recalculate the frame dimensions, restoring realistic, natural actor anatomy and circular shapes without introducing blur.",
     recommendedWorkflow: [
@@ -147,7 +147,7 @@ export const PROBLEMS_DATA: Record<string, ProblemDetail> = {
       "Preview the un-stretched footage on the interactive canvas to confirm that faces look normal.",
       "Choose 'Fit' or 'Crop' depending on your destination display requirements.",
       "Select high quality (CRF 20) to ensure sharp lines.",
-      "Export your corrected MP4 video locally with WebAssembly processing."
+      "Export your corrected MP4 video locally with WebCodecs processing."
     ],
     preventativeTips: [
       "Always export digital video with square pixels (Pixel Aspect Ratio 1.0 / 1:1).",
@@ -170,7 +170,7 @@ export const PROBLEMS_DATA: Record<string, ProblemDetail> = {
       },
       {
         q: "Does AspectCut require uploading my video?",
-        a: "No. Everything runs in-browser via WebAssembly, ensuring instant processing and complete privacy."
+        a: "No. Everything runs in-browser via WebCodecs, ensuring instant processing and complete privacy."
       }
     ]
   },
@@ -186,7 +186,7 @@ export const PROBLEMS_DATA: Record<string, ProblemDetail> = {
       "Import your footage into AspectCut directly from your local drive.",
       "Set your aspect ratio and resolution to match the exact platform spec (e.g. 1080×1920 for Reels/TikTok).",
       "Use AspectCut's default CRF 20 quality setting, which provides optimal efficiency without bloat.",
-      "Export the optimized MP4 locally via WebAssembly.",
+      "Export the optimized MP4 locally via WebCodecs.",
       "Connect your mobile phone to a high-speed Wi-Fi network.",
       "In Instagram/TikTok settings, make sure 'Upload at highest quality' is enabled before uploading."
     ],
@@ -222,7 +222,7 @@ export const PROBLEMS_DATA: Record<string, ProblemDetail> = {
     h1: "How to Fit Landscape Video on Instagram Without Cropping",
     metaDescription: "Fit 16:9 horizontal video on Instagram Reels, Stories, and Feed without cropping out the edges. Add blurred margins online with zero uploads.",
     rootCause: "Instagram is an inherently vertical-first mobile ecosystem. When creators upload landscape 16:9 video directly into Reels or Stories, Instagram either zooms in and crops out 68.36% of the horizontal frame, or leaves awkward black space. Creators want to share their wide footage without sacrificing the edges of their shot, particularly for group interviews, landscape cinematography, gaming highlights, and software tutorials where cropping destroys the content.",
-    detailedFix: "AspectCut solves this by embedding your entire horizontal video into a 9:16 or 4:5 vertical container using 'Blurred Background' mode. The full landscape video plays in the center, while the top and bottom margins are filled with a softened, animated reflection of your footage. This creates a polished, full-screen vertical post without losing a single pixel of your original frame. AspectCut runs the entire conversion inside your browser using WebAssembly, ensuring maximum export quality without server queues.",
+    detailedFix: "AspectCut solves this by embedding your entire horizontal video into a 9:16 or 4:5 vertical container using 'Blurred Background' mode. The full landscape video plays in the center, while the top and bottom margins are filled with a softened, animated reflection of your footage. This creates a polished, full-screen vertical post without losing a single pixel of your original frame. AspectCut runs the entire conversion inside your browser using WebCodecs, ensuring maximum export quality without server queues.",
     recommendedWorkflow: [
       "Select your landscape 16:9 video in AspectCut directly from your device.",
       "Select 9:16 Vertical (for Reels/Stories) or 4:5 Portrait (for Feed).",

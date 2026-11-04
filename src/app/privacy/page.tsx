@@ -6,7 +6,7 @@ import { ShieldCheck, Cpu, Database, ArrowLeft } from "lucide-react";
 export const metadata: Metadata = {
   title: `Privacy Architecture & Policy | ${BRAND.name}`,
   description:
-    "How AspectCut executes 100% in-browser video processing using WebAssembly. Your videos are never uploaded to any remote server.",
+    "How AspectCut executes 100% in-browser video processing using WebCodecs. Your videos are never uploaded to any remote server.",
   alternates: {
     canonical: `${BRAND.domain}/privacy`,
   },
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
       />
       <div className="space-y-2">
-        <Link href="/" className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--text-muted)] hover:text-[#c89c6e] transition-colors mb-2">
+        <Link href="/" className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--text-muted)] hover:text-[var(--accent-text)] transition-colors mb-2">
           <ArrowLeft className="w-3.5 h-3.5" /> Back to Instrument
         </Link>
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-[11px] font-mono text-[var(--text-muted)]">
@@ -46,9 +46,9 @@ export default function PrivacyPage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="p-5 rounded-2xl glass-panel">
-          <Cpu className="w-5 h-5 text-[#c89c6e] mb-2" />
+          <Cpu className="w-5 h-5 text-[var(--accent-text)] mb-2" />
           <h3 className="font-semibold text-xs text-[var(--text-main)] mb-1">
-            Local WebAssembly Execution
+            Local WebCodecs Execution
           </h3>
           <p className="text-xs text-[var(--text-muted)] leading-relaxed">
             All video matrix operations and audio demuxing run entirely inside your browser’s virtual machine sandbox.
@@ -56,7 +56,7 @@ export default function PrivacyPage() {
         </div>
 
         <div className="p-5 rounded-2xl glass-panel">
-          <Database className="w-5 h-5 text-[#c89c6e] mb-2" />
+          <Database className="w-5 h-5 text-[var(--accent-text)] mb-2" />
           <h3 className="font-semibold text-xs text-[var(--text-main)] mb-1">
             Zero Cloud Storage
           </h3>
@@ -72,7 +72,7 @@ export default function PrivacyPage() {
             1. Verification via Browser Developer Tools
           </h2>
           <p>
-            You do not need to take our word for it. Open your browser&apos;s Network Inspector (<code className="glass-pill px-2 py-0.5 rounded-md font-mono text-xs text-[var(--text-main)]">F12 &rarr; Network</code>), select a video, and press Convert. You will observe that zero bytes of video payload are transferred over HTTP POST/PUT. The only external assets requested are the static WebAssembly binary assets cached on your first visit.
+            You do not need to take our word for it. Open your browser&apos;s Network Inspector (<code className="glass-pill px-2 py-0.5 rounded-md font-mono text-xs text-[var(--text-main)]">F12 &rarr; Network</code>), select a video, and press Convert. You will observe that zero bytes of video payload are transferred over HTTP POST/PUT. The only external assets requested are the static WebCodecs binary assets cached on your first visit.
           </p>
         </div>
 
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
             3. Contact Information
           </h2>
           <p>
-            If you have questions regarding our browser sandbox boundaries or enterprise deployments, reach out directly to <a href={`mailto:${BRAND.contactEmail}`} className="text-[#c89c6e] underline">{BRAND.contactEmail}</a>.
+            If you have questions regarding our browser sandbox boundaries or enterprise deployments, reach out directly to <a href={`mailto:${BRAND.contactEmail}`} className="text-[var(--accent-text)] underline">{BRAND.contactEmail}</a>.
           </p>
         </div>
       </div>
@@ -98,7 +98,7 @@ export default function PrivacyPage() {
       <div className="pt-4 border-t border-[var(--color-hairline)]">
         <Link
           href="/"
-          className="font-mono text-xs font-semibold text-[#c89c6e] hover:underline"
+          className="font-mono text-xs font-semibold text-[var(--accent-text)] hover:underline"
         >
           Open Video Aspect Ratio Changer &rarr;
         </Link>

@@ -102,7 +102,7 @@ export const PLATFORM_PRESETS: PlatformPreset[] = [
       },
       {
         q: "Does resizing video reduce its quality?",
-        a: "No, AspectCut renders directly in your browser using ffmpeg, retaining the original stream bitrate without multi-generation cloud compression."
+        a: "No, AspectCut renders directly in your browser using WebCodecs, retaining the original stream bitrate without multi-generation cloud compression."
       }
     ]
   },
@@ -288,7 +288,7 @@ export const RATIO_PAIR_PAGES: RatioPairPage[] = [
       },
       {
         q: "Does converting 16:9 to 9:16 upload my file to a server?",
-        a: "No. AspectCut runs WebAssembly-compiled FFmpeg locally in your web browser. Your video bytes never leave your device's memory."
+        a: "No. AspectCut runs WebCodecs video processing locally in your web browser. Your video bytes never leave your device's memory."
       },
       {
         q: "Will the audio quality decrease during conversion?",
@@ -483,7 +483,7 @@ Choosing between Crop, Letterbox, and Blurred Background depends entirely on whe
 ### Direct Answer
 To change video aspect ratio with zero noticeable loss in quality:
 1. **Avoid Multi-Gen Cloud Encoders:** Every time a cloud service uploads and re-renders your video, it applies aggressive lossy compression to save bandwidth.
-2. **Process Locally via WebAssembly:** AspectCut executes FFmpeg directly on your device CPU/GPU, eliminating upload downscaling.
+2. **Process Locally via WebCodecs:** AspectCut encodes directly on your device with WebCodecs, eliminating upload downscaling.
 3. **Match Target Pixel Densities:** When going from 16:9 (1920x1080) to 9:16, render at full 1080x1920 rather than a scaled 720p canvas.
 4. **Pass-Through Audio:** Keep the original audio stream bit-exact rather than re-encoding AAC or MP3 tracks.
 
@@ -496,8 +496,8 @@ To change video aspect ratio with zero noticeable loss in quality:
     `,
     faq: [
       {
-        q: "Does client-side FFmpeg produce the same quality as desktop software?",
-        a: "Yes. FFmpeg.wasm uses the exact same libx264 encoding algorithms found in command-line FFmpeg, Premiere Pro, and DaVinci Resolve."
+        q: "Is in-browser export good enough for professional use?",
+        a: "For social video, yes. WebCodecs uses your device's H.264 encoder, and the Quality setting lets you trade file size for detail."
       }
     ]
   },

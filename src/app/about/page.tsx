@@ -7,7 +7,7 @@ import { buildBreadcrumbSchema, buildOrganizationSchema } from "@/lib/seo/schema
 export const metadata: Metadata = {
   title: `About & Technical Architecture | ${BRAND.name}`,
   description:
-    "Learn how AspectCut processes videos client-side using FFmpeg WebAssembly, cross-origin isolation (COOP/COEP), and local hardware memory.",
+    "Learn how AspectCut processes videos client-side using the browser's built-in WebCodecs engine and local hardware memory.",
   alternates: {
     canonical: `${BRAND.domain}/about`,
   },
@@ -33,11 +33,11 @@ export default function AboutPage() {
       />
 
       <div className="space-y-3">
-        <Link href="/" className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--text-muted)] hover:text-[#c89c6e] transition-colors mb-2">
+        <Link href="/" className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--text-muted)] hover:text-[var(--accent-text)] transition-colors mb-2">
           <ArrowLeft className="w-3.5 h-3.5" /> Back to Tool
         </Link>
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-[11px] font-mono text-[var(--text-muted)]">
-          <Code className="w-3.5 h-3.5 text-[#c89c6e]" />
+          <Code className="w-3.5 h-3.5 text-[var(--accent-text)]" />
           <span>Mission &amp; Engineering</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[var(--text-main)]">
@@ -58,7 +58,7 @@ export default function AboutPage() {
             Traditional online video converters rely on a legacy cloud-server architecture. Users are forced to upload massive video files across slow broadband uplinks, wait in multi-minute server queues, and suffer intrusive watermark badges unless they purchase costly recurring subscriptions.
           </p>
           <p>
-            Modern desktop and mobile hardware possesses powerful multi-core processors and hardware-accelerated media decoders that sit idle during browsing. AspectCut inverts the conversion paradigm: we compiled the industry-standard FFmpeg multimedia engine into WebAssembly (WASM). Your browser decodes, reframes, crops, filters, and encodes your MP4 video entirely within local memory.
+            Modern desktop and mobile hardware possesses powerful multi-core processors and hardware-accelerated media decoders that sit idle during browsing. AspectCut inverts the conversion paradigm: we use WebCodecs, the video engine built into modern browsers. Your browser decodes, reframes, crops, filters, and encodes your MP4 video entirely within local memory.
           </p>
         </section>
 
@@ -68,11 +68,11 @@ export default function AboutPage() {
             Core Technical Architecture
           </h2>
           <div className="p-5 rounded-2xl glass-panel text-xs space-y-2.5 font-mono text-[var(--text-main)]">
-            <div>&bull; <strong className="text-[#e8c89b]">Processing Engine:</strong> FFmpeg.wasm (v0.12) compiled with Emscripten.</div>
-            <div>&bull; <strong className="text-[#e8c89b]">Multi-Threading:</strong> POSIX pthreads via SharedArrayBuffer under COOP / COEP cross-origin isolation.</div>
-            <div>&bull; <strong className="text-[#e8c89b]">Spatial Geometry:</strong> Even-integer macroblock truncation (Mod2) compliant with YUV 4:2:0 subsampling.</div>
-            <div>&bull; <strong className="text-[#e8c89b]">Audio Passthrough:</strong> Automated <code>-c:a copy</code> decision engine preventing generational audio compression loss.</div>
-            <div>&bull; <strong className="text-[#e8c89b]">Zero Network Transmit:</strong> 0 bytes of video or audio data sent over the internet.</div>
+            <div>&bull; <strong className="text-[var(--accent-text)]">Processing Engine:</strong> WebCodecs, the browser's native video API, via the open-source Mediabunny library.</div>
+            <div>&bull; <strong className="text-[var(--accent-text)]">Hardware Acceleration:</strong> Uses your device&apos;s video encoder and decoder when available.</div>
+            <div>&bull; <strong className="text-[var(--accent-text)]">Spatial Geometry:</strong> Even-integer macroblock truncation (Mod2) compliant with YUV 4:2:0 subsampling.</div>
+            <div>&bull; <strong className="text-[var(--accent-text)]">Audio Passthrough:</strong> Automatic audio copy when the codec already matches, preventing generational audio compression loss.</div>
+            <div>&bull; <strong className="text-[var(--accent-text)]">Zero Network Transmit:</strong> 0 bytes of video or audio data sent over the internet.</div>
           </div>
         </section>
 
@@ -83,28 +83,18 @@ export default function AboutPage() {
           </h2>
           <div className="p-5 rounded-2xl glass-card space-y-3">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[rgba(200,156,110,0.15)] border border-[rgba(200,156,110,0.3)] flex items-center justify-center text-[#e8c89b]">
+              <div className="w-10 h-10 rounded-full bg-[rgba(200,156,110,0.15)] border border-[rgba(200,156,110,0.3)] flex items-center justify-center text-[var(--accent-text)]">
                 <User className="w-5 h-5" />
               </div>
               <div>
                 <div className="font-semibold text-sm text-[var(--text-main)]">{BRAND.team.organization}</div>
-                <div className="text-xs text-[#c89c6e] font-mono">{BRAND.team.founderRole}</div>
+                <div className="text-xs text-[var(--accent-text)] font-mono">{BRAND.team.founderRole}</div>
               </div>
             </div>
             <p className="text-xs text-[var(--text-muted)] leading-relaxed">
               {BRAND.team.mission}
             </p>
           </div>
-        </section>
-
-        {/* Open Science & Standards */}
-        <section className="space-y-3">
-          <h2 className="text-base font-semibold text-[var(--text-main)]">
-            Open Standards &amp; Research Datasets
-          </h2>
-          <p>
-            In addition to our free video tools, we maintain open resources for the web community, including our <Link href="/data/platform-specs" className="text-[#c89c6e] hover:underline">Social Video Specifications Dataset</Link> published under CC BY 4.0, our <Link href="/benchmarks" className="text-[#c89c6e] hover:underline">Empirical WebAssembly Benchmarks</Link>, and our comprehensive <Link href="/glossary" className="text-[#c89c6e] hover:underline">Video Engineering Glossary</Link>.
-          </p>
         </section>
       </div>
     </div>

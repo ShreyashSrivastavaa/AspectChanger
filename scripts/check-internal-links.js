@@ -20,7 +20,7 @@ const platforms = [
 ];
 
 const devices = ["iphone", "android", "gopro", "dji", "screen-recording", "zoom"];
-const formats = ["mov-to-9-16", "mkv-to-16-9", "webm-to-9-16", "avi-to-16-9"];
+const formats = ["mov-to-9-16", "mkv-to-16-9", "webm-to-9-16"];
 const problems = [
   "remove-black-bars", "add-blurred-background", "video-cropped-on-upload",
   "stretched-video", "blurry-after-upload", "landscape-to-instagram-no-crop"
@@ -47,7 +47,7 @@ const guides = [
 const coreRoutes = [
   "/", "/tools", "/for", "/from", "/convert", "/fix", "/compare",
   "/resolution", "/calculator", "/calculator/aspect-ratio", "/glossary",
-  "/guides", "/methodology", "/benchmarks", "/data/platform-specs",
+  "/guides", "/methodology", "/data/platform-specs",
   "/press", "/all-pages", "/about", "/faq", "/terms", "/privacy",
   "/changelog", "/contact"
 ];
@@ -89,7 +89,7 @@ const footerLinks = [
   "/for/youtube-shorts", "/for/tiktok", "/for/instagram-reels",
   "/calculator/aspect-ratio", "/data/platform-specs", "/for",
   "/guides/what-is-aspect-ratio", "/guides/aspect-ratio-cheat-sheet",
-  "/methodology", "/benchmarks", "/glossary", "/all-pages",
+  "/methodology", "/glossary", "/all-pages",
   "/about", "/faq", "/contact", "/privacy", "/terms", "/press", "/changelog"
 ];
 

@@ -22,7 +22,7 @@ export interface KeywordEntry {
 }
 
 export const CANONICAL_ENTITY_STATEMENT =
-  "AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebAssembly; videos are not uploaded to a server.";
+  "AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebCodecs; videos are not uploaded to a server.";
 
 export const KEYWORD_MAP: KeywordEntry[] = [
   // 1. Head & Core Tool Cluster
@@ -544,19 +544,6 @@ export const KEYWORD_MAP: KeywordEntry[] = [
     ],
     searchIntent: "transactional-tool",
     targetUrl: "/convert/webm-to-9-16",
-    pageType: "Format Converter Page",
-    cluster: "Devices & Formats",
-    wave: 1,
-  },
-  {
-    primaryKeyword: "convert avi to 16:9",
-    secondaryKeywords: [
-      "change avi aspect ratio",
-      "avi widescreen converter",
-      "avi 4:3 to 16:9",
-    ],
-    searchIntent: "transactional-tool",
-    targetUrl: "/convert/avi-to-16-9",
     pageType: "Format Converter Page",
     cluster: "Devices & Formats",
     wave: 1,

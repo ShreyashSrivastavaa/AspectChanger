@@ -99,7 +99,7 @@ export default function OpenGraphImage() {
               </div>
             </div>
 
-            {/* WASM Pill */}
+            {/* Engine Pill */}
             <span
               style={{
                 fontSize: "13px",
@@ -112,7 +112,7 @@ export default function OpenGraphImage() {
                 letterSpacing: "0.5px",
               }}
             >
-              100% In-Browser WebAssembly
+              100% In-Browser WebCodecs
             </span>
           </div>
 

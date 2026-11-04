@@ -68,15 +68,15 @@ export default function VisualRatioDiagram({
               style={{ width: `${toBoxW}px`, height: `${toBoxH}px` }}
               className="border-2 border-[#c89c6e] bg-[var(--panel-bg)] rounded flex flex-col items-center justify-center relative transition-all shadow-[0_0_12px_rgba(200,156,110,0.2)]"
             >
-              <span className="font-mono text-xs font-semibold text-[#c89c6e]">
+              <span className="font-mono text-xs font-semibold text-[var(--accent-text)]">
                 {toLabel}
               </span>
-              <span className="font-mono text-[9px] text-[#c89c6e]/80">
+              <span className="font-mono text-[9px] text-[var(--accent-text)]/80">
                 Target Reframe
               </span>
             </div>
-            <div className="absolute top-1 left-1.5 font-mono text-[8px] text-[#c89c6e]/70">0,0</div>
-            <div className="absolute bottom-1 right-1.5 font-mono text-[8px] text-[#c89c6e]/70">{toW}:{toH}</div>
+            <div className="absolute top-1 left-1.5 font-mono text-[8px] text-[var(--accent-text)]/70">0,0</div>
+            <div className="absolute bottom-1 right-1.5 font-mono text-[8px] text-[var(--accent-text)]/70">{toW}:{toH}</div>
           </div>
           <span className="font-mono text-[11px] mt-1.5 text-[var(--text-muted)]">
             Target Canvas ({toLabel})
