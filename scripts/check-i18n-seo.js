@@ -23,7 +23,7 @@ const LOCALES_MAP = {
 
 const ALL_LOCALES = Object.keys(LOCALES_MAP);
 const DEFAULT_LOCALE = "en";
-const BASE_URL = "https://aspectcut.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://aspectcut.vercel.app";
 
 function buildLocaleUrl(locale, path = "") {
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
@@ -82,7 +82,7 @@ for (const path of testPaths) {
     totalChecks++;
 
     // 3. Verify canonical URL is self-referencing
-    if (expectedUrl.indexOf(locale === "en" ? "https://aspectcut.com" : `https://aspectcut.com/${locale}`) === -1) {
+    if (expectedUrl.indexOf(locale === "en" ? BASE_URL : `${BASE_URL}/${locale}`) === -1) {
       errors.push(`[${path}] Self-referencing canonical failed for ${locale}: ${expectedUrl}`);
     }
     totalChecks++;

@@ -4,7 +4,7 @@ export const BRAND = {
   parentCompanyUrl: "https://zenithdistrict.com",
   attribution: "A product of ZenithDistrict (zenithdistrict.com)",
   tagline: "Client-side video aspect ratio changer & reframer",
-  domain: "https://aspectcut.com",
+  domain: process.env.NEXT_PUBLIC_SITE_URL || "https://aspectcut.vercel.app",
   canonicalEntityStatement:
     "AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebAssembly; videos are not uploaded to a server.",
   contactEmail: "support@aspectcut.com",

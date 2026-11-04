@@ -3,7 +3,7 @@
 
 const BRAND = {
   name: "AspectCut",
-  domain: "https://aspectcut.com",
+  domain: process.env.NEXT_PUBLIC_SITE_URL || "https://aspectcut.vercel.app",
   entityStatement: "AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebAssembly; videos are not uploaded to a server.",
 };
 
