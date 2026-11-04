@@ -1,0 +1,24 @@
+# AspectCut
+
+> AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebAssembly; videos are not uploaded to a server.
+
+## Overview
+AspectCut enables video creators to reframe landscape (16:9), vertical (9:16), square (1:1), and portrait (4:5) videos directly inside modern web browsers. By compiling FFmpeg core 0.12 into WebAssembly (WASM) with SharedArrayBuffer multi-threading, all video decompression, filter graph execution (focal cropping, blurred mirror background extensions, letterboxing), and H.264 rendering occur entirely within client memory. Video data is never transmitted to an external server.
+
+## Core Tools & Interactive Calculators
+- [Video Aspect Ratio Changer](https://aspectcut.com/): Free client-side video aspect ratio changer and reframer with zero server uploads and no watermarks.
+- [Aspect Ratio Calculator](https://aspectcut.com/calculator/aspect-ratio): Interactive mathematical calculator to compute aspect ratios, proportional dimensions, and even-integer macroblock scaling.
+- [Standard Resolution Directory](https://aspectcut.com/resolution): Pixel-accurate macroblock dimension lists for 1080x1920, 1920x1080, 1080x1080, 1080x1350, and 2560x1080.
+- [Conversion Tools Directory](https://aspectcut.com/tools): Complete list of 15 ratio pair conversion workflows including 16:9 to 9:16, 9:16 to 16:9, and 16:9 to 1:1.
+
+## Open Datasets & Verified Specifications
+- [Social Video Specifications Dataset (2026)](https://aspectcut.com/data/platform-specs): Open, verified dataset of video aspect ratios, resolutions, duration limits, and codecs for YouTube Shorts, TikTok, Instagram Reels, LinkedIn, and X. Available under CC BY 4.0 as CSV and JSON.
+- [Aspect Ratio Cheat Sheet](https://aspectcut.com/guides/aspect-ratio-cheat-sheet): Comprehensive reference guide with verified aspect ratios and pixel dimensions for every major platform.
+- [WebAssembly Performance Benchmarks](https://aspectcut.com/benchmarks): Empirical benchmarks comparing single-thread and multi-thread WebAssembly video export speeds.
+
+## Engineering & Documentation
+- [Engineering Methodology & Standards](https://aspectcut.com/methodology): Mathematical formulations for aspect ratios, crop loss percentages, macroblock alignment, and audio stream copy logic.
+- [Video Technology Glossary](https://aspectcut.com/glossary): 20 technical terms defining letterbox, pillarbox, safe zones, CRF, DAR, SAR, WebAssembly, and video codecs.
+- [Frequently Asked Questions](https://aspectcut.com/faq): Technical and privacy answers regarding client-side video processing.
+- [Changelog](https://aspectcut.com/changelog): Public history of engine updates, multi-threading optimizations, and design evolutions.
+- [Press Kit](https://aspectcut.com/press): Official boilerplate descriptions, visual identity colors, and media contact info.

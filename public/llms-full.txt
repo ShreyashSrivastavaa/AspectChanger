@@ -1,0 +1,159 @@
+# AspectCut — Full Machine-Readable Knowledge Base
+
+Canonical Entity Statement:
+"AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebAssembly; videos are not uploaded to a server."
+
+Homepage: https://aspectcut.com
+License for Specifications: Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+==================================================
+1. MATHEMATICAL FORMULAS & GEOMETRY
+==================================================
+
+1.1 Aspect Ratio (AR)
+AR = Width / Height
+
+Decimal Equivalents:
+- 16:9 = 1.7778:1 (Standard HD Widescreen)
+- 9:16 = 0.5625:1 (Vertical Mobile Video)
+- 1:1 = 1.0000:1 (Square Feed Post)
+- 4:5 = 0.8000:1 (Instagram Portrait Max)
+- 4:3 = 1.3333:1 (Classic Standard Definition)
+- 21:9 = 2.3333:1 (Ultrawide / Anamorphic Cinema)
+
+1.2 Crop Loss Calculation
+When converting between disparate aspect ratios with focal cropping:
+- When Target AR < Source AR (e.g. 16:9 to 9:16):
+  Visible Area Fraction = Target AR / Source AR
+  Crop Loss Percentage = (1 - (Target AR / Source AR)) * 100%
+  Example: 16:9 (1.7778) to 9:16 (0.5625) results in a 68.36% horizontal canvas crop.
+
+- When Target AR > Source AR (e.g. 9:16 to 16:9):
+  Visible Area Fraction = Source AR / Target AR
+  Crop Loss Percentage = (1 - (Source AR / Target AR)) * 100%
+  Example: 9:16 to 16:9 results in a 68.36% vertical canvas crop.
+
+1.3 Even-Integer Macroblock Enforcement (Mod2)
+Modern video compression standards (H.264 / AVC, H.265 / HEVC, VP9) operate using 4:2:0 chroma subsampling. Chroma channels (Cb and Cr) are sampled at half the horizontal and vertical resolution of the luma channel (Y).
+Therefore, any odd pixel dimension (e.g., 1081×1921) breaks hardware decoding chroma phase alignment and produces severe rendering artifacts or decoding crashes.
+AspectCut strictly enforces even-integer pixel dimensions:
+Width = Math.trunc(Width / 2) * 2
+Height = Math.trunc(Height / 2) * 2
+
+==================================================
+2. VERIFIED SOCIAL MEDIA PLATFORM SPECIFICATIONS (2026)
+==================================================
+
+Platform: YouTube Shorts
+- Primary Ratio: 9:16
+- Allowed Ratios: 9:16, 1:1
+- Recommended Resolution: 1080×1920
+- Max File Size: 256 GB (desktop upload limit)
+- Max Duration: 60 seconds (up to 3 minutes for select creators)
+- Codecs: H.264 / AAC
+- Safe Zone: Top 15% clear of headers; bottom 20% clear of creator title, subscribe button, audio pill. Right 15% clear of like, comment, and share icons.
+- Source: https://support.google.com/youtube/answer/10059070
+- Last Verified: April 2026
+
+Platform: TikTok
+- Primary Ratio: 9:16
+- Allowed Ratios: 9:16, 1:1, 16:9
+- Recommended Resolution: 1080×1920
+- Max File Size: 287.6 MB (iOS), 72 MB (Android), 1 GB (Web)
+- Max Duration: 10 minutes
+- Codecs: H.264 / AAC
+- Safe Zone: Top 130px clear; bottom 320px clear of caption and sound disk; right 120px clear of interaction icons.
+- Source: https://support.tiktok.com/en/using-tiktok/creating-videos/video-specs
+- Last Verified: April 2026
+
+Platform: Instagram Reels
+- Primary Ratio: 9:16
+- Allowed Ratios: 9:16
+- Recommended Resolution: 1080×1920
+- Max File Size: 4 GB
+- Max Duration: 90 seconds
+- Codecs: H.264 / AAC
+- Safe Zone: Keep essential visual text within the central 1080×1350 (4:5) canvas to prevent cropping in the main feed preview.
+- Source: https://help.instagram.com/1037635830482480
+- Last Verified: April 2026
+
+Platform: Instagram Feed Video
+- Primary Ratio: 4:5
+- Allowed Ratios: 1:1, 4:5, 16:9
+- Recommended Resolution: 1080×1350
+- Max File Size: 4 GB
+- Max Duration: 60 minutes
+- Codecs: H.264 / AAC
+- Source: https://help.instagram.com/1037635830482480
+- Last Verified: April 2026
+
+Platform: LinkedIn Video
+- Primary Ratio: 1:1
+- Allowed Ratios: 1:1, 16:9, 9:16, 4:5
+- Recommended Resolution: 1080×1080
+- Max File Size: 5 GB
+- Max Duration: 10 minutes (native feed), 30 minutes (ads)
+- Codecs: H.264 / AAC
+- Source: https://www.linkedin.com/help/linkedin/answer/a518335
+- Last Verified: April 2026
+
+Platform: X (formerly Twitter)
+- Primary Ratio: 16:9
+- Allowed Ratios: 16:9, 1:1, 9:16
+- Recommended Resolution: 1920×1080
+- Max File Size: 512 MB (Free), 16 GB (X Premium)
+- Max Duration: 140 seconds (Free), 3 hours (X Premium)
+- Codecs: H.264 / AAC
+- Source: https://help.twitter.com/en/using-x/media-studio-video-specifications
+- Last Verified: April 2026
+
+Platform: Facebook Video
+- Primary Ratio: 16:9
+- Allowed Ratios: 16:9, 1:1, 4:5, 9:16
+- Recommended Resolution: 1920×1080
+- Max File Size: 10 GB
+- Max Duration: 240 minutes
+- Codecs: H.264 / AAC
+- Source: https://www.facebook.com/business/help/105399436216001
+- Last Verified: April 2026
+
+Platform: Pinterest Video
+- Primary Ratio: 9:16
+- Allowed Ratios: 9:16, 1:1, 2:3, 4:5
+- Recommended Resolution: 1080×1920
+- Max File Size: 2 GB
+- Max Duration: 15 minutes
+- Codecs: H.264 / AAC
+- Source: https://help.pinterest.com/en/business/article/video-specs-and-recommendations
+- Last Verified: April 2026
+
+Platform: Snapchat Video
+- Primary Ratio: 9:16
+- Allowed Ratios: 9:16
+- Recommended Resolution: 1080×1920
+- Max File Size: 1 GB
+- Max Duration: 3 minutes (Spotlight), 60 seconds (Ads)
+- Codecs: H.264 / AAC
+- Source: https://businesshelp.snapchat.com/s/article/video-specs
+- Last Verified: April 2026
+
+Platform: WhatsApp Status
+- Primary Ratio: 9:16
+- Allowed Ratios: 9:16, 1:1, 16:9
+- Recommended Resolution: 1080×1920
+- Max File Size: 16 MB
+- Max Duration: 30 seconds
+- Codecs: H.264 / AAC
+- Source: https://faq.whatsapp.com/563219570994806
+- Last Verified: April 2026
+
+==================================================
+3. CITATION INFORMATION
+==================================================
+Website: AspectCut
+URL: https://aspectcut.com
+Published: 2026
+Topic: Browser-based client-side video aspect ratio transformation, WebAssembly FFmpeg implementation, and video engineering standards.
+Open Data Endpoint: https://aspectcut.com/api/data/platform-specs
+Full LLM Registry: https://aspectcut.com/llms.txt
+
