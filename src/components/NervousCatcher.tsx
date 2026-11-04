@@ -463,7 +463,7 @@ export default function NervousCatcher({
       icon.style.display = t >= 0.3 && t <= 6.7 ? "none" : "";
       icon.style.opacity = t < 0.3 ? String(1 - t / 0.3) : t > 6.7 ? "1" : "0";
       if (t > 6.7) {
-        icon.innerHTML = '<path d="m4 10 4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>';
+        icon.innerHTML = '<path d="m3.5 10.5 4 4 9-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
         btn?.classList.add("is-done");
       }
     }
@@ -503,7 +503,7 @@ export default function NervousCatcher({
     if (label) label.textContent = "Download again";
     const icon = $("[data-button-icon]");
     if (icon) {
-      icon.innerHTML = '<path d="m4 10 4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>';
+      icon.innerHTML = '<path d="m3.5 10.5 4 4 9-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
       icon.style.display = "";
       icon.style.opacity = "1";
     }

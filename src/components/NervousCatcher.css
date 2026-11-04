@@ -38,23 +38,25 @@
 
 .nc-download-button {
   position: absolute;
-  left: 19%;
-  top: 73.684%;
-  width: 50%;
-  height: 13.5%;
-  padding: 0 12px;
+  left: 18%;
+  top: 73%;
+  width: 60%;
+  height: 14%;
+  min-height: 38px;
+  padding: 0 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   border-radius: 9999px;
   font-family: var(--font-sans);
-  font-size: clamp(10.5px, 3.4cqw, 12.5px);
+  font-size: clamp(11px, 3.2cqw, 13px);
   font-weight: 600;
   letter-spacing: -0.01em;
   z-index: 2;
   transform-origin: center bottom;
   overflow: hidden;
+  box-sizing: border-box;
   background: linear-gradient(180deg, #ffffff 0%, #fdf6ef 45%, #fae6d6 100%);
   color: #382c22;
   border: 1px solid rgba(255, 255, 255, 0.95);
@@ -86,9 +88,9 @@
 }
 
 .nc-download-button svg {
-  width: 14px;
-  height: 14px;
-  flex: none;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
 }
 
 .nc-button-content {
@@ -96,10 +98,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   z-index: 1;
   white-space: nowrap;
   max-width: 100%;
+  padding: 0 2px;
 }
 
 .nc-progress-fill {
