@@ -42,7 +42,16 @@ export const metadata: Metadata = {
     "tiktok video resizer",
     "crop video online free",
   ],
-  authors: [{ name: BRAND.name }],
+  authors: [{ name: `${BRAND.name} (ZenithDistrict)` }],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-icon", sizes: "180x180", type: "image/png" },
+    ],
+  },
   robots: {
     index: true,
     follow: true,
@@ -86,6 +95,11 @@ export default function RootLayout({
     url: BRAND.domain,
     logo: `${BRAND.domain}/logo.png`,
     email: BRAND.contactEmail,
+    parentOrganization: {
+      "@type": "Organization",
+      name: "ZenithDistrict",
+      url: "https://zenithdistrict.com",
+    },
   };
 
   const jsonLdApp = {

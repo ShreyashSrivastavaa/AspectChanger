@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="bronzeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8c89b" />
+      <stop offset="50%" stop-color="#c89c6e" />
+      <stop offset="100%" stop-color="#9a7246" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="1.5" flood-color="#c89c6e" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  
+  <!-- Canvas Background -->
+  <rect width="32" height="32" rx="7" fill="#0d0c0a" stroke="#25211c" stroke-width="1" />
+  
+  <!-- Outer Aspect Ratio Framing Brackets -->
+  <path d="M 7 12 L 7 7 L 12 7" fill="none" stroke="url(#bronzeGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+  <path d="M 25 12 L 25 7 L 20 7" fill="none" stroke="url(#bronzeGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+  <path d="M 7 20 L 7 25 L 12 25" fill="none" stroke="url(#bronzeGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+  <path d="M 25 20 L 25 25 L 20 25" fill="none" stroke="url(#bronzeGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+  
+  <!-- Inner Dynamic Ratio Lens / Center Core -->
+  <rect x="11.5" y="9.5" width="9" height="13" rx="2" fill="none" stroke="#f5f3ef" stroke-width="1.2" opacity="0.9" />
+  <circle cx="16" cy="16" r="1.5" fill="url(#bronzeGrad)" />
+</svg>
