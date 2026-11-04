@@ -142,9 +142,9 @@ export default function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col studio-background transition-colors duration-300" suppressHydrationWarning>
       
-      {/* Floating Frosted Glass Header (Matching reference style) */}
-      <div className="w-full px-4 sm:px-6 sticky top-3 z-30" suppressHydrationWarning>
-        <header className="max-w-4xl mx-auto px-5 py-2.5 rounded-full glass-header flex items-center justify-between">
+      {/* Floating Frosted Glass Header (Fixed at top on scroll with frosted glass backdrop) */}
+      <div className="w-full px-4 sm:px-6 fixed top-3 left-0 right-0 z-50 pointer-events-none" suppressHydrationWarning>
+        <header className="max-w-4xl mx-auto px-5 py-2.5 rounded-full glass-header flex items-center justify-between pointer-events-auto">
           
           {/* Brand Mark (with mineral tag) */}
           <Link href="/" className="flex items-center gap-2 select-none group">
@@ -208,7 +208,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Main Content Area */}
-      <main className="flex-1 w-full" suppressHydrationWarning>
+      <main className="flex-1 w-full pt-16 sm:pt-20" suppressHydrationWarning>
         {children}
       </main>
 
