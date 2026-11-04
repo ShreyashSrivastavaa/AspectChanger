@@ -256,7 +256,7 @@ export default function HomePage() {
         </div>
 
         {/* Central Frosted Tool */}
-        <section aria-label="Aspect Ratio Tool" className="relative">
+        <section aria-label="Aspect Ratio Tool" className="relative" suppressHydrationWarning>
           <VideoProcessor initialRatio={{ w: 9, h: 16 }} />
         </section>
 
