@@ -127,7 +127,7 @@ export default function OpenGraphImage() {
                 maxWidth: "960px",
               }}
             >
-              Client-Side Video Aspect Ratio Changer &amp; Reframer
+              Resize Video Online, Free &amp; No Upload
             </div>
 
             {/* Ratio Tags */}

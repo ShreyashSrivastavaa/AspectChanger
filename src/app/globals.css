@@ -62,6 +62,10 @@
   --panel-border: var(--color-glass-border);
 }
 
+html {
+  scroll-padding-top: 80px;
+}
+
 body {
   background-color: var(--bg-page);
   color: var(--text-main);

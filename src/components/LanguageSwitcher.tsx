@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { ALL_LOCALES, LOCALES_MAP, getLocaleConfig } from "@/i18n/locales";
-import { buildLocaleUrl } from "@/lib/i18n/seo-metadata";
+import { buildLocalePath, stripLocalePrefix } from "@/lib/i18n/seo-metadata";
 import { Globe, Check, ChevronDown } from "lucide-react";
 
 interface LanguageSwitcherProps {
@@ -16,6 +17,7 @@ export default function LanguageSwitcher({
   variant = "pill",
 }: LanguageSwitcherProps) {
   const currentLocale = useLocale();
+  const currentPage = stripLocalePrefix(usePathname());
   const currentConfig = getLocaleConfig(currentLocale);
   const t = useTranslations("languageSwitcher");
 
@@ -83,7 +85,7 @@ export default function LanguageSwitcher({
             {ALL_LOCALES.map((loc) => {
               const config = LOCALES_MAP[loc];
               const isSelected = loc === currentLocale;
-              const targetUrl = buildLocaleUrl(loc, "/");
+              const targetUrl = buildLocalePath(loc, currentPage);
 
               return (
                 <a

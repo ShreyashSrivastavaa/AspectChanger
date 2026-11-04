@@ -3,13 +3,13 @@ export const BRAND = {
   parentCompany: "ZenithDistrict",
   parentCompanyUrl: "https://zenithdistrict.com",
   attribution: "A product of ZenithDistrict (zenithdistrict.com)",
-  tagline: "Client-side video aspect ratio changer & reframer",
+  tagline: "Free online video resizer",
   domain: process.env.NEXT_PUBLIC_SITE_URL || "https://aspectcut.vercel.app",
   canonicalEntityStatement:
-    "AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebCodecs; videos are not uploaded to a server.",
+    "AspectCut is a free tool to resize video online. It processes files locally in your browser with WebCodecs; videos are not uploaded to a server.",
   contactEmail: "support@aspectcut.com",
   description:
-    "AspectCut is a free, browser-based video aspect ratio changer by ZenithDistrict that processes files locally with WebCodecs; videos are not uploaded to a server.",
+    "AspectCut is a free tool by ZenithDistrict to resize video online. It processes files locally in your browser with WebCodecs; videos are not uploaded to a server.",
   
   // Team and Organization Attribution
   team: {

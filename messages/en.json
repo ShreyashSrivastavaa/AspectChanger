@@ -7,7 +7,7 @@
     "zeroUpload": "Zero Upload",
     "losslessReframe": "Lossless Reframe",
     "maxSize": "Max 500 MB",
-    "tagline": "Client-Side Video Aspect Ratio Changer"
+    "tagline": "Free Online Video Resizer"
   },
   "nav": {
     "tools": "Tools",
@@ -24,10 +24,10 @@
     "switchTheme": "Toggle color mode"
   },
   "hero": {
-    "dropTitle": "Drop your video clip here",
-    "dropSubtitle": "Processed privately inside browser memory. Never uploaded to any server.",
+    "dropTitle": "Drop a video to resize",
+    "dropSubtitle": "Free video resize tool for Instagram, TikTok, YouTube and more. Your file stays in your browser.",
     "chooseFile": "Choose Video File",
-    "dropActive": "Release to load video into client memory",
+    "dropActive": "Release to load your video",
     "supportedFormats": "MP4 · MOV · WEBM · MKV (UP TO 500 MB)",
     "noUpload": "No upload",
     "noWatermark": "No watermark",
@@ -81,7 +81,7 @@
     "dismiss": "Dismiss"
   },
   "footer": {
-    "tagline": "Spatial Client-Side Processing.",
+    "tagline": "Free online video resizer.",
     "productOf": "A product of",
     "zenithDistrict": "ZenithDistrict",
     "allRightsReserved": "All rights reserved.",
@@ -102,33 +102,33 @@
     "error": "Could not join waitlist."
   },
   "faq": {
-    "sectionTitle": "Frequently Asked Questions",
-    "sectionSubtitle": "Everything you need to know about in-browser video reframing",
-    "q1": "How do I change a video from landscape to portrait without cropping out important parts?",
+    "sectionTitle": "Frequently asked questions",
+    "sectionSubtitle": "Everything you need to know about resizing video online",
+    "q1": "How do I resize video from landscape to portrait without cropping important parts?",
     "a1": "Select the 9:16 vertical preset and choose 'Blur'. This scales your original horizontal video to fit cleanly within the vertical canvas while automatically filling the top and bottom with a soft, blurred duplicate of the video.",
-    "q2": "What aspect ratio is best for YouTube Shorts, TikTok, and Instagram Reels?",
-    "a2": "All three vertical short-form platforms require a 9:16 aspect ratio (recommended resolution: 1080 x 1920 pixels). Ensuring key titles are kept inside the central safe zone avoids overlap with UI buttons.",
-    "q3": "Does changing aspect ratio reduce video quality?",
-    "a3": "Not with AspectCut. Video frames are re-encoded directly on your device CPU using WebCodecs. When audio codecs match the container (such as AAC in MP4), the audio stream is copied bit-for-bit without generational loss.",
-    "q4": "Are my private videos uploaded to your servers?",
-    "a4": "Never. Your video file is read into your browser's local sandbox memory and transformed using client-side WebCodecs. No bytes are sent across the network, ensuring complete privacy.",
-    "q5": "What video formats and maximum file sizes are supported?",
-    "a5": "AspectCut accepts MP4, MOV, WebM, and MKV containers up to 500 MB in size.",
-    "q6": "Why do exported videos need even-numbered pixel dimensions?",
-    "a6": "Modern video codecs like H.264 and HEVC utilize YUV 4:2:0 chroma subsampling, requiring pixel widths and heights to be divisible by 2. Odd pixel dimensions cause hardware decoding crashes or green line artifacts.",
-    "q7": "How does the ambient blurred background extension work?",
-    "a7": "AspectCut places your original footage centered at full resolution in the middle, while generating an enlarged, heavily blurred duplicate layer behind it to elegantly fill empty letterbox bars.",
-    "q8": "Can I convert video aspect ratios on mobile devices like iPhone or Android?",
-    "a8": "Yes. AspectCut executes directly in modern mobile browsers (iOS Safari 16+ and Android Chrome) with WebCodecs support, letting you export directly to your device camera roll without installing native apps."
+    "q2": "What size should I resize a video to for YouTube Shorts, TikTok, and Instagram Reels?",
+    "a2": "All three vertical short-form platforms require a 9:16 aspect ratio (recommended resolution: 1080 x 1920 pixels).",
+    "q3": "Will the quality drop when I resize video?",
+    "a3": "Resizing re-encodes the video on your device, so some change is normal, and upscaling a small video cannot add detail. For the best result, start from your highest-quality original. When the audio codec matches the container, such as AAC in MP4, the audio is copied without re-encoding.",
+    "q4": "Is video resize online safe for private clips?",
+    "a4": "With AspectCut, your file is not uploaded. It is resized inside your browser, so the clip is never sent to a server.",
+    "q5": "Which video formats and file sizes can I resize?",
+    "a5": "You can resize MP4, MOV, WebM, and MKV videos up to 500 MB.",
+    "q6": "Is it free to resize video online?",
+    "a6": "Yes. You can resize video online with AspectCut for free. You don't need an account, and there is no watermark on the exported file.",
+    "q7": "How does the blurred background work when I resize a video?",
+    "a7": "AspectCut keeps your whole video centered in the new frame and places an enlarged, blurred copy behind it, so the empty space is filled without black bars.",
+    "q8": "Can I resize a video on iPhone or Android?",
+    "a8": "Yes. AspectCut works in mobile browsers with WebCodecs support, such as Android Chrome and recent versions of iOS Safari, so you can resize video online without installing an app."
   },
   "seo": {
-    "homeTitle": "AspectCut — Video Aspect Ratio Changer (Online, Free, No Upload)",
-    "homeDescription": "Change video aspect ratios (16:9 to 9:16, 1:1, 4:5, 21:9) in seconds directly in your browser. 100% private, zero uploads, no watermark. Powered by client-side WebCodecs.",
-    "homeKeywords": "video aspect ratio changer, change video aspect ratio online, resize video for instagram, convert video to 9:16, 16:9 to 9:16 converter, video resizer for youtube shorts, tiktok video resizer, crop video online free",
+    "homeTitle": "Resize Video Online Free, No Upload or Watermark",
+    "homeDescription": "Resize video online for free. Change video size and aspect ratio for Instagram, TikTok, YouTube and more in your browser, with no upload and no watermark.",
+    "homeKeywords": "resize video, video resize, resize video online, video resize online, video resizer, video aspect ratio changer, resize video for instagram, convert video to 9:16, 16:9 to 9:16 converter, video resizer for youtube shorts, tiktok video resizer, crop video online free",
     "aboutTitle": "About AspectCut — In-Browser WebCodecs Video Engine",
     "aboutDescription": "Discover how AspectCut processes videos 100% inside your browser using client-side WebCodecs without cloud uploads or privacy risks.",
-    "faqTitle": "Frequently Asked Questions — AspectCut Video Aspect Ratio Changer",
-    "faqDescription": "Answers to common questions about changing video aspect ratios, quality preservation, supported formats, and client-side privacy.",
+    "faqTitle": "Resize Video Online: FAQ — AspectCut",
+    "faqDescription": "Answers to common questions about how to resize video online, including quality, supported formats, and privacy.",
     "privacyTitle": "Privacy Architecture & Zero-Knowledge Guarantee — AspectCut",
     "privacyDescription": "AspectCut never uploads your video files to any server. Read our mathematical zero-knowledge privacy architecture and client memory sandbox.",
     "contactTitle": "Contact & Support — AspectCut",
@@ -137,4 +137,3 @@
     "termsDescription": "AspectCut terms of service. Free, private, client-side video processing."
   }
 }
-

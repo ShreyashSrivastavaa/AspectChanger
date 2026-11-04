@@ -1,0 +1,80 @@
+{
+  "common": { "home": "Home", "backToTool": "Torna allo strumento", "intro": "AspectCut è uno strumento gratuito per ridimensionare video online. Elabora i file localmente nel browser con WebCodecs; i video non vengono caricati su alcun server." },
+  "about": {
+    "metaTitle": "Informazioni su AspectCut e architettura tecnica",
+    "metaDescription": "Scopri come AspectCut elabora i video sul tuo dispositivo grazie al motore WebCodecs integrato nel browser e alla memoria locale.",
+    "crumb": "Chi siamo",
+    "badge": "Missione e ingegneria",
+    "h1": "Informazioni su AspectCut",
+    "whyTitle": "Perché abbiamo creato AspectCut",
+    "whyP1": "I convertitori video online tradizionali si basano su una vecchia architettura di server cloud. Gli utenti devono caricare file enormi su connessioni lente, attendere minuti in coda sui server e subire filigrane invasive, a meno di pagare costosi abbonamenti.",
+    "whyP2": "Computer e smartphone moderni dispongono di potenti processori multi-core e decodificatori multimediali con accelerazione hardware che restano inattivi durante la navigazione. AspectCut ribalta il modello di conversione: usiamo WebCodecs, il motore video integrato nei browser moderni. Il tuo browser decodifica, reinquadra, ritaglia, filtra e codifica il video MP4 interamente nella memoria locale.",
+    "archTitle": "Architettura tecnica principale",
+    "arch": [
+      { "k": "Motore di elaborazione:", "v": "WebCodecs, l'API video nativa del browser, tramite la libreria open source Mediabunny." },
+      { "k": "Accelerazione hardware:", "v": "Usa il codificatore e il decodificatore video del dispositivo, quando disponibili." },
+      { "k": "Geometria spaziale:", "v": "Allineamento dei macroblocchi a numeri interi pari (Mod2), compatibile con il sottocampionamento YUV 4:2:0." },
+      { "k": "Audio senza ricodifica:", "v": "Copia automatica dell'audio quando il codec corrisponde già, evitando perdite da compressioni successive." },
+      { "k": "Nessuna trasmissione in rete:", "v": "0 byte di video o audio inviati su Internet." }
+    ],
+    "teamTitle": "Team e attribuzione",
+    "teamRole": "Prodotto e ingegneria",
+    "teamMission": "Offriamo ai creatori di video strumenti rapidi e privati, eseguiti nel browser, che eliminano code nel cloud, rischi per la privacy e filigrane legate agli abbonamenti."
+  },
+  "contact": {
+    "metaTitle": "Contatti e assistenza",
+    "metaDescription": "Contatta il team di ingegneria di AspectCut per ricevere assistenza, chiedere informazioni sulle funzioni o segnalare errori.",
+    "crumb": "Contatti",
+    "badge": "Assistenza tecnica",
+    "h1": "Contatta AspectCut",
+    "intro": "AspectCut è gestito da ingegneri software indipendenti dedicati a strumenti video WebCodecs ad alte prestazioni eseguiti nel browser.",
+    "emailLabel": "Email di assistenza diretta",
+    "checklistTitle": "Elenco di controllo per la risoluzione dei problemi:",
+    "checklist": [
+      "Verifica che l'accelerazione hardware sia attiva nelle impostazioni del browser",
+      "Controlla di usare l'ultima versione di Chrome, Edge, Safari o Firefox",
+      "Per file superiori a 200 MB, assicurati di avere almeno 4 GB di RAM disponibile"
+    ]
+  },
+  "privacy": {
+    "metaTitle": "Informativa e architettura sulla privacy",
+    "metaDescription": "Come AspectCut elabora i video al 100% nel browser con WebCodecs. I tuoi video non vengono mai caricati su un server remoto.",
+    "crumb": "Informativa sulla privacy",
+    "back": "Torna allo strumento",
+    "badge": "Garanzia sui dati",
+    "h1": "Il tuo video non lascia mai il dispositivo",
+    "intro": "AspectCut è stato creato con un vincolo architetturale fondamentale: nessuna trasmissione di file al server.",
+    "localTitle": "Esecuzione locale con WebCodecs",
+    "localText": "Tutte le operazioni video e l'estrazione dell'audio vengono eseguite interamente nell'ambiente isolato del browser.",
+    "cloudTitle": "Nessuno spazio di archiviazione cloud",
+    "cloudText": "Non gestiamo database video, archivi di oggetti (S3/GCS) né cluster di rendering remoti.",
+    "verifyTitle": "1. Verifica con gli strumenti per sviluppatori del browser",
+    "verifyText": "Non devi fidarti soltanto della nostra parola. Apri lo strumento di analisi della rete del browser ({code}), seleziona un video e premi Converti. Vedrai che nessun byte di video viene trasferito tramite HTTP POST/PUT. Le uniche risorse esterne richieste sono i file statici di WebCodecs memorizzati nella cache alla prima visita.",
+    "analyticsTitle": "2. Statistiche e cookie",
+    "analyticsText": "Utilizziamo statistiche senza cookie e rispettose della privacy esclusivamente per monitorare il volume di visite e i tassi di errore. Non impostiamo cookie di tracciamento, non creiamo profili pubblicitari comportamentali e non vendiamo dati degli utenti.",
+    "contactTitle": "3. Informazioni di contatto",
+    "contactText": "Per domande sui limiti dell'ambiente isolato del browser o sulle implementazioni aziendali, scrivi direttamente a {email}.",
+    "cta": "Apri lo strumento per ridimensionare video"
+  },
+  "terms": {
+    "metaTitle": "Termini di servizio e politica d'uso",
+    "metaDescription": "Consulta i termini di servizio, le regole di utilizzo accettabile e le politiche di elaborazione locale di AspectCut.",
+    "crumb": "Termini di servizio",
+    "badge": "Note legali e termini",
+    "h1": "Termini di servizio",
+    "principleTitle": "Principio di base: elaborazione locale senza caricamento",
+    "principleText": "Poiché AspectCut funziona interamente nel browser tramite WebCodecs, i dati del tuo video non passano mai dalla nostra rete e non raggiungono i nostri server. Mantieni il 100% della proprietà, del diritto d'autore e del controllo su tutti i contenuti elaborati con l'applicazione.",
+    "s1Title": "1. Accettazione dei termini",
+    "s1Text": "Accedendo a {brand} o utilizzandolo su {domain}, accetti di essere vincolato dai presenti Termini di servizio. Se non accetti tutti i termini, non puoi utilizzare il servizio.",
+    "s2Title": "2. Esecuzione locale e privacy",
+    "s2Text": "Tutte le trasformazioni video (ricodifica, ritaglio, ridimensionamento delle proporzioni, sfocatura, barre e remuxing audio) vengono eseguite direttamente sul tuo dispositivo tramite WebCodecs. AspectCut non archivia, indicizza, visualizza né conserva copie dei tuoi file video o audio.",
+    "s3Title": "3. Uso consentito e accettabile",
+    "s3Text": "Accetti di utilizzare {brand} solo per scopi leciti. Devi disporre di tutti i diritti, le licenze e le autorizzazioni necessari per qualsiasi contenuto elaborato con lo strumento. Non puoi utilizzare l'applicazione per elaborare contenuti illeciti, non consensuali, lesivi di diritti o dannosi.",
+    "s4Title": "4. Esclusioni e limitazione di responsabilità",
+    "s4Text": "{brand} è fornito «così com'è» e «secondo disponibilità», senza garanzie di alcun tipo, esplicite o implicite. La velocità di conversione e i limiti di memoria dipendono dalle capacità del browser del dispositivo, dal numero di core della CPU e dalla RAM disponibile. In nessun caso AspectCut o i suoi collaboratori saranno responsabili di danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di usare questo software.",
+    "s5Title": "5. Attribuzioni open source",
+    "s5Text": "AspectCut utilizza la libreria multimediale open source Mediabunny, concessa in licenza Mozilla Public License 2.0, insieme al motore WebCodecs integrato nel browser. Alcuni file caricano anche componenti aggiuntivi di codec di Mediabunny che contengono parti di FFmpeg (libavcodec), con licenza LGPL v2.1 o successiva e disponibili dal progetto Mediabunny, oppure il decodificatore ProRes basato su TurboRes.",
+    "revised": "Ultima revisione: aprile 2026",
+    "inquiries": "Richieste: {email}"
+  }
+}

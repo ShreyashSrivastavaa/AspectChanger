@@ -81,7 +81,7 @@
     "dismiss": "Fechar"
   },
   "footer": {
-    "tagline": "Processamento Espacial no Navegador.",
+    "tagline": "Redimensionador de vídeo online grátis.",
     "productOf": "Um produto de",
     "zenithDistrict": "ZenithDistrict",
     "allRightsReserved": "Todos os direitos reservados.",
@@ -122,9 +122,9 @@
     "a8": "Sim. O AspectCut roda diretamente em navegadores móveis modernos (iOS Safari 16+ e Android Chrome) com suporte a WebCodecs, permitindo exportar o vídeo diretamente para a galeria sem instalar apps."
   },
   "seo": {
-    "homeTitle": "AspectCut — Mudar Proporção de Vídeo (Grátis, Online, Sem Envio)",
-    "homeDescription": "Altere a proporção de vídeos (16:9 para 9:16, 1:1, 4:5, 21:9) em segundos direto no navegador. 100% privado, sem marca d'água, com WebCodecs.",
-    "homeKeywords": "mudar proporcao de video, mudar formato de video online, redimensionar video para instagram, converter video para 9 16, conversor 16 9 para 9 16, redimensionar video para tiktok, cortar video online gratis",
+    "homeTitle": "Redimensionar vídeo online grátis, sem upload e sem marca d'água",
+    "homeDescription": "Redimensione vídeos online de graça para Instagram, TikTok, YouTube e mais. Tudo é processado no navegador: sem upload, sem cadastro e sem marca d'água.",
+    "homeKeywords": "redimensionar vídeo, redimensionar vídeo online, redimensionar vídeo grátis, alterar tamanho de vídeo, mudar proporção de vídeo, redimensionar vídeo para instagram, converter vídeo para 9:16, converter 16:9 para 9:16, redimensionar vídeo para youtube shorts, redimensionar vídeo para tiktok",
     "aboutTitle": "Sobre o AspectCut — Motor de Vídeo WebCodecs no Navegador",
     "aboutDescription": "Saiba como o AspectCut processa vídeos 100% no seu navegador com WebCodecs, sem uploads para a nuvem e com máxima privacidade.",
     "faqTitle": "Perguntas Frequentes — Conversor de Proporção AspectCut",
@@ -137,4 +137,3 @@
     "termsDescription": "Termos de uso do serviço AspectCut. Processamento de vídeo gratuito, privado e seguro no navegador."
   }
 }
-

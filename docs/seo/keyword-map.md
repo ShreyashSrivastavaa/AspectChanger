@@ -17,7 +17,7 @@ This document defines the comprehensive keyword cluster hierarchy, search intent
 ### 1. Head & Core Tool Cluster
 | Primary Keyword | Secondary Keywords | Search Intent | Target URL | Page Type |
 | :--- | :--- | :--- | :--- | :--- |
-| **video aspect ratio changer** | change video aspect ratio, aspect ratio converter video, video resizer, resize video online, video cropper | transactional-tool | `/` | Home / Root Tool |
+| **resize video** | video resize, resize video online, video resize online, video resizer, video aspect ratio changer, change video aspect ratio, aspect ratio converter video, video cropper | transactional-tool | `/` | Home / Root Tool |
 | **aspect ratio calculator video** | video resolution calculator, aspect ratio finder, video dimension calculator | transactional-tool | `/calculator/aspect-ratio` | Interactive Calculator |
 | **video resizer no watermark** | free video resizer without watermark, resize video without watermark online, clean video aspect changer | transactional-tool | `/compare/free-video-resizer-no-watermark` | Comparison / Value Page |
 | **video resizer no upload** | in-browser video resizer, client-side video aspect ratio changer, private video cropper | transactional-tool | `/compare/video-resizer-no-upload` | Comparison / Value Page |

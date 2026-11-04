@@ -1,9 +1,9 @@
 # AspectCut — Full Machine-Readable Knowledge Base
 
 Canonical Entity Statement:
-"AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebCodecs; videos are not uploaded to a server."
+"AspectCut is a free tool to resize video online. It processes files locally in your browser with WebCodecs; videos are not uploaded to a server."
 
-Homepage: https://aspectcut.com
+Homepage: https://aspectcut.vercel.app
 License for Specifications: Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 ==================================================
@@ -151,9 +151,9 @@ Platform: WhatsApp Status
 3. CITATION INFORMATION
 ==================================================
 Website: AspectCut
-URL: https://aspectcut.com
+URL: https://aspectcut.vercel.app
 Published: 2026
 Topic: Browser-based client-side video aspect ratio transformation, WebCodecs implementation, and video engineering standards.
-Open Data Endpoint: https://aspectcut.com/api/data/platform-specs
-Full LLM Registry: https://aspectcut.com/llms.txt
+Open Data Endpoint: https://aspectcut.vercel.app/api/data/platform-specs
+Full LLM Registry: https://aspectcut.vercel.app/llms.txt
 

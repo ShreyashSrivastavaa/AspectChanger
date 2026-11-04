@@ -1,12 +1,12 @@
 # AspectCut
 
-> AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebCodecs; videos are not uploaded to a server.
+> AspectCut is a free tool to resize video online. It processes files locally in your browser with WebCodecs; videos are not uploaded to a server.
 
 ## Overview
 AspectCut enables video creators to reframe landscape (16:9), vertical (9:16), square (1:1), and portrait (4:5) videos directly inside modern web browsers. Using the browser's built-in WebCodecs engine, all video decompression, frame compositing (focal cropping, blurred mirror background extensions, letterboxing), and H.264 rendering occur entirely within client memory. Video data is never transmitted to an external server.
 
 ## Core Tools & Interactive Calculators
-- [Video Aspect Ratio Changer](https://aspectcut.com/): Free client-side video aspect ratio changer and reframer with zero server uploads and no watermarks.
+- [Resize Video Online](https://aspectcut.vercel.app/): Free video resizer and aspect ratio changer with no server uploads and no watermarks.
 
 ## Open Datasets & Verified Specifications
 

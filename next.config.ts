@@ -13,9 +13,13 @@ const nextConfig: NextConfig = {
         "all-pages", "benchmarks", "changelog", "compare", "convert", "data", "fix", "for", "from",
         "glossary", "guides", "methodology", "press", "resolution", "tools",
       ].map((section) => toHome(`/${section}/:path*`)),
-      // Only the home page exists per language.
+      // English lives at unprefixed URLs.
+      toHome("/en/:page(about|contact|privacy|terms)", "/:page"),
       toHome("/en/:path+"),
-      toHome("/:locale(ar|bn|de|es|fr|hi|id|it|ja|ko|nl|pl|pt|ru|th|tr|ur|vi|zh)/:path+", "/:locale"),
+      // Each language has only its home page and the info pages.
+      toHome("/:locale(de|es|fr|it|ja|ko|pt)/:path((?!about$|contact$|privacy$|terms$).+)", "/:locale"),
+      // Languages that are no longer offered.
+      toHome("/:locale(ar|bn|hi|id|nl|pl|ru|th|tr|ur|vi|zh)/:path*"),
     ];
   },
 };

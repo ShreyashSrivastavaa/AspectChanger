@@ -43,9 +43,9 @@
     "framingTechnique": "2. フレーミング方式",
     "blur": "背景ぼかし",
     "blurDesc": "動画の拡大ぼかしで自然に背景を埋める",
-    "crop": "クロップ (切り抜き)",
+    "crop": "クロップ",
     "cropDesc": "見せたい位置を中心に合わせて切り抜く",
-    "bars": "黒帯 (レターボックス)",
+    "bars": "帯",
     "barsDesc": "余白を黒帯または指定色で補う",
     "focalNotice": "動画プレビュー上の照準をドラッグして注目ポイントを調整できます",
     "customBarColor": "帯のカラー指定",
@@ -81,7 +81,7 @@
     "dismiss": "閉じる"
   },
   "footer": {
-    "tagline": "ブラウザ完結型のローカル空間処理。",
+    "tagline": "無料のオンライン動画サイズ変更ツール。",
     "productOf": "企画・開発:",
     "zenithDistrict": "ZenithDistrict",
     "allRightsReserved": "All rights reserved.",
@@ -122,9 +122,9 @@
     "a8": "はい、可能です。WebCodecsに対応したモバイルブラウザ（iOS Safari 16以上、Android Chrome）であれば、アプリを追加インストールすることなく端末の写真アプリに直接保存できます。"
   },
   "seo": {
-    "homeTitle": "AspectCut — 動画のアスペクト比変更ツール (無料・オンライン・送信なし)",
-    "homeDescription": "ブラウザ上で動画のアスペクト比 (16:9を9:16、1:1、4:5、21:9など) を数秒で安全に変換。完全プライベート、透かしなし、WebCodecs搭載。",
-    "homeKeywords": "動画アスペクト比変更, 動画サイズ変更オンライン無料, インスタ用動画リサイズ, 動画9 16変換, 16 9を9 16に変更, tiktok動画サイズ変更, 動画トリミングオンライン",
+    "homeTitle": "動画サイズ変更オンライン無料｜アップロード不要・透かしなし",
+    "homeDescription": "Instagram、TikTok、YouTube などに合わせて、オンラインで無料で動画サイズを変更。処理はブラウザ内で完結し、アップロードも登録も透かしも不要です。",
+    "homeKeywords": "動画サイズ変更, 動画サイズ変更 オンライン, 動画サイズ変更 無料, 動画リサイズ, 動画 アスペクト比 変更, インスタ 動画 サイズ変更, 動画 9:16 変換, 16:9 9:16 変換, TikTok 動画 サイズ変更, YouTube ショート サイズ変更",
     "aboutTitle": "AspectCutについて — ブラウザ完結型WebCodecs動画エンジン",
     "aboutDescription": "クラウドに動画をアップロードすることなく、WebCodecsにより手元の端末で直接動画を変換できる仕組みをご紹介します。",
     "faqTitle": "よくある質問 — AspectCut 動画アスペクト比変換ツール",
@@ -137,4 +137,3 @@
     "termsDescription": "AspectCutのサービス利用規約。無料かつ安全にブラウザで動画処理を行うための条件を記載しています。"
   }
 }
-

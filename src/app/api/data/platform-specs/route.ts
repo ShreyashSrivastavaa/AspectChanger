@@ -55,10 +55,10 @@ export async function GET(request: Request) {
   // Default: JSON response
   const jsonResponse = {
     license: "Creative Commons Attribution 4.0 International (CC BY 4.0)",
-    citation: `AspectCut. (2026). Social Media Platform Video Specifications Dataset. Retrieved from ${BRAND.domain}/data/platform-specs`,
+    citation: `AspectCut. (2026). Social Media Platform Video Specifications Dataset. Retrieved from ${BRAND.domain}/api/data/platform-specs`,
     publisher: BRAND.name,
     homepage: BRAND.domain,
-    datasetUrl: `${BRAND.domain}/data/platform-specs`,
+    datasetUrl: `${BRAND.domain}/api/data/platform-specs`,
     totalRecords: specsList.length,
     lastUpdated: "April 2026",
     records: specsList.map((s) => ({

@@ -81,7 +81,7 @@
     "dismiss": "Ignorer"
   },
   "footer": {
-    "tagline": "Traitement Spatial Local dans le Navigateur.",
+    "tagline": "Outil gratuit pour redimensionner vos vidéos en ligne.",
     "productOf": "Un produit de",
     "zenithDistrict": "ZenithDistrict",
     "allRightsReserved": "Tous droits réservés.",
@@ -122,9 +122,9 @@
     "a8": "Oui. AspectCut s'exécute directement dans les navigateurs mobiles modernes (iOS Safari 16+ et Android Chrome) prenant en charge WebCodecs, vous permettant d'exporter directement dans votre pellicule sans installer d'application."
   },
   "seo": {
-    "homeTitle": "AspectCut — Changer le Format d'une Vidéo (Gratuit, En Ligne, Sans Envoi)",
-    "homeDescription": "Modifiez le format de vos vidéos (16:9 vers 9:16, 1:1, 4:5, 21:9) en quelques secondes dans votre navigateur. 100% privé, sans filigrane, propulsé par WebCodecs.",
-    "homeKeywords": "changer le format d'une video, modifier proportion video en ligne, redimensionner video pour instagram, convertir video 9 16, convertisseur 16 9 vers 9 16, redimensionner video tiktok, rogner video en ligne gratuit",
+    "homeTitle": "Redimensionner une vidéo en ligne gratuitement, sans envoi ni filigrane",
+    "homeDescription": "Redimensionnez une vidéo en ligne gratuitement pour Instagram, TikTok, YouTube et plus. Traitement dans votre navigateur : sans envoi, sans compte et sans filigrane.",
+    "homeKeywords": "redimensionner une vidéo, redimensionner vidéo en ligne, redimensionner vidéo gratuit, changer la taille d'une vidéo, changer le format d'une vidéo, redimensionner vidéo pour instagram, convertir vidéo en 9:16, convertir 16:9 en 9:16, redimensionner vidéo youtube shorts, redimensionner vidéo tiktok",
     "aboutTitle": "À Propos d'AspectCut — Moteur Vidéo WebCodecs dans le Navigateur",
     "aboutDescription": "Découvrez comment AspectCut traite les vidéos 100% dans votre navigateur grâce à WebCodecs, sans aucun transfert cloud ni risque de confidentialité.",
     "faqTitle": "Foire Aux Questions — AspectCut Modificateur de Format Vidéo",
@@ -137,4 +137,3 @@
     "termsDescription": "Conditions d'utilisation du service AspectCut. Traitement vidéo gratuit, privé et local dans le navigateur."
   }
 }
-

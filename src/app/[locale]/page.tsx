@@ -6,10 +6,14 @@ import { PRESET_GROUPS } from "@/lib/video-presets";
 import {
   buildLocalizedSoftwareApplicationSchema,
   buildLocalizedFAQSchema,
+  serializeJsonLd,
 } from "@/lib/i18n/localized-schemas";
 import { buildOrganizationSchema } from "@/lib/seo/schema-generators";
 import { BRAND } from "@/lib/config";
 import { isSupportedLocale, DEFAULT_LOCALE } from "@/i18n/locales";
+import { loadHomeCopy } from "@/i18n/home-copy";
+import { buildLocalePath } from "@/lib/i18n/seo-metadata";
+
 
 export default async function HomePage({
   params,
@@ -25,6 +29,8 @@ export default async function HomePage({
   const tHero = messages.hero || {};
   const tBrand = messages.brand || {};
   const tFooter = messages.footer || {};
+  const home = await loadHomeCopy(locale);
+  const presetNames: Record<string, string> = home.presets;
 
   const homeFaqs = [
     { q: tFaq.q1, a: tFaq.a1 },
@@ -46,38 +52,22 @@ export default async function HomePage({
   });
   const jsonLdOrg = buildOrganizationSchema();
 
-  const features = [
-    { title: "Every platform size", text: "Instagram, TikTok, YouTube, Facebook, X, LinkedIn, Snapchat, Pinterest, WhatsApp and common screens, exported at exact pixels." },
-    { title: "Blur, crop or bars", text: "Fill the frame with a blurred background, crop to fit, or add bars in any color." },
-    { title: "Zoom and reframe", text: "Drag the crosshair and zoom up to 300% to keep your subject in the shot." },
-    { title: "Custom ratios", text: "Enter any ratio up to 4:1, including decimals such as 2.35:1." },
-    { title: "Private by design", text: "Your video is processed inside your browser and is never uploaded to a server." },
-    { title: "Free, no watermark", text: "No account and no watermark on your exported video." },
-    { title: "MP4 and WebM export", text: "Open MP4, MOV, WebM or MKV up to 500 MB, then export H.264 MP4 or VP9 WebM." },
-    { title: "Sound stays in", text: "Your audio track is carried into the exported file automatically." },
-  ];
-
-  const steps = [
-    { title: "Add your video", text: "Choose or drop a clip. It stays on your device." },
-    { title: "Pick a size", text: "Choose a platform, a screen size, or a custom ratio, then frame it." },
-    { title: "Convert and download", text: "Your browser does the encoding, then the file is ready to save." },
-  ];
-
   const sectionTitle = "text-xl sm:text-2xl font-semibold tracking-tight text-[var(--text-main)]";
+  const proseSection = "max-w-3xl mx-auto space-y-3 text-sm leading-relaxed text-[var(--text-muted)]";
 
   return (
     <div className="w-full text-[var(--text-main)] relative overflow-hidden" suppressHydrationWarning>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLdFaq) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdApp) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLdApp) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLdOrg) }}
       />
 
       {/* SPATIAL ARCHITECTURAL STUDIO BACKGROUND */}
@@ -147,53 +137,57 @@ export default async function HomePage({
         />
       </div>
 
-      <div className="max-w-[1020px] mx-auto px-4 sm:px-6 pt-2 pb-12 space-y-4 relative z-10" suppressHydrationWarning>
-        
+      <div className="max-w-[1020px] mx-auto px-4 sm:px-6 pb-12 relative z-10" suppressHydrationWarning>
+
+        {/* First screen: heading, upload box and facts fit without scrolling */}
+        <div className="min-h-[calc(100svh-88px)] flex flex-col justify-center gap-5 py-4">
+
         {/* Spatial Central Title Header */}
         <div className="text-center space-y-2 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-[11px] font-mono text-[var(--text-muted)] select-none">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#c89c6e] shadow-[0_0_8px_#c89c6e]" />
-            <span>{tBrand.clientEngine || "Client-Side WebCodecs Studio"}</span>
-          </div>
-
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[var(--text-main)]">
-            Video Aspect Ratio <span className="font-serif italic font-normal text-[var(--accent-text)]">Changer</span>
+            {home.h1Main} <span className="font-serif italic font-normal text-[var(--accent-text)]">{home.h1Accent}</span>
           </h1>
 
-          <p className="text-xs sm:text-sm text-[var(--text-muted)] max-w-lg mx-auto leading-relaxed">
-            {tHero.dropSubtitle || "Reframe for Shorts, Reels, and TikTok in seconds. 100% private in browser memory."}
+          <p className="text-xs sm:text-sm text-[var(--text-muted)] max-w-2xl mx-auto leading-relaxed">
+            {tHero.dropSubtitle || "Free video resize tool for Instagram, TikTok, YouTube and more. Your file stays in your browser."}
           </p>
         </div>
 
         {/* Central Frosted Tool */}
-        <section id="tool" aria-label="Aspect Ratio Tool" className="relative scroll-mt-4" suppressHydrationWarning>
+        <section id="tool" aria-label={home.toolAria} className="relative scroll-mt-4" suppressHydrationWarning>
           <VideoProcessor initialRatio={{ w: 9, h: 16 }} />
         </section>
 
-        {/* Strip Below Tool: Facts, Links, SEO */}
-        <div className="space-y-4 pt-2">
-          
-          {/* Row 1: 3 Short Facts (Frosted Glass Pill Capsule) */}
+          {/* Short facts (Frosted Glass Pill Capsule) */}
           <div className="flex justify-center">
             <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full glass-pill text-xs font-mono text-[var(--text-muted)] text-center shadow-sm">
               <span className="text-[var(--text-main)] font-medium">{tHero.noUpload || "No upload"}</span>
               <span className="text-[var(--accent-text)]">·</span>
               <span className="text-[var(--text-main)] font-medium">{tHero.noWatermark || "No watermark"}</span>
-              <span className="text-[var(--accent-text)]">·</span>
-              <span className="text-[var(--text-main)] font-medium">{tHero.upTo500mb || "Up to 500 MB"}</span>
             </div>
           </div>
+        </div>
+
+        {/* Below the first screen: sizes, features, FAQ */}
+        <div className="space-y-4">
+
+          {/* Intro */}
+          <section id="about-resize" className={`pt-4 ${proseSection}`}>
+            <h2 className={`${sectionTitle} text-center`}>{home.introTitle}</h2>
+            <p>{home.introP1}</p>
+            <p>{home.introP2}</p>
+          </section>
 
           {/* All sizes */}
           <section id="sizes" className="pt-8 space-y-4 scroll-mt-4">
             <div className="text-center space-y-1">
-              <h2 className={sectionTitle}>Every platform and screen size</h2>
-              <p className="text-xs sm:text-sm text-[var(--text-muted)]">Select a size to load it into the tool.</p>
+              <h2 className={sectionTitle}>{home.sizesTitle}</h2>
+              <p className="text-xs sm:text-sm text-[var(--text-muted)]">{home.sizesSubtitle}</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {PRESET_GROUPS.map((group) => (
                 <div key={group.id} className="glass-panel rounded-2xl p-4">
-                  <h3 className="font-semibold text-sm text-[var(--text-main)] mb-2">{group.name}</h3>
+                  <h3 className="font-semibold text-sm text-[var(--text-main)] mb-2">{presetNames[group.name] ?? group.name}</h3>
                   <ul className="text-xs">
                     {group.presets.map((preset) => (
                       <li key={preset.id}>
@@ -201,7 +195,7 @@ export default async function HomePage({
                           href={`#size=${preset.id}`}
                           className="flex items-center justify-between gap-3 py-1.5 text-[var(--text-main)] hover:text-[var(--accent-text)] transition-colors"
                         >
-                          <span>{preset.label}</span>
+                          <span>{presetNames[preset.label] ?? preset.label}</span>
                           <span className="font-mono text-[11px] text-[var(--text-muted)] whitespace-nowrap">
                             {preset.ratio} · {preset.width}×{preset.height}
                           </span>
@@ -216,9 +210,9 @@ export default async function HomePage({
 
           {/* Features */}
           <section id="features" className="pt-8 space-y-4 scroll-mt-4">
-            <h2 className={`${sectionTitle} text-center`}>Everything you need to reframe a video</h2>
+            <h2 className={`${sectionTitle} text-center`}>{home.featuresTitle}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-              {features.map((feature) => (
+              {home.features.map((feature) => (
                 <div key={feature.title} className="glass-panel rounded-2xl p-4">
                   <h3 className="font-semibold text-sm text-[var(--text-main)] mb-1">{feature.title}</h3>
                   <p className="text-xs leading-relaxed text-[var(--text-muted)]">{feature.text}</p>
@@ -229,9 +223,9 @@ export default async function HomePage({
 
           {/* How it works */}
           <section id="how-it-works" className="pt-8 space-y-4 scroll-mt-4">
-            <h2 className={`${sectionTitle} text-center`}>How it works</h2>
+            <h2 className={`${sectionTitle} text-center`}>{home.howTitle}</h2>
             <ol className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {steps.map((step, index) => (
+              {home.steps.map((step, index) => (
                 <li key={step.title} className="glass-panel rounded-2xl p-4">
                   <span className="font-mono text-xs text-[var(--accent-text)]">0{index + 1}</span>
                   <h3 className="font-semibold text-sm text-[var(--text-main)] mt-1 mb-1">{step.title}</h3>
@@ -241,6 +235,35 @@ export default async function HomePage({
             </ol>
           </section>
 
+          {/* Why resize */}
+          <section id="why-resize" className={`pt-8 scroll-mt-4 ${proseSection}`}>
+            <h2 className={`${sectionTitle} text-center`}>{home.whyTitle}</h2>
+            <p>{home.whyP1}</p>
+            <p>{home.whyLead}</p>
+            <ul className="list-disc ps-5 space-y-1">
+              {home.whyItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+
+          {/* Tips */}
+          <section id="resize-tips" className={`pt-8 scroll-mt-4 ${proseSection}`}>
+            <h2 className={`${sectionTitle} text-center`}>{home.tipsTitle}</h2>
+            <ul className="list-disc ps-5 space-y-2">
+              {home.tips.map((tip) => (
+                <li key={tip.lead}>
+                  <strong className="text-[var(--text-main)]">{tip.lead}</strong> {tip.text}
+                </li>
+              ))}
+            </ul>
+            <p className="text-center">
+              <a href="#tool" className="font-semibold text-[var(--accent-text)] hover:underline">
+                {home.tipsCta}
+              </a>
+            </p>
+          </section>
+
           {/* Calculator */}
           <section id="calculator" className="pt-8 scroll-mt-4">
             <AspectRatioCalculatorWidget />
@@ -248,7 +271,10 @@ export default async function HomePage({
 
           {/* FAQ */}
           <section id="faq" className="pt-8 space-y-4 scroll-mt-4">
-            <h2 className={`${sectionTitle} text-center`}>Frequently asked questions</h2>
+            <div className="text-center space-y-1">
+              <h2 className={sectionTitle}>{tFaq.sectionTitle}</h2>
+              <p className="text-xs sm:text-sm text-[var(--text-muted)]">{tFaq.sectionSubtitle}</p>
+            </div>
             <div className="space-y-2">
               {homeFaqs.map((faq) => (
                 <details key={faq.q} className="group glass-panel rounded-2xl p-4 text-xs">
@@ -265,13 +291,13 @@ export default async function HomePage({
           {/* Frosted Glass Footer */}
           <footer className="pt-3 pb-2 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono text-[var(--text-muted)]">
             <div className="flex items-center gap-1.5">
-              <span>© {new Date().getFullYear()} {BRAND.name}. {tFooter?.tagline || "Spatial Client-Side Processing."}</span>
+              <span>© {new Date().getFullYear()} {BRAND.name}. {tFooter?.tagline || "Free online video resizer."}</span>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/about" className="hover:text-[var(--accent-text)] transition-colors">About</Link>
-              <Link href="/privacy" className="hover:text-[var(--accent-text)] transition-colors">Privacy</Link>
-              <Link href="/terms" className="hover:text-[var(--accent-text)] transition-colors">Terms</Link>
-              <Link href="/contact" className="hover:text-[var(--accent-text)] transition-colors">Contact</Link>
+              <Link href={buildLocalePath(locale, "/about")} className="hover:text-[var(--accent-text)] transition-colors">{home.footer.about}</Link>
+              <Link href={buildLocalePath(locale, "/privacy")} className="hover:text-[var(--accent-text)] transition-colors">{home.footer.privacy}</Link>
+              <Link href={buildLocalePath(locale, "/terms")} className="hover:text-[var(--accent-text)] transition-colors">{home.footer.terms}</Link>
+              <Link href={buildLocalePath(locale, "/contact")} className="hover:text-[var(--accent-text)] transition-colors">{home.footer.contact}</Link>
             </div>
           </footer>
         </div>

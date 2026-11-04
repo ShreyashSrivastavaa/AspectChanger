@@ -41,11 +41,11 @@
     "changeClip": "동영상 변경",
     "targetRatio": "1. 변경할 화면 비율",
     "framingTechnique": "2. 화면 구성 방식",
-    "blur": "배경 흐림 (블러)",
+    "blur": "배경 흐림",
     "blurDesc": "동영상 확대 블러로 여백 채우기",
-    "crop": "자르기 (크롭)",
+    "crop": "자르기",
     "cropDesc": "주요 초점을 맞춰 화면 채우기",
-    "bars": "블랙 바 (여백)",
+    "bars": "여백",
     "barsDesc": "상하좌우 검은 여백 유지",
     "focalNotice": "영상 미리보기에서 십자선을 끌어 포커스 위치를 조절하세요",
     "customBarColor": "여백 색상 사용자 지정",
@@ -81,7 +81,7 @@
     "dismiss": "닫기"
   },
   "footer": {
-    "tagline": "브라우저 기반 로컬 공간 클라이언트 프로세싱.",
+    "tagline": "무료 온라인 동영상 크기 변경 도구.",
     "productOf": "개발 및 운영:",
     "zenithDistrict": "ZenithDistrict",
     "allRightsReserved": "All rights reserved.",
@@ -122,9 +122,9 @@
     "a8": "네, 가능합니다. WebCodecs를 지원하는 최신 모바일 브라우저(iOS Safari 16 이상, Android Chrome)에서 별도의 앱 설치 없이 바로 갤러리로 결과물을 저장할 수 있습니다."
   },
   "seo": {
-    "homeTitle": "AspectCut — 동영상 화면 비율 변경 (무료, 온라인, 업로드 없음)",
-    "homeDescription": "브라우저에서 동영상 화면 비율(16:9를 9:16, 1:1, 4:5, 21:9 등)로 단 몇 초 만에 변경하세요. 100% 비공개, 워터마크 없음, WebCodecs 기술 탑재.",
-    "homeKeywords": "동영상 화면 비율 변경, 동영상 비율 조절 온라인, 인스타 릴스 동영상 리사이즈, 동영상 9 16 변환, 16 9를 9 16으로 변환, 틱톡 동영상 크기, 동영상 자르기 무료",
+    "homeTitle": "동영상 크기 변경 온라인 무료 | 업로드 없음, 워터마크 없음",
+    "homeDescription": "Instagram, TikTok, YouTube 등에 맞게 온라인에서 무료로 동영상 크기를 변경하세요. 브라우저에서 처리되어 업로드, 가입, 워터마크가 없습니다.",
+    "homeKeywords": "동영상 크기 변경, 동영상 크기 변경 온라인, 동영상 크기 변경 무료, 동영상 리사이즈, 동영상 화면 비율 변경, 인스타그램 동영상 크기, 동영상 9:16 변환, 16:9 9:16 변환, 유튜브 쇼츠 크기 변경, 틱톡 동영상 크기 변경",
     "aboutTitle": "AspectCut 소개 — 브라우저 전용 WebCodecs 비디오 엔진",
     "aboutDescription": "클라우드 서버에 영상을 업로드할 필요 없이, WebCodecs로 기기 내에서 직접 안전하게 영상을 변환하는 원리를 확인해 보세요.",
     "faqTitle": "자주 묻는 질문 — AspectCut 동영상 리사이즈 툴",
@@ -137,4 +137,3 @@
     "termsDescription": "AspectCut의 서비스 이용약관. 무료이며 안전한 브라우저 비디오 프로세싱에 대한 안내입니다."
   }
 }
-

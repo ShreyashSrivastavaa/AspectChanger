@@ -2,8 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const LOCALES = [
-  "en", "es", "hi", "fr", "de", "pt", "it", "ru", "ja", "ko",
-  "zh", "ar", "tr", "id", "nl", "pl", "vi", "th", "bn", "ur"
+  "en", "es", "ja", "fr", "de", "pt", "ko", "it"
 ];
 
 const messagesDir = path.join(__dirname, "..", "messages");

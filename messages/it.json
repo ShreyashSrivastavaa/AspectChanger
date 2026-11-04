@@ -81,7 +81,7 @@
     "dismiss": "Chiudi"
   },
   "footer": {
-    "tagline": "Elaborazione Spaziale Locale nel Browser.",
+    "tagline": "Strumento gratuito per ridimensionare video online.",
     "productOf": "Un prodotto di",
     "zenithDistrict": "ZenithDistrict",
     "allRightsReserved": "Tutti i diritti riservati.",
@@ -122,9 +122,9 @@
     "a8": "Sì. AspectCut funziona direttamente nei browser mobili moderni (iOS Safari 16+ e Android Chrome) con supporto WebCodecs, consentendo di salvare il video direttamente nella galleria senza installare app."
   },
   "seo": {
-    "homeTitle": "AspectCut — Modificare Proporzioni Video (Gratis, Online, Senza Caricamento)",
-    "homeDescription": "Modifica il formato dei tuoi video (da 16:9 a 9:16, 1:1, 4:5, 21:9) in pochi secondi nel browser. 100% privato, senza watermark, con WebCodecs.",
-    "homeKeywords": "modificare proporzioni video, cambiare formato video online, ridimensionare video per instagram, convertire video in 9 16, convertitore 16 9 a 9 16, ridimensionare video tiktok, ritagliare video online gratis",
+    "homeTitle": "Ridimensionare video online gratis, senza caricamento né filigrana",
+    "homeDescription": "Ridimensiona un video online gratis per Instagram, TikTok, YouTube e altro. Tutto avviene nel browser: nessun caricamento, nessun account e nessuna filigrana.",
+    "homeKeywords": "ridimensionare video, ridimensionare video online, ridimensionare video gratis, cambiare dimensione video, modificare proporzioni video, ridimensionare video per instagram, convertire video in 9:16, convertire 16:9 in 9:16, ridimensionare video per youtube shorts, ridimensionare video per tiktok",
     "aboutTitle": "Chi Siamo — AspectCut Motore Video WebCodecs nel Browser",
     "aboutDescription": "Scopri come AspectCut elabora i video interamente nel tuo browser con WebCodecs, senza caricamenti nel cloud né rischi di privacy.",
     "faqTitle": "Domande Frequenti — AspectCut Convertitore Formato Video",
@@ -137,4 +137,3 @@
     "termsDescription": "Termini di servizio di AspectCut. Elaborazione video gratuita, sicura e privata nel browser."
   }
 }
-

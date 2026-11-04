@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import CometDial from "./CometDial";
 import NervousCatcher from "./NervousCatcher";
 import Dropdown from "./Dropdown";
-import { convertVideo, cancelConversion, isCancelledError } from "@/lib/video-engine";
+import { convertVideo, cancelConversion, isCancelledError, ConvertError } from "@/lib/video-engine";
 import { PRESET_GROUPS, findPreset, findPresetGroup, type SizePreset } from "@/lib/video-presets";
 
 const MAX_CUSTOM_RATIO = 4;
@@ -24,6 +24,10 @@ interface VideoProcessorProps {
 export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
   const tHero = useTranslations("hero");
   const tEditor = useTranslations("editor");
+  const tTool = useTranslations("home.tool");
+  const tErrors = useTranslations("home.errors");
+  const presetNames = useTranslations("home").raw("presets") as Record<string, string>;
+  const presetName = (name: string) => presetNames[name] ?? name;
 
   // Hydration & debug state
   const [mounted, setMounted] = useState(false);
@@ -159,14 +163,14 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
     setResultBlob(null);
 
     if (selectedFile.size > 500 * 1024 * 1024) {
-      setErrorMessage("File exceeds 500 MB limit. Please select a smaller clip.");
+      setErrorMessage(tErrors("tooLarge"));
       return;
     }
 
     const validExts = [".mp4", ".mov", ".webm", ".mkv"];
     const ext = selectedFile.name.substring(selectedFile.name.lastIndexOf(".")).toLowerCase();
     if (!validExts.includes(ext) && !selectedFile.type.startsWith("video/")) {
-      setErrorMessage("Unsupported format. Please upload MP4, MOV, WebM, or MKV.");
+      setErrorMessage(tErrors("unsupportedFormat"));
       return;
     }
 
@@ -254,10 +258,10 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
 
     setIsProcessing(true);
     setProgress(0);
-    setStatusText("Preparing video engine...");
+    setStatusText(tTool("preparing"));
     setErrorMessage(null);
     setResultBlob(null);
-    setEstimatedTime("Estimating...");
+    setEstimatedTime(tTool("estimating"));
 
     const startTime = Date.now();
     let hasUpdatedProgress = false;
@@ -276,10 +280,10 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
         resolution,
         format,
         quality,
-        onProgress: (pct, msg, eta) => {
-          if (pct >= 0) setProgress(pct);
-          setStatusText(msg);
-          if (eta) setEstimatedTime(eta);
+        onProgress: (pct, etaSeconds) => {
+          setProgress(pct);
+          setStatusText(etaSeconds === null && pct <= 1 ? tTool("encodingStart") : tTool("encoding", { pct }));
+          if (etaSeconds !== null) setEstimatedTime(tTool("etaRemaining", { seconds: etaSeconds }));
         },
       });
 
@@ -287,12 +291,12 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
       setResultBlob({ blob, url, filename });
       setLastEncodeSummary(summary);
       setProgress(100);
-      setStatusText("Complete!");
+      setStatusText(tTool("complete"));
       setEstimatedTime(null);
     } catch (err: any) {
       if (isCancelledError(err)) return;
       console.error("Conversion failed:", err);
-      setErrorMessage(err?.message || "An error occurred during local conversion. Please try a different preset or file.");
+      setErrorMessage(err instanceof ConvertError ? tErrors(err.code, err.values) : tErrors("generic"));
     } finally {
       setIsProcessing(false);
     }
@@ -302,15 +306,15 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
     void cancelConversion();
     setIsProcessing(false);
     setProgress(0);
-    setStatusText("Cancelled");
+    setStatusText(tTool("cancelled"));
     setEstimatedTime(null);
   };
 
   const ratioOptions = [
-    { label: "9:16", w: 9, h: 16, caption: "Shorts, Reels, TikTok" },
-    { label: "16:9", w: 16, h: 9, caption: "YouTube, Landscape" },
-    { label: "1:1", w: 1, h: 1, caption: "Instagram Feed, Square" },
-    { label: "4:5", w: 4, h: 5, caption: "Portrait Mobile" },
+    { label: "9:16", w: 9, h: 16, caption: tTool("capVertical") },
+    { label: "16:9", w: 16, h: 9, caption: tTool("capLandscape") },
+    { label: "1:1", w: 1, h: 1, caption: tTool("capSquare") },
+    { label: "4:5", w: 4, h: 5, caption: tTool("capPortrait") },
   ];
 
   return (
@@ -338,7 +342,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
           onDragLeave={onDragLeave}
           onDrop={onDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`relative w-full glass-panel min-h-[min(620px,max(280px,calc(100svh-270px)))] sm:min-h-[min(620px,max(300px,calc(100svh-226px)))] flex items-center justify-center py-6 px-6 sm:px-12 text-center cursor-pointer transition-all duration-300 group rounded-[32px] ${
+          className={`relative w-full max-w-2xl mx-auto glass-panel flex items-center justify-center py-8 sm:py-10 px-6 sm:px-12 text-center cursor-pointer transition-all duration-300 group rounded-[32px] ${
             isDraggingOver
               ? "border-[#c89c6e] scale-[1.01] shadow-[0_0_50px_rgba(200,156,110,0.35)]"
               : "hover:border-white dark:hover:border-white/30 hover:shadow-[0_30px_70px_-10px_rgba(140,110,80,0.22)]"
@@ -373,7 +377,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
 
             {activePreset && activeGroup && (
               <p className="font-mono text-[11px] text-[var(--accent-text)]">
-                Selected: {activeGroup.name} {activePreset.label} · {activePreset.width}×{activePreset.height}
+                {tTool("selected", { name: `${presetName(activeGroup.name)} ${presetName(activePreset.label)} · ${activePreset.width}×${activePreset.height}` })}
               </p>
             )}
 
@@ -400,10 +404,10 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
               <div className="w-full flex items-center justify-between font-mono text-[11px] text-neutral-400 pb-3 border-b border-neutral-800/80">
                 <span className="flex items-center gap-1.5 text-neutral-200">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#c89c6e] shadow-[0_0_8px_#c89c6e]" />
-                  CANVAS: {ratioLabel}
+                  {tEditor("canvas")}: {ratioLabel}
                 </span>
                 <span className="text-neutral-400">
-                  {videoMetadata ? `${videoMetadata.width}×${videoMetadata.height} (${videoMetadata.duration.toFixed(1)}s)` : "PROBING..."}
+                  {videoMetadata ? `${videoMetadata.width}×${videoMetadata.height} (${videoMetadata.duration.toFixed(1)}s)` : tEditor("probing")}
                 </span>
               </div>
 
@@ -497,7 +501,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                   disabled={isProcessing}
                   className="font-mono text-[11px] text-[#e8c7a2] hover:underline disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Change clip
+                  {tEditor("changeClip")}
                 </button>
               </div>
             </div>
@@ -513,7 +517,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                 <div>
                   <div className="flex items-center justify-between mb-2.5">
                     <label className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-                      1. Resize For
+                      {tTool("resizeFor")}
                     </label>
                     <span className="font-mono text-xs font-bold text-[var(--accent-text)]">
                       {ratioLabel}
@@ -522,21 +526,21 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
 
                   <div className="grid grid-cols-2 gap-2 mb-2">
                     <Dropdown
-                      label="Platform"
+                      label={tTool("platform")}
                       value={platform.id}
-                      options={PRESET_GROUPS.map((group) => ({ value: group.id, label: group.name }))}
+                      options={PRESET_GROUPS.map((group) => ({ value: group.id, label: presetName(group.name) }))}
                       onChange={(id) => {
                         const group = PRESET_GROUPS.find((g) => g.id === id);
                         if (group) applyPreset(group.presets[0]);
                       }}
                     />
                     <Dropdown
-                      label="Size"
-                      placeholder="Size"
+                      label={tTool("size")}
+                      placeholder={tTool("size")}
                       value={presetId}
                       options={platform.presets.map((preset) => ({
                         value: preset.id,
-                        label: preset.label,
+                        label: presetName(preset.label),
                         hint: preset.ratio,
                       }))}
                       onChange={(id) => {
@@ -548,7 +552,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
 
                   {activePreset && (
                     <p className="mb-2 font-mono text-[11px] text-[var(--text-muted)]">
-                      Exports at {activePreset.width}×{activePreset.height} px
+                      {tTool("exportsAt", { size: `${activePreset.width}×${activePreset.height}` })}
                     </p>
                   )}
 
@@ -589,8 +593,8 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                           : "glass-pill text-[var(--text-main)] opacity-85 hover:opacity-100"
                       }`}
                     >
-                      <div className="font-mono text-xs mb-0.5">Custom</div>
-                      <div className="text-[10px] text-[var(--text-muted)] leading-tight">Dimensions</div>
+                      <div className="font-mono text-xs mb-0.5">{tTool("custom")}</div>
+                      <div className="text-[10px] text-[var(--text-muted)] leading-tight">{tTool("dimensions")}</div>
                     </button>
                   </div>
 
@@ -619,7 +623,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
 
                   {customRatioInvalid && (
                     <p className="mt-1.5 text-[11px] text-red-600 dark:text-red-400">
-                      Enter two positive numbers, no wider or taller than 4:1.
+                      {tTool("invalidRatio")}
                     </p>
                   )}
                 </div>
@@ -627,13 +631,13 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                 {/* 2. FIT SEGMENTED CONTROL (Frosted Glass Toggle) */}
                 <div>
                   <label className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)] block mb-2">
-                    2. Fitting Mode
+                    {tTool("fittingMode")}
                   </label>
                   <div className="grid grid-cols-3 p-1 rounded-full glass-pill">
                     {[
-                      { id: "blur", label: "Blur" },
-                      { id: "crop", label: "Crop" },
-                      { id: "color", label: "Bars" },
+                      { id: "blur", label: tEditor("blur") },
+                      { id: "crop", label: tEditor("crop") },
+                      { id: "color", label: tEditor("bars") },
                     ].map((mode) => {
                       const isSelected = fitMode === mode.id;
                       return (
@@ -662,7 +666,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                         onChange={(e) => setBgColor(e.target.value)}
                         className="w-6 h-6 rounded-full border-0 cursor-pointer bg-transparent"
                       />
-                      <span className="text-xs text-[var(--text-muted)]">Bar color:</span>
+                      <span className="text-xs text-[var(--text-muted)]">{tTool("barColor")}</span>
                       <code className="font-mono text-xs text-[var(--text-main)]">{bgColor}</code>
                     </div>
                   )}
@@ -670,11 +674,11 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                   {fitMode === "crop" && (
                     <div className="mt-2 space-y-2">
                       <p className="text-[11px] text-[var(--text-muted)]">
-                        Drag crosshair on the monitor to frame action.
+                        {tTool("cropHint")}
                       </p>
                       <div>
                         <div className="flex items-center justify-between text-[11px] text-[var(--text-muted)] mb-1">
-                          <label htmlFor="crop-zoom">Zoom</label>
+                          <label htmlFor="crop-zoom">{tTool("zoom")}</label>
                           <span className="font-mono text-[var(--text-main)]">{Math.round(zoom * 100)}%</span>
                         </div>
                         <input
@@ -697,7 +701,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                         }}
                         className="font-mono text-[11px] text-[var(--accent-text)] hover:underline"
                       >
-                        Reset framing
+                        {tTool("resetFraming")}
                       </button>
                     </div>
                   )}
@@ -706,29 +710,29 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                 {/* Collapsed Advanced Section */}
                 <details className="border-t border-[var(--color-hairline)] pt-3 text-xs">
                   <summary className="cursor-pointer text-[var(--text-muted)] hover:text-[var(--text-main)] font-mono text-[11px] select-none mb-2">
-                    + Advanced Options (Resolution, Format, CRF)
+                    {tTool("advanced")}
                   </summary>
                   <div className="space-y-3 pt-2">
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[11px] text-[var(--text-muted)] mb-1">Resolution</label>
+                        <label className="block text-[11px] text-[var(--text-muted)] mb-1">{tTool("resolution")}</label>
                         <Dropdown
-                          label="Resolution"
+                          label={tTool("resolution")}
                           value={resolution}
                           disabled={!!activePreset}
                           options={[
-                            { value: "720p", label: "720p (Fastest)" },
-                            { value: "1080p", label: "1080p (Standard HD)" },
-                            { value: "original", label: "Original quality" },
+                            { value: "720p", label: tTool("res720") },
+                            { value: "1080p", label: tTool("res1080") },
+                            { value: "original", label: tTool("resOriginal") },
                           ]}
                           onChange={(v) => setResolution(v as typeof resolution)}
                         />
                       </div>
 
                       <div>
-                        <label className="block text-[11px] text-[var(--text-muted)] mb-1">Format</label>
+                        <label className="block text-[11px] text-[var(--text-muted)] mb-1">{tTool("format")}</label>
                         <Dropdown
-                          label="Format"
+                          label={tTool("format")}
                           value={format}
                           options={[
                             { value: "mp4", label: "MP4 (H.264)" },
@@ -741,7 +745,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
 
                     <div>
                       <div className="flex items-center justify-between text-[11px] text-[var(--text-muted)] mb-1">
-                        <span>Quality (CRF)</span>
+                        <span>{tTool("quality")}</span>
                         <span className="font-mono text-[var(--text-main)]">{quality}</span>
                       </div>
                       <input
@@ -760,7 +764,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                 {/* Error Banner */}
                 {errorMessage && (
                   <div className="p-3.5 bg-red-500/10 border border-red-500/30 rounded-2xl text-xs text-red-600 dark:text-red-400">
-                    <p className="font-semibold mb-0.5">Encoding Error</p>
+                    <p className="font-semibold mb-0.5">{tErrors("title")}</p>
                     <p>{errorMessage}</p>
                   </div>
                 )}
@@ -769,7 +773,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                 {isProcessing && (
                   <div className="p-5 rounded-3xl glass-panel space-y-3 flex flex-col items-center justify-center text-center shadow-lg">
                     <div className="text-xs font-semibold tracking-wide text-[var(--text-main)]">
-                      {statusText || "Rendering Video Frames..."}
+                      {statusText || tEditor("renderingFrames")}
                     </div>
 
                     <div className="py-1">
@@ -779,7 +783,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                         max={100}
                         step={1}
                         unit="%"
-                        label="Encoding progress"
+                        label={tTool("progressAria")}
                         accent="#c89c6e"
                         ink="#dfb58a"
                         size={170}
@@ -793,13 +797,13 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                     </div>
 
                     <div className="w-full flex items-center justify-between text-[11px] font-mono text-[var(--text-muted)] pt-2 border-t border-[var(--color-hairline)] px-2">
-                      <span>{estimatedTime || "Processing in memory..."}</span>
+                      <span>{estimatedTime || tEditor("processingLocally")}</span>
                       <button
                         type="button"
                         onClick={handleCancel}
                         className="text-red-500 hover:text-red-600 hover:underline font-mono text-[11px] font-semibold transition-colors"
                       >
-                        Cancel
+                        {tEditor("cancel")}
                       </button>
                     </div>
                   </div>
@@ -830,7 +834,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                     disabled={customRatioInvalid}
                     className="w-full h-12 rounded-full btn-radiant-glow font-bold text-xs uppercase tracking-wider shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Convert to {ratioLabel}
+                    {tTool("convertTo", { ratio: ratioLabel })}
                   </button>
                 )}
               </div>

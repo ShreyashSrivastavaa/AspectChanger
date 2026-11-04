@@ -1,0 +1,253 @@
+{
+  "h1Main": "Video-Größe",
+  "h1Accent": "online ändern",
+  "toolAria": "Tool zum Ändern der Videogröße",
+  "introTitle": "Videogröße kostenlos ändern, direkt im Browser",
+  "introP1": "Mit AspectCut änderst du die Größe eines Videos online, ohne eine App zu installieren oder die Datei an einen Server zu senden. Wähle die Größe einer Plattform oder gib ein eigenes Seitenverhältnis ein, lege fest, wie das Video den neuen Rahmen füllen soll, und lade die fertige Datei herunter. Du brauchst kein Konto und das Ergebnis enthält kein Wasserzeichen.",
+  "introP2": "Da die Bearbeitung auf deinem eigenen Gerät stattfindet, bleibt dein Video privat und du musst auf keinen Upload warten. Die Geschwindigkeit hängt von deinem Gerät und der Länge des Videos ab. Das Tool funktioniert in Desktop- und Mobil-Browsern mit WebCodecs-Unterstützung.",
+  "sizesTitle": "Videogröße für jede Plattform und jeden Bildschirm ändern",
+  "sizesSubtitle": "Wähle eine Größe aus, um sie in das Tool zu laden.",
+  "featuresTitle": "Alles, was du brauchst, um die Videogröße online zu ändern",
+  "features": [
+    {
+      "title": "Für jede Plattform",
+      "text": "Passe Videos pixelgenau für Instagram, TikTok, YouTube, Facebook, X, LinkedIn, Snapchat, Pinterest, WhatsApp und gängige Bildschirme an."
+    },
+    {
+      "title": "Weichzeichnen, Zuschneiden oder Balken",
+      "text": "Fülle den neuen Rahmen mit einem unscharfen Hintergrund, schneide passend zu oder füge Balken in beliebiger Farbe hinzu."
+    },
+    {
+      "title": "Zoomen und Ausschnitt wählen",
+      "text": "Ziehe das Fadenkreuz und zoome bis auf 300 %, damit dein Motiv im Bild bleibt."
+    },
+    {
+      "title": "Eigene Größen",
+      "text": "Gib ein beliebiges Seitenverhältnis bis 4:1 ein, auch mit Dezimalstellen wie 2.35:1."
+    },
+    {
+      "title": "Kein Upload",
+      "text": "Dein Video wird im Browser bearbeitet und nie auf einen Server hochgeladen."
+    },
+    {
+      "title": "Kostenlos, ohne Wasserzeichen",
+      "text": "Ändere die Videogröße online ohne Konto und ohne Wasserzeichen in der exportierten Datei."
+    },
+    {
+      "title": "Export als MP4 und WebM",
+      "text": "Öffne MP4, MOV, WebM oder MKV bis 500 MB und exportiere als H.264-MP4 oder VP9-WebM."
+    },
+    {
+      "title": "Der Ton bleibt erhalten",
+      "text": "Deine Tonspur wird automatisch in die neue Datei übernommen."
+    }
+  ],
+  "howTitle": "So änderst du die Größe eines Videos online",
+  "steps": [
+    {
+      "title": "Video hinzufügen",
+      "text": "Wähle das Video aus oder ziehe es hierher. Es bleibt auf deinem Gerät."
+    },
+    {
+      "title": "Größe wählen",
+      "text": "Wähle eine Plattform, eine Bildschirmgröße oder ein eigenes Verhältnis und richte den Ausschnitt ein."
+    },
+    {
+      "title": "Anpassen und herunterladen",
+      "text": "Dein Browser bearbeitet das Video, danach kannst du die Datei speichern."
+    }
+  ],
+  "whyTitle": "Warum die Videogröße ändern?",
+  "whyP1": "Jede Plattform erwartet ein anderes Format. Ein für YouTube erstellter Breitbild-Clip wirkt auf TikTok klein, und eine Hochformat-Aufnahme vom Handy lässt in einem 16:9-Player breite leere Seiten. In den richtigen Abmessungen füllt das Video den Bildschirm und dein Motiv bleibt gut sichtbar.",
+  "whyLead": "Am häufigsten wird die Videogröße geändert, um:",
+  "whyItems": [
+    "ein 16:9-Video in ein 9:16-Reel, -Short oder -TikTok mit 1080×1920 umzuwandeln",
+    "eine 4:5- oder 1:1-Version für den Feed von Instagram, Facebook oder LinkedIn zu erstellen",
+    "einen Hochformat-Clip für YouTube oder eine Präsentation in einen 16:9-Rahmen einzupassen",
+    "ein großes Video auf 1080p oder 720p zu verkleinern"
+  ],
+  "tipsTitle": "Tipps, um die Videogröße zu ändern, ohne das Motiv zu verlieren",
+  "tips": [
+    {
+      "lead": "Beginne mit der Originaldatei.",
+      "text": "Jeder Export kodiert das Video neu, daher verliert eine bereits komprimierte Kopie mehr Details."
+    },
+    {
+      "lead": "Wähle die passende Methode.",
+      "text": "Nutze Weichzeichnen, wenn nichts abgeschnitten werden darf, Zuschneiden bei leicht zu rahmenden Motiven und Balken für eine einfarbige Fläche."
+    },
+    {
+      "lead": "Halte Gesichter und Text nahe der Mitte.",
+      "text": "Schaltflächen und Untertitel verdecken in sozialen Apps oft die Ränder von Hochformat-Videos."
+    },
+    {
+      "lead": "Skaliere nicht zu stark hoch.",
+      "text": "Du kannst ein 720p-Video auf 4K bringen, aber es wird nur größer, nicht schärfer."
+    },
+    {
+      "lead": "Brauchst du eine kleinere Datei?",
+      "text": "Wähle vor dem Export eine niedrigere Auflösung oder Qualität."
+    }
+  ],
+  "tipsCta": "Jetzt Videogröße ändern",
+  "footer": {
+    "about": "Über uns",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen",
+    "contact": "Kontakt"
+  },
+  "nav": {
+    "resize": "Anpassen",
+    "sizes": "Größen",
+    "features": "Funktionen",
+    "calculator": "Rechner",
+    "faq": "FAQ",
+    "resizeLong": "Videogröße ändern",
+    "sizesLong": "Alle Plattformen und Bildschirmgrößen",
+    "calculatorLong": "Seitenverhältnis-Rechner"
+  },
+  "calc": {
+    "title": "Videogrößen-Rechner: Seitenverhältnis und Auflösung",
+    "mode": "Modus: gerade Zahlen",
+    "base": "Ausgangsauflösung (Pixel)",
+    "width": "Breite",
+    "height": "Höhe",
+    "vertical": "Hochformat (9:16)",
+    "square": "Quadrat (1:1)",
+    "derived": "Ermittelte Proportionen",
+    "pixels": "Pixel insgesamt:",
+    "megapixels": "Megapixel",
+    "scaler": "Proportional skalieren (behält das Seitenverhältnis)",
+    "scaleWidth": "Nach Breite skalieren",
+    "scaleHeight": "Nach Höhe skalieren"
+  },
+  "tool": {
+    "selected": "Ausgewählt: {name}",
+    "resizeFor": "1. Anpassen für",
+    "platform": "Plattform",
+    "size": "Größe",
+    "exportsAt": "Export in {size} px",
+    "fittingMode": "2. Anpassungsmodus",
+    "cropHint": "Ziehe das Fadenkreuz im Monitor, um den Ausschnitt festzulegen.",
+    "zoom": "Zoom",
+    "resetFraming": "Ausschnitt zurücksetzen",
+    "barColor": "Balkenfarbe:",
+    "advanced": "+ Erweiterte Optionen (Auflösung, Format, CRF)",
+    "resolution": "Auflösung",
+    "format": "Format",
+    "quality": "Qualität (CRF)",
+    "convertTo": "In {ratio} umwandeln",
+    "invalidRatio": "Gib zwei positive Zahlen ein, höchstens 4:1 in Breite oder Höhe.",
+    "capVertical": "Shorts, Reels, TikTok",
+    "capLandscape": "YouTube, Querformat",
+    "capSquare": "Instagram-Feed, Quadrat",
+    "capPortrait": "Hochformat fürs Handy",
+    "custom": "Eigene",
+    "dimensions": "Abmessungen",
+    "preparing": "Video-Engine wird vorbereitet...",
+    "estimating": "Wird berechnet...",
+    "encoding": "Wird kodiert ({pct} %)...",
+    "encodingStart": "Wird kodiert...",
+    "etaRemaining": "Noch ca. {seconds} s",
+    "cancelled": "Abgebrochen",
+    "complete": "Fertig!",
+    "res720": "720p (am schnellsten)",
+    "res1080": "1080p (Standard-HD)",
+    "resOriginal": "Originalqualität",
+    "progressAria": "Fortschritt der Kodierung"
+  },
+  "presets": {
+    "Reels": "Reels",
+    "Stories": "Stories",
+    "Feed Portrait": "Feed Hochformat",
+    "Feed Square": "Feed quadratisch",
+    "Feed Landscape": "Feed Querformat",
+    "Stories Ads": "Stories-Anzeigen",
+    "Feed Portrait Ads": "Feed-Anzeigen Hochformat",
+    "Feed Square Ads": "Feed-Anzeigen quadratisch",
+    "Feed Landscape Ads": "Feed-Anzeigen Querformat",
+    "Video": "Video",
+    "In-Feed Ads": "In-Feed-Anzeigen",
+    "Square": "Quadratisch",
+    "Landscape": "Querformat",
+    "Shorts": "Shorts",
+    "Video 720p": "Video 720p",
+    "Video 1080p": "Video 1080p",
+    "Video 1440p": "Video 1440p",
+    "Video 4K": "Video 4K",
+    "Vertical": "Hochformat",
+    "Portrait": "Porträt",
+    "Spotlight": "Spotlight",
+    "Single Video Ads": "Einzelvideo-Anzeigen",
+    "Standard Pin": "Standard-Pin",
+    "Vertical Pin": "Hochformat-Pin",
+    "Square Pin": "Quadratischer Pin",
+    "Status": "Status",
+    "HD Monitor": "HD-Monitor",
+    "Full HD Monitor": "Full-HD-Monitor",
+    "QHD Monitor": "QHD-Monitor",
+    "4K TV / Monitor": "4K-TV / Monitor",
+    "Ultrawide Monitor": "Ultrawide-Monitor",
+    "Classic TV": "Klassischer Fernseher",
+    "Tablet": "Tablet",
+    "Modern Phone": "Modernes Smartphone",
+    "Screens & Displays": "Bildschirme und Displays"
+  },
+  "errors": {
+    "tooLarge": "Die Datei überschreitet das Limit von 500 MB. Bitte wähle ein kleineres Video.",
+    "unsupportedFormat": "Format wird nicht unterstützt. Bitte nutze MP4, MOV, WebM oder MKV.",
+    "generic": "Bei der Konvertierung ist ein Fehler aufgetreten. Bitte versuche eine andere Größe oder Datei.",
+    "browser": "Dein Browser kann keine Videos kodieren. Bitte nutze die neueste Version von Chrome, Edge, Safari oder Firefox.",
+    "encodeSettings": "Dein Browser kann mit diesen Einstellungen nicht exportieren. Versuche 720p oder MP4 oder nutze Chrome oder Edge.",
+    "file": "Das Format dieser Datei wird nicht unterstützt. Bitte versuche eine MP4-, MOV-, WebM- oder MKV-Datei.",
+    "noVideo": "Diese Datei enthält keine Videospur.",
+    "cantRead": "Dein Browser kann das {codec}-Video dieser Datei nicht lesen. Versuche Chrome oder Edge oder eine andere Datei.",
+    "webm": "Der WebM-Export wird in diesem Browser nicht unterstützt. Bitte wähle MP4 und versuche es erneut.",
+    "mp4": "Dein Browser kann MP4 nicht in {size} kodieren. Versuche eine niedrigere Auflösung oder Chrome oder Edge.",
+    "audio": "Das Audioformat dieser Datei wird nicht unterstützt. Bitte exportiere sie mit AAC-Audio neu und versuche es erneut.",
+    "stalled": "Der Encoder reagiert nicht mehr. Versuche 720p oder ein kürzeres Video.",
+    "empty": "Der Encoder hat eine leere Datei erzeugt. Bitte versuche es erneut.",
+    "title": "Kodierungsfehler"
+  },
+  "card": {
+    "ready": "Bereit zum Download",
+    "download": "Video herunterladen",
+    "downloadAgain": "Erneut herunterladen",
+    "holdOn": "Einen Moment...",
+    "catching": "Fangen {pct} %",
+    "replay": "Wiederholen",
+    "soundOn": "Ton an",
+    "soundOff": "Ton aus",
+    "instant": "Sofort speichern",
+    "instantTitle": "Sofort herunterladen, ohne auf die Animation zu warten",
+    "another": "Weiteres Video umwandeln",
+    "clientSide": "100 % auf deinem Gerät",
+    "replayAria": "Fang-Animation wiederholen",
+    "muteAria": "Animationston stummschalten",
+    "unmuteAria": "Animationston einschalten"
+  },
+  "drawer": {
+    "title": "AspectCut Übersicht",
+    "onSite": "01 / Auf dieser Seite",
+    "utility": "02 / Service und Datenschutz",
+    "about": "Über die Engine",
+    "privacy": "Datenschutz",
+    "support": "Support",
+    "terms": "Nutzungsbedingungen",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "toLight": "Zum hellen Design wechseln",
+    "toDark": "Zum dunklen Design wechseln",
+    "close": "Menü schließen",
+    "open": "Navigationsmenü öffnen",
+    "aria": "Navigationsmenü",
+    "waitlist": "AspectCut Pro Warteliste",
+    "clientSide": "WebCodecs im Browser",
+    "privateNote": "100 % privat"
+  },
+  "toast": {
+    "body": "Dein Browser ist auf {name} eingestellt.",
+    "aria": "Sprachempfehlung",
+    "close": "Sprachvorschlag schließen"
+  }
+}

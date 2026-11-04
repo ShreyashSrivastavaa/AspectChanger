@@ -9,7 +9,7 @@ export default function middleware(request: NextRequest): NextResponse {
 }
 
 export const config = {
-  // Only the home page is localized; every other route is served as-is.
-  matcher: ["/", "/(ar|bn|de|en|es|fr|hi|id|it|ja|ko|nl|pl|pt|ru|th|tr|ur|vi|zh)"],
+  // Localized routes: the home page and the info pages in each language.
+  matcher: ["/", "/(de|en|es|fr|it|ja|ko|pt)", "/(de|es|fr|it|ja|ko|pt)/(about|contact|privacy|terms)"],
 };
 

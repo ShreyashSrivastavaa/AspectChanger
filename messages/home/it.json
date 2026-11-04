@@ -1,0 +1,253 @@
+{
+  "h1Main": "Ridimensionare video",
+  "h1Accent": "online",
+  "toolAria": "Strumento per ridimensionare video",
+  "introTitle": "Ridimensiona i video gratis, direttamente nel browser",
+  "introP1": "AspectCut ti permette di ridimensionare un video online senza installare app né inviare il file a un server. Scegli la dimensione di una piattaforma o inserisci le tue proporzioni, decidi come il video deve riempire la nuova inquadratura e scarica il file finito. Non serve creare un account e il risultato non ha filigrane.",
+  "introP2": "Poiché l'elaborazione avviene sul tuo dispositivo, il video resta privato e non c'è alcun caricamento da attendere. La velocità dipende dal dispositivo e dalla durata del video. Lo strumento funziona nei browser desktop e mobile che supportano WebCodecs.",
+  "sizesTitle": "Ridimensiona i video per ogni piattaforma e schermo",
+  "sizesSubtitle": "Seleziona una dimensione per caricarla nello strumento.",
+  "featuresTitle": "Tutto ciò che serve per ridimensionare video online",
+  "features": [
+    {
+      "title": "Per ogni piattaforma",
+      "text": "Ridimensiona i video per Instagram, TikTok, YouTube, Facebook, X, LinkedIn, Snapchat, Pinterest, WhatsApp e gli schermi più comuni, con i pixel esatti."
+    },
+    {
+      "title": "Sfocatura, ritaglio o barre",
+      "text": "Riempi la nuova inquadratura con uno sfondo sfocato, ritaglia per adattare o aggiungi barre di qualsiasi colore."
+    },
+    {
+      "title": "Zoom e inquadratura",
+      "text": "Trascina il mirino e ingrandisci fino al 300% per mantenere il soggetto nell'inquadratura."
+    },
+    {
+      "title": "Dimensioni personalizzate",
+      "text": "Inserisci qualsiasi proporzione fino a 4:1, anche con decimali come 2.35:1."
+    },
+    {
+      "title": "Nessun caricamento",
+      "text": "Il video viene ridimensionato nel browser e non viene mai caricato su un server."
+    },
+    {
+      "title": "Gratis, senza filigrana",
+      "text": "Ridimensiona i video online senza account e senza filigrana sul file esportato."
+    },
+    {
+      "title": "Esportazione MP4 e WebM",
+      "text": "Apri file MP4, MOV, WebM o MKV fino a 500 MB ed esporta in MP4 H.264 o WebM VP9."
+    },
+    {
+      "title": "L'audio resta",
+      "text": "La traccia audio viene trasferita automaticamente nel file ridimensionato."
+    }
+  ],
+  "howTitle": "Come ridimensionare un video online",
+  "steps": [
+    {
+      "title": "Aggiungi il video",
+      "text": "Scegli o trascina il video da ridimensionare. Resta sul tuo dispositivo."
+    },
+    {
+      "title": "Scegli una dimensione",
+      "text": "Seleziona una piattaforma, una dimensione dello schermo o una proporzione personalizzata e regola l'inquadratura."
+    },
+    {
+      "title": "Ridimensiona e scarica",
+      "text": "Il browser elabora il video e il file è pronto da salvare."
+    }
+  ],
+  "whyTitle": "Perché ridimensionare un video?",
+  "whyP1": "Ogni piattaforma richiede un formato diverso. Un video panoramico pensato per YouTube appare piccolo su TikTok, e una ripresa verticale dal telefono lascia ampi spazi vuoti ai lati in un player 16:9. Con le dimensioni giuste, il video riempie lo schermo e il soggetto resta ben visibile.",
+  "whyLead": "Di solito si ridimensiona un video per:",
+  "whyItems": [
+    "Trasformare un video 16:9 in un Reel, uno Short o un TikTok 9:16 a 1080×1920",
+    "Creare una versione 4:5 o 1:1 per il feed di Instagram, Facebook o LinkedIn",
+    "Inserire un video verticale in un'inquadratura 16:9 per YouTube o una presentazione",
+    "Ridurre un video grande a 1080p o 720p"
+  ],
+  "tipsTitle": "Consigli per ridimensionare un video senza perdere l'inquadratura",
+  "tips": [
+    {
+      "lead": "Parti dal file originale.",
+      "text": "Ogni esportazione ricodifica il video, quindi una copia già compressa perderà più dettagli."
+    },
+    {
+      "lead": "Scegli il metodo adatto al video.",
+      "text": "Usa la sfocatura quando non si può tagliare nulla, il ritaglio quando il soggetto è facile da inquadrare e le barre per un colore pieno."
+    },
+    {
+      "lead": "Tieni volti e testi vicino al centro.",
+      "text": "Pulsanti e didascalie coprono spesso i bordi dei video verticali sui social."
+    },
+    {
+      "lead": "Non ingrandire troppo.",
+      "text": "Puoi portare un video 720p a 4K, ma sarà solo più grande, non più nitido."
+    },
+    {
+      "lead": "Ti serve un file più piccolo?",
+      "text": "Scegli una risoluzione più bassa o riduci la qualità prima di esportare."
+    }
+  ],
+  "tipsCta": "Ridimensiona ora il tuo video",
+  "footer": {
+    "about": "Chi siamo",
+    "privacy": "Privacy",
+    "terms": "Termini",
+    "contact": "Contatti"
+  },
+  "nav": {
+    "resize": "Ridimensiona",
+    "sizes": "Dimensioni",
+    "features": "Funzioni",
+    "calculator": "Calcolatore",
+    "faq": "FAQ",
+    "resizeLong": "Ridimensiona un video",
+    "sizesLong": "Tutte le piattaforme e gli schermi",
+    "calculatorLong": "Calcolatore di proporzioni"
+  },
+  "calc": {
+    "title": "Calcolatore di dimensioni video: proporzioni e risoluzione",
+    "mode": "Modalità numeri pari",
+    "base": "Risoluzione di base (pixel)",
+    "width": "Larghezza",
+    "height": "Altezza",
+    "vertical": "Verticale (9:16)",
+    "square": "Quadrato (1:1)",
+    "derived": "Proporzioni ottenute",
+    "pixels": "Pixel totali:",
+    "megapixels": "megapixel",
+    "scaler": "Scala proporzionale (mantiene le proporzioni esatte)",
+    "scaleWidth": "Scala per larghezza",
+    "scaleHeight": "Scala per altezza"
+  },
+  "tool": {
+    "selected": "Selezionato: {name}",
+    "resizeFor": "1. Ridimensiona per",
+    "platform": "Piattaforma",
+    "size": "Dimensione",
+    "exportsAt": "Esporta a {size} px",
+    "fittingMode": "2. Modalità di adattamento",
+    "cropHint": "Trascina il mirino sul monitor per inquadrare.",
+    "zoom": "Zoom",
+    "resetFraming": "Reimposta inquadratura",
+    "barColor": "Colore delle barre:",
+    "advanced": "+ Opzioni avanzate (risoluzione, formato, CRF)",
+    "resolution": "Risoluzione",
+    "format": "Formato",
+    "quality": "Qualità (CRF)",
+    "convertTo": "Converti in {ratio}",
+    "invalidRatio": "Inserisci due numeri positivi, senza superare 4:1 in larghezza o altezza.",
+    "capVertical": "Shorts, Reels, TikTok",
+    "capLandscape": "YouTube, orizzontale",
+    "capSquare": "Feed Instagram, quadrato",
+    "capPortrait": "Verticale per mobile",
+    "custom": "Personalizzato",
+    "dimensions": "Dimensioni",
+    "preparing": "Preparazione del motore video...",
+    "estimating": "Calcolo...",
+    "encoding": "Codifica ({pct}%)...",
+    "encodingStart": "Codifica...",
+    "etaRemaining": "Circa {seconds} s rimanenti",
+    "cancelled": "Annullato",
+    "complete": "Completato!",
+    "res720": "720p (più veloce)",
+    "res1080": "1080p (HD standard)",
+    "resOriginal": "Qualità originale",
+    "progressAria": "Avanzamento della codifica"
+  },
+  "presets": {
+    "Reels": "Reels",
+    "Stories": "Storie",
+    "Feed Portrait": "Feed verticale",
+    "Feed Square": "Feed quadrato",
+    "Feed Landscape": "Feed orizzontale",
+    "Stories Ads": "Annunci nelle Storie",
+    "Feed Portrait Ads": "Annunci feed verticale",
+    "Feed Square Ads": "Annunci feed quadrato",
+    "Feed Landscape Ads": "Annunci feed orizzontale",
+    "Video": "Video",
+    "In-Feed Ads": "Annunci In-Feed",
+    "Square": "Quadrato",
+    "Landscape": "Orizzontale",
+    "Shorts": "Shorts",
+    "Video 720p": "Video 720p",
+    "Video 1080p": "Video 1080p",
+    "Video 1440p": "Video 1440p",
+    "Video 4K": "Video 4K",
+    "Vertical": "Verticale",
+    "Portrait": "Ritratto",
+    "Spotlight": "Spotlight",
+    "Single Video Ads": "Annunci video",
+    "Standard Pin": "Pin standard",
+    "Vertical Pin": "Pin verticale",
+    "Square Pin": "Pin quadrato",
+    "Status": "Stato",
+    "HD Monitor": "Monitor HD",
+    "Full HD Monitor": "Monitor Full HD",
+    "QHD Monitor": "Monitor QHD",
+    "4K TV / Monitor": "TV / monitor 4K",
+    "Ultrawide Monitor": "Monitor ultrawide",
+    "Classic TV": "TV classica",
+    "Tablet": "Tablet",
+    "Modern Phone": "Telefono moderno",
+    "Screens & Displays": "Schermi e display"
+  },
+  "errors": {
+    "tooLarge": "Il file supera il limite di 500 MB. Seleziona un video più piccolo.",
+    "unsupportedFormat": "Formato non supportato. Usa MP4, MOV, WebM o MKV.",
+    "generic": "Si è verificato un errore durante la conversione. Prova un'altra dimensione o un altro file.",
+    "browser": "Il tuo browser non può codificare video. Usa l'ultima versione di Chrome, Edge, Safari o Firefox.",
+    "encodeSettings": "Il tuo browser non può esportare con queste impostazioni. Prova 720p o MP4, oppure usa Chrome o Edge.",
+    "file": "Il formato di questo file non è supportato. Prova un file MP4, MOV, WebM o MKV.",
+    "noVideo": "Questo file non ha una traccia video.",
+    "cantRead": "Il tuo browser non può leggere il video {codec} di questo file. Prova Chrome o Edge, oppure un altro file.",
+    "webm": "L'esportazione WebM non è supportata da questo browser. Scegli MP4 e riprova.",
+    "mp4": "Il tuo browser non può codificare MP4 a {size}. Prova una risoluzione più bassa, oppure Chrome o Edge.",
+    "audio": "Il formato audio di questo file non è supportato. Esportalo di nuovo con audio AAC e riprova.",
+    "stalled": "Il codificatore non risponde più. Prova 720p o un video più breve.",
+    "empty": "Il codificatore ha prodotto un file vuoto. Riprova.",
+    "title": "Errore di codifica"
+  },
+  "card": {
+    "ready": "Pronto per il download",
+    "download": "Scarica il video",
+    "downloadAgain": "Scarica di nuovo",
+    "holdOn": "Un attimo...",
+    "catching": "Presa {pct}%",
+    "replay": "Rivedi",
+    "soundOn": "Audio attivo",
+    "soundOff": "Audio disattivato",
+    "instant": "Salva subito",
+    "instantTitle": "Scarica senza attendere l'animazione",
+    "another": "Converti un altro video",
+    "clientSide": "Copia 100% sul tuo dispositivo",
+    "replayAria": "Rivedi l'animazione del personaggio",
+    "muteAria": "Disattiva l'audio dell'animazione",
+    "unmuteAria": "Attiva l'audio dell'animazione"
+  },
+  "drawer": {
+    "title": "Indice AspectCut",
+    "onSite": "01 / In questo sito",
+    "utility": "02 / Utilità e privacy",
+    "about": "Informazioni sul motore",
+    "privacy": "Privacy",
+    "support": "Assistenza",
+    "terms": "Termini",
+    "light": "Chiaro",
+    "dark": "Scuro",
+    "toLight": "Passa al tema chiaro",
+    "toDark": "Passa al tema scuro",
+    "close": "Chiudi menu",
+    "open": "Apri il menu di navigazione",
+    "aria": "Menu di navigazione",
+    "waitlist": "Lista d'attesa AspectCut Pro",
+    "clientSide": "WebCodecs nel browser",
+    "privateNote": "100% privato"
+  },
+  "toast": {
+    "body": "La lingua del tuo browser è impostata su {name}.",
+    "aria": "Suggerimento della lingua",
+    "close": "Chiudi il suggerimento della lingua"
+  }
+}

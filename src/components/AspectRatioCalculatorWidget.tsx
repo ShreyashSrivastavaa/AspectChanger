@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Calculator, ArrowRight, RefreshCw, Layers } from "lucide-react";
 
 function gcd(a: number, b: number): number {
@@ -8,6 +9,7 @@ function gcd(a: number, b: number): number {
 }
 
 export default function AspectRatioCalculatorWidget() {
+  const t = useTranslations("home.calc");
   const [width, setWidth] = useState<number>(1920);
   const [height, setHeight] = useState<number>(1080);
   const [newWidth, setNewWidth] = useState<number>(1080);
@@ -35,11 +37,11 @@ export default function AspectRatioCalculatorWidget() {
         <div className="flex items-center gap-2.5">
           <Calculator className="w-5 h-5 text-[var(--accent-text)]" />
           <h2 className="text-base sm:text-lg font-semibold text-[var(--text-main)]">
-            Interactive Aspect Ratio & Resolution Calculator
+            {t("title")}
           </h2>
         </div>
         <div className="font-mono text-xs text-[var(--accent-text)] font-bold px-2.5 py-1 rounded-full bg-[#c89c6e]/10">
-          Even-Integer Mode
+          {t("mode")}
         </div>
       </div>
 
@@ -47,11 +49,11 @@ export default function AspectRatioCalculatorWidget() {
         {/* Input Dimensions */}
         <div className="space-y-4">
           <label className="block text-xs font-mono uppercase tracking-wider text-[var(--text-muted)]">
-            Base Resolution (Pixels)
+            {t("base")}
           </label>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <span className="block text-[11px] text-[var(--text-muted)] mb-1">Width</span>
+              <span className="block text-[11px] text-[var(--text-muted)] mb-1">{t("width")}</span>
               <input
                 type="number"
                 value={width}
@@ -60,7 +62,7 @@ export default function AspectRatioCalculatorWidget() {
               />
             </div>
             <div>
-              <span className="block text-[11px] text-[var(--text-muted)] mb-1">Height</span>
+              <span className="block text-[11px] text-[var(--text-muted)] mb-1">{t("height")}</span>
               <input
                 type="number"
                 value={height}
@@ -81,13 +83,13 @@ export default function AspectRatioCalculatorWidget() {
               onClick={() => { setWidth(1080); setHeight(1920); }}
               className="text-[11px] font-mono px-2 py-1 rounded-md bg-[var(--surface-soft)] hover:bg-[var(--surface-strong)] text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
             >
-              Vertical (9:16)
+              {t("vertical")}
             </button>
             <button
               onClick={() => { setWidth(1080); setHeight(1080); }}
               className="text-[11px] font-mono px-2 py-1 rounded-md bg-[var(--surface-soft)] hover:bg-[var(--surface-strong)] text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
             >
-              Square (1:1)
+              {t("square")}
             </button>
             <button
               onClick={() => { setWidth(3840); setHeight(2160); }}
@@ -101,7 +103,7 @@ export default function AspectRatioCalculatorWidget() {
         {/* Calculated Ratio Result */}
         <div className="space-y-4 p-5 rounded-2xl bg-[var(--surface-soft)] border border-[var(--color-hairline)] flex flex-col justify-center">
           <div className="font-mono text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
-            Derived Proportions
+            {t("derived")}
           </div>
           <div className="flex items-baseline gap-3">
             <span className="text-3xl sm:text-4xl font-mono font-bold text-[var(--accent-text)]">
@@ -112,7 +114,7 @@ export default function AspectRatioCalculatorWidget() {
             </span>
           </div>
           <div className="text-xs text-[var(--text-muted)]">
-            Total Pixel Volume: <span className="font-mono text-[var(--text-main)]">{(safeW * safeH).toLocaleString("en-US")} px</span> ({((safeW * safeH) / 1000000).toFixed(2)} Megapixels)
+            {t("pixels")} <span className="font-mono text-[var(--text-main)]">{(safeW * safeH).toLocaleString("en-US")} px</span> ({((safeW * safeH) / 1000000).toFixed(2)} {t("megapixels")})
           </div>
         </div>
       </div>
@@ -120,11 +122,11 @@ export default function AspectRatioCalculatorWidget() {
       {/* Resize Scaling Calculator */}
       <div className="border-t border-[var(--color-hairline)] pt-5 space-y-4">
         <label className="block text-xs font-mono uppercase tracking-wider text-[var(--text-muted)]">
-          Proportional Scaler (Keeps Exact Aspect Ratio)
+          {t("scaler")}
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-[var(--surface-soft)] space-y-2">
-            <span className="text-xs font-semibold text-[var(--text-main)]">Scale by Width</span>
+            <span className="text-xs font-semibold text-[var(--text-main)]">{t("scaleWidth")}</span>
             <div className="flex items-center gap-2">
               <input
                 type="number"
@@ -135,7 +137,7 @@ export default function AspectRatioCalculatorWidget() {
                   setNewHeight(calculateProportionalHeight(val));
                 }}
                 className="w-full px-3 py-1.5 rounded-lg bg-[var(--surface-soft)] border border-[var(--color-hairline-strong)] font-mono text-xs text-[var(--text-main)]"
-                placeholder="Width"
+                placeholder={t("width")}
               />
               <ArrowRight className="w-4 h-4 text-[var(--accent-text)] shrink-0" />
               <div className="w-full px-3 py-1.5 rounded-lg bg-[var(--surface-strong)] border border-[var(--color-hairline)] font-mono text-xs text-[var(--accent-text)] font-bold">
@@ -145,7 +147,7 @@ export default function AspectRatioCalculatorWidget() {
           </div>
 
           <div className="p-4 rounded-xl bg-[var(--surface-soft)] space-y-2">
-            <span className="text-xs font-semibold text-[var(--text-main)]">Scale by Height</span>
+            <span className="text-xs font-semibold text-[var(--text-main)]">{t("scaleHeight")}</span>
             <div className="flex items-center gap-2">
               <input
                 type="number"
@@ -156,7 +158,7 @@ export default function AspectRatioCalculatorWidget() {
                   setNewWidth(calculateProportionalWidth(val));
                 }}
                 className="w-full px-3 py-1.5 rounded-lg bg-[var(--surface-soft)] border border-[var(--color-hairline-strong)] font-mono text-xs text-[var(--text-main)]"
-                placeholder="Height"
+                placeholder={t("height")}
               />
               <ArrowRight className="w-4 h-4 text-[var(--accent-text)] shrink-0" />
               <div className="w-full px-3 py-1.5 rounded-lg bg-[var(--surface-strong)] border border-[var(--color-hairline)] font-mono text-xs text-[var(--accent-text)] font-bold">

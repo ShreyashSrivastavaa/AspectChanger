@@ -1,0 +1,80 @@
+{
+  "common": { "home": "Home", "backToTool": "Back to Tool", "intro": "AspectCut is a free tool to resize video online. It processes files locally in your browser with WebCodecs; videos are not uploaded to a server." },
+  "about": {
+    "metaTitle": "About & Technical Architecture",
+    "metaDescription": "Learn how AspectCut processes videos client-side using the browser's built-in WebCodecs engine and local hardware memory.",
+    "crumb": "About",
+    "badge": "Mission & Engineering",
+    "h1": "About AspectCut",
+    "whyTitle": "Why We Engineered AspectCut",
+    "whyP1": "Traditional online video converters rely on a legacy cloud-server architecture. Users are forced to upload massive video files across slow broadband uplinks, wait in multi-minute server queues, and suffer intrusive watermark badges unless they purchase costly recurring subscriptions.",
+    "whyP2": "Modern desktop and mobile hardware possesses powerful multi-core processors and hardware-accelerated media decoders that sit idle during browsing. AspectCut inverts the conversion paradigm: we use WebCodecs, the video engine built into modern browsers. Your browser decodes, reframes, crops, filters, and encodes your MP4 video entirely within local memory.",
+    "archTitle": "Core Technical Architecture",
+    "arch": [
+      { "k": "Processing Engine:", "v": "WebCodecs, the browser's native video API, via the open-source Mediabunny library." },
+      { "k": "Hardware Acceleration:", "v": "Uses your device's video encoder and decoder when available." },
+      { "k": "Spatial Geometry:", "v": "Even-integer macroblock truncation (Mod2) compliant with YUV 4:2:0 subsampling." },
+      { "k": "Audio Passthrough:", "v": "Automatic audio copy when the codec already matches, preventing generational audio compression loss." },
+      { "k": "Zero Network Transmit:", "v": "0 bytes of video or audio data sent over the internet." }
+    ],
+    "teamTitle": "Team & Attribution",
+    "teamRole": "Product & Engineering",
+    "teamMission": "Empowering video creators with fast, private, client-side browser tools that eliminate slow cloud queues, privacy leaks, and subscription watermarks."
+  },
+  "contact": {
+    "metaTitle": "Contact & Support",
+    "metaDescription": "Get in touch with the AspectCut engineering team for support, feature inquiries, or bug reports.",
+    "crumb": "Contact",
+    "badge": "Engineering Support",
+    "h1": "Contact AspectCut",
+    "intro": "AspectCut is maintained by independent software engineers dedicated to high-performance client-side WebCodecs video tools.",
+    "emailLabel": "Direct Support Email",
+    "checklistTitle": "Troubleshooting Checklist:",
+    "checklist": [
+      "Ensure hardware acceleration is enabled in browser settings",
+      "Verify you are on the latest version of Chrome, Edge, Safari, or Firefox",
+      "For files over 200MB, ensure at least 4GB of available RAM"
+    ]
+  },
+  "privacy": {
+    "metaTitle": "Privacy Architecture & Policy",
+    "metaDescription": "How AspectCut executes 100% in-browser video processing using WebCodecs. Your videos are never uploaded to any remote server.",
+    "crumb": "Privacy Policy",
+    "back": "Back to Instrument",
+    "badge": "Data Guarantee",
+    "h1": "Your Video Never Leaves Your Device",
+    "intro": "AspectCut was built with a fundamental architectural constraint: zero server-side file transmission.",
+    "localTitle": "Local WebCodecs Execution",
+    "localText": "All video matrix operations and audio demuxing run entirely inside your browser's virtual machine sandbox.",
+    "cloudTitle": "Zero Cloud Storage",
+    "cloudText": "We operate zero video databases, zero object stores (S3/GCS), and zero remote rendering clusters.",
+    "verifyTitle": "1. Verification via Browser Developer Tools",
+    "verifyText": "You do not need to take our word for it. Open your browser's Network Inspector ({code}), select a video, and press Convert. You will observe that zero bytes of video payload are transferred over HTTP POST/PUT. The only external assets requested are the static WebCodecs binary assets cached on your first visit.",
+    "analyticsTitle": "2. Analytics & Cookies",
+    "analyticsText": "We employ privacy-first, cookieless analytics strictly to monitor page visit volumes and error rates. We do not set tracking cookies, build behavioral ad profiles, or sell any user data.",
+    "contactTitle": "3. Contact Information",
+    "contactText": "If you have questions regarding our browser sandbox boundaries or enterprise deployments, reach out directly to {email}.",
+    "cta": "Open Video Aspect Ratio Changer"
+  },
+  "terms": {
+    "metaTitle": "Terms of Service & Usage Policy",
+    "metaDescription": "Review the terms of service, acceptable use, and client-side processing policies for AspectCut.",
+    "crumb": "Terms of Service",
+    "badge": "Legal & Terms",
+    "h1": "Terms of Service",
+    "principleTitle": "Core Principle: Zero-Upload Local Processing",
+    "principleText": "Because AspectCut runs entirely inside your browser via WebCodecs, your video data never travels across our network or touches our servers. You retain 100% ownership, copyright, and control over all media processed through the application.",
+    "s1Title": "1. Acceptance of Terms",
+    "s1Text": "By accessing or using {brand} at {domain}, you agree to be bound by these Terms of Service. If you do not agree to all terms, you may not use the service.",
+    "s2Title": "2. Client-Side Execution & Privacy",
+    "s2Text": "All video transformations (re-encoding, cropping, aspect-ratio scaling, blurring, letterboxing, and audio remuxing) are executed directly on your client hardware via WebCodecs. AspectCut does not store, index, view, or retain copies of your video or audio files.",
+    "s3Title": "3. Permitted & Acceptable Use",
+    "s3Text": "You agree to use {brand} only for lawful purposes. You must have all necessary rights, licenses, and permissions for any content you process through the tool. You may not use the application to process illicit, non-consensual, infringing, or harmful media.",
+    "s4Title": "4. Disclaimers & Limitation of Liability",
+    "s4Text": "{brand} is provided on an “as is” and “as available” basis without warranties of any kind, whether express or implied. Conversion speeds and memory thresholds depend on your device's browser capabilities, CPU core count, and available RAM. In no event shall AspectCut or its contributors be liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use this software.",
+    "s5Title": "5. Open Source Attributions",
+    "s5Text": "AspectCut utilizes the open-source Mediabunny media library, licensed under the Mozilla Public License 2.0, together with your browser's built-in WebCodecs engine. Some files also load Mediabunny codec add-ons that contain parts of FFmpeg (libavcodec), licensed under the LGPL v2.1 or later and available from the Mediabunny project, or the TurboRes-based ProRes decoder.",
+    "revised": "Last revised: April 2026",
+    "inquiries": "Inquiries: {email}"
+  }
+}

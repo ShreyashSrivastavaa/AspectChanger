@@ -2,6 +2,9 @@ import { BRAND } from "@/lib/config";
 import { getLocaleConfig } from "@/i18n/locales";
 import { buildLocaleUrl } from "./seo-metadata";
 
+/** Escapes "<" so message text can never close the JSON-LD script tag. */
+export const serializeJsonLd = (data: unknown) => JSON.stringify(data).replace(/</g, "\\u003c");
+
 export function buildLocalizedSoftwareApplicationSchema({
   locale,
   name,
@@ -41,13 +44,17 @@ export function buildLocalizedSoftwareApplicationSchema({
 
 export function buildLocalizedFAQSchema(
   faqs: Array<{ q: string; a: string }>,
-  locale: string
+  locale: string,
+  path = "/"
 ) {
   const config = getLocaleConfig(locale);
+  const pageUrl = buildLocaleUrl(locale, path);
 
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    url: pageUrl,
     inLanguage: config.hreflang,
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",

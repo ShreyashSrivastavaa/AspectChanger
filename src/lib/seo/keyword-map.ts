@@ -27,12 +27,15 @@ export const CANONICAL_ENTITY_STATEMENT =
 export const KEYWORD_MAP: KeywordEntry[] = [
   // 1. Head & Core Tool Cluster
   {
-    primaryKeyword: "video aspect ratio changer",
+    primaryKeyword: "resize video",
     secondaryKeywords: [
+      "video resize",
+      "resize video online",
+      "video resize online",
+      "video resizer",
+      "video aspect ratio changer",
       "change video aspect ratio",
       "aspect ratio converter video",
-      "video resizer",
-      "resize video online",
       "video cropper",
     ],
     searchIntent: "transactional-tool",

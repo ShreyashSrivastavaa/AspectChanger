@@ -4,7 +4,7 @@
 const BRAND = {
   name: "AspectCut",
   domain: process.env.NEXT_PUBLIC_SITE_URL || "https://aspectcut.vercel.app",
-  entityStatement: "AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebCodecs; videos are not uploaded to a server.",
+  entityStatement: "AspectCut is a free tool to resize video online. It processes files locally in your browser with WebCodecs; videos are not uploaded to a server.",
 };
 
 console.log("\n📐 Testing AspectCut Schema.org JSON-LD Generators...\n");
@@ -36,7 +36,7 @@ function validateJson(name, obj) {
 const softwareApp = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "AspectCut Video Aspect Ratio Changer",
+  name: "AspectCut Video Resizer",
   description: BRAND.entityStatement,
   url: BRAND.domain,
   applicationCategory: "MultimediaApplication",

@@ -30,14 +30,18 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(BRAND.domain),
   title: {
-    default: "AspectCut — Video Aspect Ratio Changer (Online, Free, No Upload)",
+    default: "Resize Video Online Free, No Upload or Watermark | AspectCut",
     template: `%s | ${BRAND.name}`,
   },
   description:
-    "Change video aspect ratios (16:9 to 9:16, 1:1, 4:5, 21:9) in seconds directly in your browser. 100% private, zero uploads, no watermark. Powered by client-side WebCodecs.",
+    "Resize video online for free. Change video size and aspect ratio for Instagram, TikTok, YouTube and more in your browser, with no upload and no watermark.",
   keywords: [
+    "resize video",
+    "video resize",
+    "resize video online",
+    "video resize online",
+    "video resizer",
     "video aspect ratio changer",
-    "change video aspect ratio online",
     "resize video for instagram",
     "convert video to 9:16",
     "16:9 to 9:16 converter",
@@ -70,16 +74,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: BRAND.domain,
-    title: "AspectCut — Video Aspect Ratio Changer (Online, Free, No Upload)",
+    title: "Resize Video Online Free, No Upload or Watermark | AspectCut",
     description:
-      "Resize and reframe videos for TikTok, Instagram Reels, YouTube Shorts, and widescreen feeds locally in your browser with zero server uploads.",
+      "Resize video online for free. Change video size and aspect ratio for Instagram, TikTok, YouTube and more in your browser, with no upload and no watermark.",
     siteName: BRAND.name,
   },
   twitter: {
     card: "summary_large_image",
-    title: "AspectCut — Video Aspect Ratio Changer",
+    title: "Resize Video Online Free | AspectCut",
     description:
-      "Change video aspect ratios locally in the browser with zero cloud uploads and no watermarks.",
+      "Resize video online for free in your browser, with no upload and no watermark.",
   },
   alternates: {
     canonical: BRAND.domain,
@@ -113,7 +117,7 @@ export default async function RootLayout({
   const jsonLdApp = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "AspectCut Video Aspect Ratio Changer",
+    name: "AspectCut Video Resizer",
     url: BRAND.domain,
     applicationCategory: "MultimediaApplication",
     operatingSystem: "Any (Modern Web Browser)",
@@ -124,7 +128,7 @@ export default async function RootLayout({
       priceCurrency: "USD",
     },
     description:
-      "Client-side video aspect ratio converter that reframes landscape, square, and vertical videos with focal cropping, downscaled ambient blur, or letterbox bars without cloud uploads.",
+      "Free online tool to resize video in the browser. Resize landscape, square and vertical videos with cropping, a blurred background or bars, without uploading the file.",
   };
 
   return (

@@ -81,7 +81,7 @@
     "dismiss": "Descartar"
   },
   "footer": {
-    "tagline": "Procesamiento Espacial en el Navegador.",
+    "tagline": "Redimensionador de video online gratis.",
     "productOf": "Un producto de",
     "zenithDistrict": "ZenithDistrict",
     "allRightsReserved": "Todos los derechos reservados.",
@@ -122,9 +122,9 @@
     "a8": "Sí. AspectCut se ejecuta directamente en navegadores móviles modernos (iOS Safari 16+ y Android Chrome) con soporte de WebCodecs, permitiéndote exportar directamente al carrete sin instalar aplicaciones nativas."
   },
   "seo": {
-    "homeTitle": "AspectCut — Cambiar Relación de Aspecto de Video (Gratis, Online, Sin Subidas)",
-    "homeDescription": "Cambia la relación de aspecto de videos (16:9 a 9:16, 1:1, 4:5, 21:9) en segundos en tu navegador. 100% privado, sin marcas de agua, potenciado por WebCodecs.",
-    "homeKeywords": "cambiar relacion de aspecto de video, cambiar aspecto de video online, redimensionar video para instagram, convertir video a 9 16, convertidor 16 9 a 9 16, redimensionar video youtube shorts, recortar video online gratis",
+    "homeTitle": "Cambiar tamaño de video online gratis, sin subidas ni marca de agua",
+    "homeDescription": "Cambia el tamaño de un video online gratis para Instagram, TikTok, YouTube y más. Se procesa en tu navegador: sin subidas, sin registro y sin marca de agua.",
+    "homeKeywords": "cambiar tamaño de video, redimensionar video, cambiar tamaño de video online, redimensionar video online gratis, cambiar relación de aspecto de video, redimensionar video para instagram, convertir video a 9:16, convertir 16:9 a 9:16, redimensionar video para youtube shorts, cambiar tamaño de video para tiktok",
     "aboutTitle": "Acerca de AspectCut — Motor de Video WebCodecs en el Navegador",
     "aboutDescription": "Descubre cómo AspectCut procesa videos 100% dentro de tu navegador con WebCodecs sin subidas a la nube ni riesgos de privacidad.",
     "faqTitle": "Preguntas Frecuentes — Cambiador de Relación de Aspecto AspectCut",
@@ -137,4 +137,3 @@
     "termsDescription": "Términos del servicio de AspectCut. Procesamiento de video gratuito, privado y local en el navegador."
   }
 }
-

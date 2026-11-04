@@ -4,7 +4,7 @@ export const runtime = "nodejs";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const title = searchParams.get("title") || "Video Aspect Ratio Changer";
+  const title = searchParams.get("title") || "Resize Video Online";
   const ratio = searchParams.get("ratio") || "16:9 → 9:16";
   const category = searchParams.get("cat") || "Free Client-Side Video Tool";
 

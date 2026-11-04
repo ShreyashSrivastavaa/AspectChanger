@@ -5,6 +5,21 @@ import { BRAND } from "@/lib/config";
 const BASE_URL = BRAND.domain.replace(/\/$/, "");
 
 /**
+ * Site-relative path of a page in a locale. In-app language links use this so they stay on the
+ * current host (localhost, preview deployments) instead of jumping to the production domain.
+ */
+export function buildLocalePath(locale: string, path: string = "/"): string {
+  const cleanPath = path === "/" ? "" : path;
+  return locale === DEFAULT_LOCALE ? cleanPath || "/" : `/${locale}${cleanPath}`;
+}
+
+/** Removes a language prefix from a pathname: /es/about becomes /about, /es becomes /. */
+export function stripLocalePrefix(pathname: string): string {
+  const first = pathname.split("/")[1];
+  return (ALL_LOCALES as string[]).includes(first) ? pathname.slice(first.length + 1) || "/" : pathname;
+}
+
+/**
  * Builds the absolute URL for a given locale and path.
  * English (default) has no locale prefix (localePrefix: "as-needed").
  */
@@ -47,7 +62,7 @@ export interface LocaleMetadataOptions {
 
 /**
  * Generates international SEO-ready Next.js Metadata with self-referencing canonicals,
- * reciprocal hreflangs across all 20 languages, localized Open Graph & Twitter cards.
+ * reciprocal hreflangs across all languages, localized Open Graph & Twitter cards.
  */
 export function generateLocaleMetadata({
   locale,

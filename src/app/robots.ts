@@ -31,19 +31,19 @@ export default function robots(): MetadataRoute.Robots {
   const rules: MetadataRoute.Robots["rules"] = [
     {
       userAgent: searchAndRetrievalBots,
-      allow: ["/", "/api/og", "/data/platform-specs", "/llms.txt", "/llms-full.txt"],
-      disallow: ["/api/waitlist", "/_next/"],
+      allow: "/",
+      // Never block /_next/: Google needs the CSS and JS there to render and rank the page.
+      disallow: "/api/waitlist",
     },
     {
       userAgent: trainingCrawlers,
-      allow: allowTraining ? ["/"] : undefined,
-      disallow: allowTraining ? ["/api/waitlist", "/_next/"] : ["/"],
+      allow: allowTraining ? "/" : undefined,
+      disallow: allowTraining ? "/api/waitlist" : "/",
     },
   ];
 
   return {
     rules,
     sitemap: `${BRAND.domain}/sitemap.xml`,
-    host: BRAND.domain,
   };
 }

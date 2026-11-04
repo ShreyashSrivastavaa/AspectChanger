@@ -1,0 +1,253 @@
+{
+  "h1Main": "Resize Video",
+  "h1Accent": "Online",
+  "toolAria": "Video resize tool",
+  "introTitle": "Resize video for free, right in your browser",
+  "introP1": "AspectCut lets you resize video online without installing an app or sending your file to a server. Pick a platform size or enter your own ratio, choose how the video should fill the new frame, and download the finished file. There is no account to create and no watermark on the result.",
+  "introP2": "Because the video resize happens on your own device, your clip stays private and there is no upload to wait for. Speed depends on your device and the length of the clip. This video resize online tool works in desktop and mobile browsers that support WebCodecs.",
+  "sizesTitle": "Resize video for every platform and screen",
+  "sizesSubtitle": "Select a size to load it into the video resizer.",
+  "featuresTitle": "Everything you need to resize video online",
+  "features": [
+    {
+      "title": "Resize for any platform",
+      "text": "Resize video for Instagram, TikTok, YouTube, Facebook, X, LinkedIn, Snapchat, Pinterest, WhatsApp and common screens, at exact pixels."
+    },
+    {
+      "title": "Blur, crop or bars",
+      "text": "Fill the new frame with a blurred background, crop to fit, or add bars in any color."
+    },
+    {
+      "title": "Zoom and reframe",
+      "text": "Drag the crosshair and zoom up to 300% to keep your subject in the shot after you resize."
+    },
+    {
+      "title": "Custom sizes",
+      "text": "Enter any ratio up to 4:1, including decimals such as 2.35:1."
+    },
+    {
+      "title": "No upload",
+      "text": "Your video is resized inside your browser and is never uploaded to a server."
+    },
+    {
+      "title": "Free, no watermark",
+      "text": "Resize video online with no account and no watermark on the exported file."
+    },
+    {
+      "title": "MP4 and WebM export",
+      "text": "Open MP4, MOV, WebM or MKV up to 500 MB, then export H.264 MP4 or VP9 WebM."
+    },
+    {
+      "title": "Sound stays in",
+      "text": "Your audio track is carried into the resized file automatically."
+    }
+  ],
+  "howTitle": "How to resize a video online",
+  "steps": [
+    {
+      "title": "Add your video",
+      "text": "Choose or drop the video you want to resize. It stays on your device."
+    },
+    {
+      "title": "Pick a size",
+      "text": "Choose a platform, a screen size, or a custom ratio, then frame the shot."
+    },
+    {
+      "title": "Resize and download",
+      "text": "Your browser resizes the video, then the file is ready to save."
+    }
+  ],
+  "whyTitle": "Why resize a video?",
+  "whyP1": "Every platform expects a different shape. A widescreen clip made for YouTube looks small on TikTok, and a vertical phone recording leaves wide empty sides in a 16:9 player. When you resize video to the right dimensions, it fills the screen and your subject stays easy to see.",
+  "whyLead": "People most often use a video resize tool to:",
+  "whyItems": [
+    "Turn a 16:9 video into a 9:16 Reel, Short or TikTok at 1080×1920",
+    "Make a 4:5 or 1:1 version for the Instagram, Facebook or LinkedIn feed",
+    "Fit a vertical clip into a 16:9 frame for YouTube or a presentation",
+    "Scale a large video down to 1080p or 720p"
+  ],
+  "tipsTitle": "Tips to resize video without losing the shot",
+  "tips": [
+    {
+      "lead": "Start from the original file.",
+      "text": "Each export re-encodes the video, so a copy that has already been compressed will lose more detail."
+    },
+    {
+      "lead": "Match the method to the clip.",
+      "text": "Use blur when nothing can be cut, crop when the subject is easy to frame, and bars when you want a solid color."
+    },
+    {
+      "lead": "Keep faces and text near the center.",
+      "text": "Buttons and captions often cover the edges of vertical videos on social apps."
+    },
+    {
+      "lead": "Don't scale up too far.",
+      "text": "You can resize a 720p clip to 4K, but it will only be larger, not sharper."
+    },
+    {
+      "lead": "Need a smaller file?",
+      "text": "Choose a lower resolution or lower the quality setting before you export."
+    }
+  ],
+  "tipsCta": "Resize your video now",
+  "footer": {
+    "about": "About",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "contact": "Contact"
+  },
+  "nav": {
+    "resize": "Resize",
+    "sizes": "Sizes",
+    "features": "Features",
+    "calculator": "Calculator",
+    "faq": "FAQ",
+    "resizeLong": "Resize a Video",
+    "sizesLong": "All Platforms & Screen Sizes",
+    "calculatorLong": "Aspect Ratio Calculator"
+  },
+  "calc": {
+    "title": "Video Resize Calculator: Aspect Ratio & Resolution",
+    "mode": "Even-Integer Mode",
+    "base": "Base Resolution (Pixels)",
+    "width": "Width",
+    "height": "Height",
+    "vertical": "Vertical (9:16)",
+    "square": "Square (1:1)",
+    "derived": "Derived Proportions",
+    "pixels": "Total Pixel Volume:",
+    "megapixels": "Megapixels",
+    "scaler": "Proportional Scaler (Keeps Exact Aspect Ratio)",
+    "scaleWidth": "Scale by Width",
+    "scaleHeight": "Scale by Height"
+  },
+  "tool": {
+    "selected": "Selected: {name}",
+    "resizeFor": "1. Resize For",
+    "platform": "Platform",
+    "size": "Size",
+    "exportsAt": "Exports at {size} px",
+    "fittingMode": "2. Fitting Mode",
+    "cropHint": "Drag crosshair on the monitor to frame action.",
+    "zoom": "Zoom",
+    "resetFraming": "Reset framing",
+    "barColor": "Bar color:",
+    "advanced": "+ Advanced Options (Resolution, Format, CRF)",
+    "resolution": "Resolution",
+    "format": "Format",
+    "quality": "Quality (CRF)",
+    "convertTo": "Convert to {ratio}",
+    "invalidRatio": "Enter two positive numbers, no wider or taller than 4:1.",
+    "capVertical": "Shorts, Reels, TikTok",
+    "capLandscape": "YouTube, Landscape",
+    "capSquare": "Instagram Feed, Square",
+    "capPortrait": "Portrait Mobile",
+    "custom": "Custom",
+    "dimensions": "Dimensions",
+    "preparing": "Preparing video engine...",
+    "estimating": "Estimating...",
+    "encoding": "Encoding ({pct}%)...",
+    "encodingStart": "Encoding...",
+    "etaRemaining": "~{seconds}s remaining",
+    "cancelled": "Cancelled",
+    "complete": "Complete!",
+    "res720": "720p (Fastest)",
+    "res1080": "1080p (Standard HD)",
+    "resOriginal": "Original quality",
+    "progressAria": "Encoding progress"
+  },
+  "presets": {
+    "Reels": "Reels",
+    "Stories": "Stories",
+    "Feed Portrait": "Feed Portrait",
+    "Feed Square": "Feed Square",
+    "Feed Landscape": "Feed Landscape",
+    "Stories Ads": "Stories Ads",
+    "Feed Portrait Ads": "Feed Portrait Ads",
+    "Feed Square Ads": "Feed Square Ads",
+    "Feed Landscape Ads": "Feed Landscape Ads",
+    "Video": "Video",
+    "In-Feed Ads": "In-Feed Ads",
+    "Square": "Square",
+    "Landscape": "Landscape",
+    "Shorts": "Shorts",
+    "Video 720p": "Video 720p",
+    "Video 1080p": "Video 1080p",
+    "Video 1440p": "Video 1440p",
+    "Video 4K": "Video 4K",
+    "Vertical": "Vertical",
+    "Portrait": "Portrait",
+    "Spotlight": "Spotlight",
+    "Single Video Ads": "Single Video Ads",
+    "Standard Pin": "Standard Pin",
+    "Vertical Pin": "Vertical Pin",
+    "Square Pin": "Square Pin",
+    "Status": "Status",
+    "HD Monitor": "HD Monitor",
+    "Full HD Monitor": "Full HD Monitor",
+    "QHD Monitor": "QHD Monitor",
+    "4K TV / Monitor": "4K TV / Monitor",
+    "Ultrawide Monitor": "Ultrawide Monitor",
+    "Classic TV": "Classic TV",
+    "Tablet": "Tablet",
+    "Modern Phone": "Modern Phone",
+    "Screens & Displays": "Screens & Displays"
+  },
+  "errors": {
+    "tooLarge": "File exceeds 500 MB limit. Please select a smaller clip.",
+    "unsupportedFormat": "Unsupported format. Please upload MP4, MOV, WebM, or MKV.",
+    "generic": "An error occurred during local conversion. Please try a different preset or file.",
+    "browser": "Your browser can't encode video. Please use the latest Chrome, Edge, Safari, or Firefox.",
+    "encodeSettings": "Your browser can't export with these settings. Try 720p output or MP4, or use Chrome or Edge.",
+    "file": "This file's format isn't supported. Please try an MP4, MOV, WebM, or MKV file.",
+    "noVideo": "This file has no video track.",
+    "cantRead": "Your browser can't read this file's {codec} video. Please try Chrome or Edge, or a different file.",
+    "webm": "WebM export isn't supported in this browser. Please choose MP4 and try again.",
+    "mp4": "Your browser can't encode MP4 at {size}. Try a lower resolution, or Chrome or Edge.",
+    "audio": "This file's audio format isn't supported. Please re-export it with AAC audio and try again.",
+    "stalled": "The encoder stopped responding. Try 720p output or a shorter clip.",
+    "empty": "The encoder produced an empty file. Please try again.",
+    "title": "Encoding Error"
+  },
+  "card": {
+    "ready": "Ready for Download",
+    "download": "Download Video",
+    "downloadAgain": "Download again",
+    "holdOn": "Hold on...",
+    "catching": "Catching {pct}%",
+    "replay": "Replay",
+    "soundOn": "Sound on",
+    "soundOff": "Sound off",
+    "instant": "Instant save",
+    "instantTitle": "Download immediately without waiting for animation",
+    "another": "Convert another clip",
+    "clientSide": "100% Client-side copy",
+    "replayAria": "Replay StickMan catching animation",
+    "muteAria": "Mute animation sound",
+    "unmuteAria": "Enable animation sound"
+  },
+  "drawer": {
+    "title": "AspectCut Index",
+    "onSite": "01 / On This Site",
+    "utility": "02 / Utility & Privacy",
+    "about": "About Engine",
+    "privacy": "Privacy Sandbox",
+    "support": "Support",
+    "terms": "Terms",
+    "light": "Light",
+    "dark": "Dark",
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme",
+    "close": "Close menu",
+    "open": "Open navigation menu",
+    "aria": "Navigation Menu",
+    "waitlist": "AspectCut Pro Waitlist",
+    "clientSide": "Client-Side WebCodecs",
+    "privateNote": "100% Private Sandbox"
+  },
+  "toast": {
+    "body": "We noticed your browser language is set to {name}.",
+    "aria": "Language recommendation",
+    "close": "Close language suggestion"
+  }
+}

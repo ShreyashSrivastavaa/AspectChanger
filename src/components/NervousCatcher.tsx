@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState, useId } from "react";
+import { useTranslations } from "next-intl";
 import "./NervousCatcher.css";
 
 interface NervousCatcherProps {
@@ -264,6 +265,8 @@ export default function NervousCatcher({
   onConvertAnother,
   className = "",
 }: NervousCatcherProps) {
+  const tCard = useTranslations("home.card");
+  const tStick = useTranslations("stickman");
   const rawId = useId();
   const safeId = rawId.replace(/[^a-zA-Z0-9_-]/g, "");
   const clipId = `nc-clip-${safeId}`;
@@ -277,7 +280,7 @@ export default function NervousCatcher({
   const deliveredRef = useRef<boolean>(false);
 
   const [soundOn, setSoundOn] = useState<boolean>(true);
-  const [captionText, setCaptionText] = useState<string>("Click button to summon download manager");
+  const [captionText, setCaptionText] = useState<string>(tStick("clickPrompt"));
   const [isDelivered, setIsDelivered] = useState<boolean>(false);
 
   // Initialize foley
@@ -455,7 +458,7 @@ export default function NervousCatcher({
 
     const label = $("[data-label]");
     if (label) {
-      label.textContent = t < 0.65 ? "Hold on..." : t < 6.7 ? `Catching ${progressVal}%` : "Download again";
+      label.textContent = t < 0.65 ? tCard("holdOn") : t < 6.7 ? tCard("catching", { pct: progressVal }) : tCard("downloadAgain");
     }
 
     const icon = $("[data-button-icon]") as HTMLElement | null;
@@ -471,14 +474,14 @@ export default function NervousCatcher({
     // Dynamic humorous subtitle
     const currentCaption =
       t < 2.45
-        ? "He's got this."
+        ? tStick("stage1")
         : t < 3.3
-        ? "Definitely got this."
+        ? tStick("stage2")
         : t < 4.05
-        ? "..."
+        ? tStick("stage3")
         : t < 6.7
-        ? "A little heavier than expected!"
-        : "Delivered. With dignity. Mostly.";
+        ? tStick("stage4")
+        : tStick("stage5");
     setCaptionText(currentCaption);
   };
 
@@ -500,7 +503,7 @@ export default function NervousCatcher({
     btn?.classList.remove("is-running");
     btn?.classList.add("is-done");
     const label = $("[data-label]");
-    if (label) label.textContent = "Download again";
+    if (label) label.textContent = tCard("downloadAgain");
     const icon = $("[data-button-icon]");
     if (icon) {
       icon.innerHTML = '<path d="m3.5 10.5 4 4 9-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
@@ -531,7 +534,7 @@ export default function NervousCatcher({
     // Immediate fallback if user prefers reduced motion
     const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) {
-      setCaptionText("Delivered directly. No heavy lifting required.");
+      setCaptionText(tStick("reducedMotion"));
       deliver(shouldDownload);
       finishAnimation();
       return;
@@ -600,7 +603,7 @@ export default function NervousCatcher({
       <div className="flex items-center justify-between text-xs pb-3 border-b border-[var(--color-hairline)] mb-3">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]" />
-          <span className="font-semibold text-[var(--text-main)]">Ready for Download</span>
+          <span className="font-semibold text-[var(--text-main)]">{tCard("ready")}</span>
         </div>
         <span className="font-mono text-xs text-[var(--text-muted)] font-medium">
           {filename} ({mbSize} MB)
@@ -682,7 +685,7 @@ export default function NervousCatcher({
           data-download
           type="button"
           onClick={() => playAnimation(true)}
-          aria-label="Download video clip"
+          aria-label={tCard("download")}
         >
           <span className="nc-progress-fill" />
           <span className="nc-button-content">
@@ -695,7 +698,7 @@ export default function NervousCatcher({
                 strokeLinejoin="round"
               />
             </svg>
-            <span data-label>{isDelivered ? "Download again" : "Download Video"}</span>
+            <span data-label>{isDelivered ? tCard("downloadAgain") : tCard("download")}</span>
           </span>
         </button>
       </div>
@@ -713,7 +716,7 @@ export default function NervousCatcher({
             type="button"
             className="nc-quiet-button"
             onClick={() => playAnimation(false)}
-            aria-label="Replay StickMan catching animation"
+            aria-label={tCard("replayAria")}
           >
             <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path
@@ -724,7 +727,7 @@ export default function NervousCatcher({
                 strokeLinejoin="round"
               />
             </svg>
-            <span>Replay</span>
+            <span>{tCard("replay")}</span>
           </button>
 
           {/* Sound Toggle */}
@@ -733,7 +736,7 @@ export default function NervousCatcher({
             className="nc-quiet-button"
             aria-pressed={soundOn}
             onClick={toggleSound}
-            aria-label={soundOn ? "Mute animation sound" : "Enable animation sound"}
+            aria-label={soundOn ? tCard("muteAria") : tCard("unmuteAria")}
           >
             <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               {soundOn ? (
@@ -754,7 +757,7 @@ export default function NervousCatcher({
                 />
               )}
             </svg>
-            <span>{soundOn ? "Sound on" : "Sound off"}</span>
+            <span>{soundOn ? tCard("soundOn") : tCard("soundOff")}</span>
           </button>
         </div>
 
@@ -763,9 +766,9 @@ export default function NervousCatcher({
           href={blobUrl}
           download={filename}
           className="nc-direct-link"
-          title="Download immediately without waiting for animation"
+          title={tCard("instantTitle")}
         >
-          Instant save
+          {tCard("instant")}
         </a>
       </div>
 
@@ -777,9 +780,9 @@ export default function NervousCatcher({
             onClick={onConvertAnother}
             className="hover:underline text-[var(--text-main)] font-semibold"
           >
-            Convert another clip
+            {tCard("another")}
           </button>
-          <span className="font-mono text-[11px]">100% Client-side copy</span>
+          <span className="font-mono text-[11px]">{tCard("clientSide")}</span>
         </div>
       )}
     </div>

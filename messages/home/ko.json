@@ -1,0 +1,253 @@
+{
+  "h1Main": "동영상 크기 변경",
+  "h1Accent": "온라인",
+  "toolAria": "동영상 크기 변경 도구",
+  "introTitle": "브라우저에서 바로 무료로 동영상 크기 변경",
+  "introP1": "AspectCut을 사용하면 앱을 설치하거나 파일을 서버로 보내지 않고도 온라인에서 동영상 크기를 변경할 수 있습니다. 플랫폼 크기를 고르거나 원하는 비율을 입력하고, 새 프레임을 채울 방식을 선택한 뒤 완성된 파일을 다운로드하세요. 계정을 만들 필요가 없고 결과물에 워터마크도 없습니다.",
+  "introP2": "처리가 사용자의 기기에서 이루어지므로 동영상은 비공개로 유지되고 업로드를 기다릴 필요도 없습니다. 처리 속도는 기기와 동영상 길이에 따라 다릅니다. WebCodecs를 지원하는 데스크톱 및 모바일 브라우저에서 사용할 수 있습니다.",
+  "sizesTitle": "모든 플랫폼과 화면에 맞게 동영상 크기 변경",
+  "sizesSubtitle": "크기를 선택하면 도구에 불러옵니다.",
+  "featuresTitle": "온라인 동영상 크기 변경에 필요한 모든 기능",
+  "features": [
+    {
+      "title": "모든 플랫폼 지원",
+      "text": "Instagram, TikTok, YouTube, Facebook, X, LinkedIn, Snapchat, Pinterest, WhatsApp 및 일반 화면에 맞게 정확한 픽셀로 크기를 변경합니다."
+    },
+    {
+      "title": "블러, 자르기, 여백",
+      "text": "새 프레임을 흐린 배경으로 채우거나, 맞게 자르거나, 원하는 색의 여백을 추가하세요."
+    },
+    {
+      "title": "확대 및 구도 조정",
+      "text": "십자선을 드래그하고 최대 300%까지 확대해 피사체를 화면 안에 유지하세요."
+    },
+    {
+      "title": "사용자 지정 크기",
+      "text": "2.35:1 같은 소수를 포함해 최대 4:1까지 원하는 비율을 입력할 수 있습니다."
+    },
+    {
+      "title": "업로드 없음",
+      "text": "동영상은 브라우저 안에서 처리되며 서버에 업로드되지 않습니다."
+    },
+    {
+      "title": "무료, 워터마크 없음",
+      "text": "계정 없이 온라인에서 크기를 변경하고, 내보낸 파일에 워터마크도 남지 않습니다."
+    },
+    {
+      "title": "MP4 및 WebM 내보내기",
+      "text": "최대 500MB의 MP4, MOV, WebM, MKV를 열어 H.264 MP4 또는 VP9 WebM으로 내보냅니다."
+    },
+    {
+      "title": "소리 유지",
+      "text": "오디오 트랙은 크기를 변경한 파일에 자동으로 포함됩니다."
+    }
+  ],
+  "howTitle": "온라인에서 동영상 크기를 변경하는 방법",
+  "steps": [
+    {
+      "title": "동영상 추가",
+      "text": "크기를 변경할 동영상을 선택하거나 끌어다 놓으세요. 동영상은 기기에 그대로 남아 있습니다."
+    },
+    {
+      "title": "크기 선택",
+      "text": "플랫폼, 화면 크기 또는 사용자 지정 비율을 선택하고 구도를 맞추세요."
+    },
+    {
+      "title": "변경 후 다운로드",
+      "text": "브라우저가 동영상을 처리하면 파일을 저장할 수 있습니다."
+    }
+  ],
+  "whyTitle": "동영상 크기를 변경하는 이유",
+  "whyP1": "플랫폼마다 요구하는 형태가 다릅니다. YouTube용 와이드 영상은 TikTok에서 작게 보이고, 휴대폰으로 찍은 세로 영상은 16:9 플레이어에서 양옆에 넓은 빈 공간이 생깁니다. 알맞은 크기로 변경하면 영상이 화면을 가득 채우고 피사체도 잘 보입니다.",
+  "whyLead": "동영상 크기 변경 도구를 주로 사용하는 경우:",
+  "whyItems": [
+    "16:9 영상을 1080×1920의 9:16 릴스, 쇼츠, TikTok으로 변환",
+    "Instagram, Facebook, LinkedIn 피드용 4:5 또는 1:1 버전 제작",
+    "YouTube나 프레젠테이션용으로 세로 영상을 16:9 프레임에 맞추기",
+    "큰 영상을 1080p 또는 720p로 축소"
+  ],
+  "tipsTitle": "장면을 잃지 않고 동영상 크기를 변경하는 팁",
+  "tips": [
+    {
+      "lead": "원본 파일로 시작하세요.",
+      "text": "내보낼 때마다 다시 인코딩되므로 이미 압축된 사본은 디테일이 더 많이 손실됩니다."
+    },
+    {
+      "lead": "영상에 맞는 방식을 고르세요.",
+      "text": "잘라낼 수 없다면 블러, 피사체를 맞추기 쉽다면 자르기, 단색을 원한다면 여백을 사용하세요."
+    },
+    {
+      "lead": "얼굴과 텍스트는 중앙 가까이에 두세요.",
+      "text": "소셜 앱에서는 버튼과 자막이 세로 영상의 가장자리를 가리는 경우가 많습니다."
+    },
+    {
+      "lead": "지나치게 확대하지 마세요.",
+      "text": "720p 영상을 4K로 변경할 수는 있지만 커질 뿐 더 선명해지지는 않습니다."
+    },
+    {
+      "lead": "파일을 더 작게 만들고 싶나요?",
+      "text": "내보내기 전에 해상도나 화질 설정을 낮추세요."
+    }
+  ],
+  "tipsCta": "지금 동영상 크기 변경하기",
+  "footer": {
+    "about": "소개",
+    "privacy": "개인정보 보호",
+    "terms": "이용약관",
+    "contact": "문의"
+  },
+  "nav": {
+    "resize": "크기 변경",
+    "sizes": "크기 목록",
+    "features": "기능",
+    "calculator": "계산기",
+    "faq": "FAQ",
+    "resizeLong": "동영상 크기 변경",
+    "sizesLong": "모든 플랫폼 및 화면 크기",
+    "calculatorLong": "화면 비율 계산기"
+  },
+  "calc": {
+    "title": "동영상 크기 계산기: 화면 비율 및 해상도",
+    "mode": "짝수 모드",
+    "base": "기준 해상도 (픽셀)",
+    "width": "너비",
+    "height": "높이",
+    "vertical": "세로 (9:16)",
+    "square": "정사각형 (1:1)",
+    "derived": "계산된 비율",
+    "pixels": "총 픽셀 수:",
+    "megapixels": "메가픽셀",
+    "scaler": "비율 유지 크기 조정",
+    "scaleWidth": "너비 기준 조정",
+    "scaleHeight": "높이 기준 조정"
+  },
+  "tool": {
+    "selected": "선택됨: {name}",
+    "resizeFor": "1. 크기 변경 대상",
+    "platform": "플랫폼",
+    "size": "크기",
+    "exportsAt": "{size} px로 내보내기",
+    "fittingMode": "2. 맞춤 방식",
+    "cropHint": "모니터의 십자선을 드래그해 구도를 맞추세요.",
+    "zoom": "확대",
+    "resetFraming": "구도 초기화",
+    "barColor": "여백 색상:",
+    "advanced": "+ 고급 옵션 (해상도, 형식, CRF)",
+    "resolution": "해상도",
+    "format": "형식",
+    "quality": "화질 (CRF)",
+    "convertTo": "{ratio}(으)로 변환",
+    "invalidRatio": "4:1을 넘지 않는 두 개의 양수를 입력하세요.",
+    "capVertical": "쇼츠, 릴스, TikTok",
+    "capLandscape": "YouTube, 가로",
+    "capSquare": "Instagram 피드, 정사각형",
+    "capPortrait": "모바일 세로",
+    "custom": "사용자 지정",
+    "dimensions": "크기 입력",
+    "preparing": "동영상 엔진 준비 중...",
+    "estimating": "계산 중...",
+    "encoding": "인코딩 중 ({pct}%)...",
+    "encodingStart": "인코딩 중...",
+    "etaRemaining": "약 {seconds}초 남음",
+    "cancelled": "취소됨",
+    "complete": "완료!",
+    "res720": "720p (가장 빠름)",
+    "res1080": "1080p (표준 HD)",
+    "resOriginal": "원본 화질",
+    "progressAria": "인코딩 진행률"
+  },
+  "presets": {
+    "Reels": "릴스",
+    "Stories": "스토리",
+    "Feed Portrait": "피드 세로",
+    "Feed Square": "피드 정사각형",
+    "Feed Landscape": "피드 가로",
+    "Stories Ads": "스토리 광고",
+    "Feed Portrait Ads": "피드 세로 광고",
+    "Feed Square Ads": "피드 정사각형 광고",
+    "Feed Landscape Ads": "피드 가로 광고",
+    "Video": "동영상",
+    "In-Feed Ads": "인피드 광고",
+    "Square": "정사각형",
+    "Landscape": "가로",
+    "Shorts": "쇼츠",
+    "Video 720p": "동영상 720p",
+    "Video 1080p": "동영상 1080p",
+    "Video 1440p": "동영상 1440p",
+    "Video 4K": "동영상 4K",
+    "Vertical": "세로",
+    "Portrait": "세로형",
+    "Spotlight": "스포트라이트",
+    "Single Video Ads": "단일 동영상 광고",
+    "Standard Pin": "표준 핀",
+    "Vertical Pin": "세로 핀",
+    "Square Pin": "정사각형 핀",
+    "Status": "상태",
+    "HD Monitor": "HD 모니터",
+    "Full HD Monitor": "풀 HD 모니터",
+    "QHD Monitor": "QHD 모니터",
+    "4K TV / Monitor": "4K TV / 모니터",
+    "Ultrawide Monitor": "울트라와이드 모니터",
+    "Classic TV": "클래식 TV",
+    "Tablet": "태블릿",
+    "Modern Phone": "최신 스마트폰",
+    "Screens & Displays": "화면 및 디스플레이"
+  },
+  "errors": {
+    "tooLarge": "파일이 500MB 제한을 초과합니다. 더 작은 동영상을 선택하세요.",
+    "unsupportedFormat": "지원되지 않는 형식입니다. MP4, MOV, WebM 또는 MKV를 사용하세요.",
+    "generic": "변환 중 오류가 발생했습니다. 다른 크기나 파일을 사용해 보세요.",
+    "browser": "이 브라우저는 동영상을 인코딩할 수 없습니다. 최신 Chrome, Edge, Safari 또는 Firefox를 사용하세요.",
+    "encodeSettings": "이 브라우저는 이 설정으로 내보낼 수 없습니다. 720p나 MP4를 사용하거나 Chrome 또는 Edge를 사용하세요.",
+    "file": "이 파일 형식은 지원되지 않습니다. MP4, MOV, WebM 또는 MKV 파일을 사용해 보세요.",
+    "noVideo": "이 파일에는 비디오 트랙이 없습니다.",
+    "cantRead": "이 브라우저는 이 파일의 {codec} 동영상을 읽을 수 없습니다. Chrome 또는 Edge나 다른 파일을 사용해 보세요.",
+    "webm": "이 브라우저는 WebM 내보내기를 지원하지 않습니다. MP4를 선택하고 다시 시도하세요.",
+    "mp4": "이 브라우저는 {size} MP4를 인코딩할 수 없습니다. 더 낮은 해상도나 Chrome 또는 Edge를 사용해 보세요.",
+    "audio": "이 파일의 오디오 형식은 지원되지 않습니다. AAC 오디오로 다시 내보낸 후 시도하세요.",
+    "stalled": "인코더가 응답하지 않습니다. 720p나 더 짧은 동영상을 사용해 보세요.",
+    "empty": "빈 파일이 생성되었습니다. 다시 시도하세요.",
+    "title": "인코딩 오류"
+  },
+  "card": {
+    "ready": "다운로드 준비 완료",
+    "download": "동영상 다운로드",
+    "downloadAgain": "다시 다운로드",
+    "holdOn": "잠시만요...",
+    "catching": "받는 중 {pct}%",
+    "replay": "다시 재생",
+    "soundOn": "소리 켜짐",
+    "soundOff": "소리 꺼짐",
+    "instant": "바로 저장",
+    "instantTitle": "애니메이션을 기다리지 않고 바로 다운로드",
+    "another": "다른 동영상 변환",
+    "clientSide": "100% 기기 내 처리",
+    "replayAria": "캐릭터 애니메이션 다시 재생",
+    "muteAria": "애니메이션 소리 끄기",
+    "unmuteAria": "애니메이션 소리 켜기"
+  },
+  "drawer": {
+    "title": "AspectCut 메뉴",
+    "onSite": "01 / 이 사이트",
+    "utility": "02 / 유틸리티 및 개인정보",
+    "about": "엔진 소개",
+    "privacy": "개인정보 보호",
+    "support": "지원",
+    "terms": "이용약관",
+    "light": "라이트",
+    "dark": "다크",
+    "toLight": "라이트 테마로 전환",
+    "toDark": "다크 테마로 전환",
+    "close": "메뉴 닫기",
+    "open": "탐색 메뉴 열기",
+    "aria": "탐색 메뉴",
+    "waitlist": "AspectCut Pro 대기자 명단",
+    "clientSide": "브라우저 내 WebCodecs",
+    "privateNote": "100% 비공개"
+  },
+  "toast": {
+    "body": "브라우저 언어가 {name}(으)로 설정되어 있습니다.",
+    "aria": "언어 추천",
+    "close": "언어 추천 닫기"
+  }
+}

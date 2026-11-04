@@ -15,7 +15,8 @@ export interface ConvertOptions {
   resolution: "original" | "1080p" | "720p";
   format: "mp4" | "webm";
   quality: number;
-  onProgress: (percent: number, message: string, etaText?: string | null) => void;
+  /** etaSeconds is null until there is enough progress to estimate. */
+  onProgress: (percent: number, etaSeconds: number | null) => void;
 }
 
 export interface ConvertResult {
@@ -25,12 +26,28 @@ export interface ConvertResult {
   summary: string;
 }
 
-const UNSUPPORTED_BROWSER =
-  "Your browser can't encode video. Please use the latest Chrome, Edge, Safari, or Firefox.";
-const UNSUPPORTED_ENCODE =
-  "Your browser can't export with these settings. Try 720p output or MP4, or use Chrome or Edge.";
-const UNSUPPORTED_FILE =
-  "This file's format isn't supported. Please try an MP4, MOV, WebM, or MKV file.";
+export type ConvertErrorCode =
+  | "browser"
+  | "encodeSettings"
+  | "file"
+  | "noVideo"
+  | "cantRead"
+  | "webm"
+  | "mp4"
+  | "audio"
+  | "stalled"
+  | "empty";
+
+/** A failure the user can act on. The UI turns the code into a message in their language. */
+export class ConvertError extends Error {
+  constructor(
+    public code: ConvertErrorCode,
+    public values?: Record<string, string>
+  ) {
+    super(code);
+    this.name = "ConvertError";
+  }
+}
 
 const STALL_TIMEOUT_MS = 30000;
 
@@ -153,7 +170,7 @@ function createFrameComposer(
 
 async function convertWithWebCodecs(options: ConvertOptions): Promise<ConvertResult> {
   if (typeof VideoEncoder === "undefined" || typeof OffscreenCanvas === "undefined") {
-    throw new Error(UNSUPPORTED_BROWSER);
+    throw new ConvertError("browser");
   }
 
   const mb = await import("mediabunny");
@@ -164,14 +181,12 @@ async function convertWithWebCodecs(options: ConvertOptions): Promise<ConvertRes
 
   try {
     const track = await input.getPrimaryVideoTrack().catch(() => {
-      throw new Error(UNSUPPORTED_FILE);
+      throw new ConvertError("file");
     });
-    if (!track) throw new Error("This file has no video track.");
+    if (!track) throw new ConvertError("noVideo");
     await loadNeededAddons(mb, input, track, format);
     if (!(await track.canDecode())) {
-      throw new Error(
-        `Your browser can't read this file's ${track.codec ?? "video"} video. Please try Chrome or Edge, or a different file.`
-      );
+      throw new ConvertError("cantRead", { codec: track.codec ?? "" });
     }
 
     const { width, height } =
@@ -180,11 +195,9 @@ async function convertWithWebCodecs(options: ConvertOptions): Promise<ConvertRes
 
     const codec = format === "mp4" ? "avc" : "vp9";
     if (!(await mb.canEncodeVideo(codec, { width, height }))) {
-      throw new Error(
-        format === "webm"
-          ? "WebM export isn't supported in this browser. Please choose MP4 and try again."
-          : `Your browser can't encode MP4 at ${width}x${height}. Try a lower resolution, or Chrome or Edge.`
-      );
+      throw format === "webm"
+        ? new ConvertError("webm")
+        : new ConvertError("mp4", { size: `${width}×${height}` });
     }
 
     const composer = createFrameComposer(options, width, height);
@@ -232,11 +245,7 @@ async function convertWithWebCodecs(options: ConvertOptions): Promise<ConvertRes
     // Never hand back a silent or video-less file.
     const lost = conversion.discardedTracks.find((d) => d.reason !== "discarded_by_user");
     if (!conversion.isValid || lost) {
-      throw new Error(
-        lost?.track.type === "audio"
-          ? "This file's audio format isn't supported. Please re-export it with AAC audio and try again."
-          : UNSUPPORTED_FILE
-      );
+      throw new ConvertError(lost?.track.type === "audio" ? "audio" : "file");
     }
 
     let lastProgressAt = Date.now();
@@ -249,9 +258,9 @@ async function convertWithWebCodecs(options: ConvertOptions): Promise<ConvertRes
       const elapsed = (Date.now() - startedAt) / 1000;
       const eta =
         fraction > 0.03 && elapsed > 0.5
-          ? `~${Math.max(1, Math.round(elapsed / fraction - elapsed))}s remaining`
+          ? Math.max(1, Math.round(elapsed / fraction - elapsed))
           : null;
-      onProgress(pct, `Encoding (${pct}%)...`, eta);
+      onProgress(pct, eta);
     };
 
     // Cancel pressed during setup, before there was a conversion to stop.
@@ -265,16 +274,16 @@ async function convertWithWebCodecs(options: ConvertOptions): Promise<ConvertRes
       }
     }, 1000);
 
-    onProgress(1, "Encoding...", null);
+    onProgress(1, null);
     try {
       await conversion.execute();
     } catch (err) {
-      if (stalled) throw new Error("The encoder stopped responding. Try 720p output or a shorter clip.");
+      if (stalled) throw new ConvertError("stalled");
       throw err;
     }
 
     const buffer = output.target.buffer;
-    if (!buffer || buffer.byteLength === 0) throw new Error("The encoder produced an empty file. Please try again.");
+    if (!buffer || buffer.byteLength === 0) throw new ConvertError("empty");
 
     return {
       blob: new Blob([buffer], { type: format === "mp4" ? "video/mp4" : "video/webm" }),
@@ -295,7 +304,7 @@ export async function convertVideo(options: ConvertOptions): Promise<ConvertResu
   } catch (err) {
     if (cancelRequested) throw new CancelledError();
     if (err instanceof Error && err.message.includes("not supported in this environment")) {
-      throw new Error(UNSUPPORTED_ENCODE);
+      throw new ConvertError("encodeSettings");
     }
     throw err;
   }

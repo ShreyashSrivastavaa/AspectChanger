@@ -81,7 +81,7 @@
     "dismiss": "Schließen"
   },
   "footer": {
-    "tagline": "Räumliche Client-seitige Verarbeitung.",
+    "tagline": "Kostenloses Online-Tool zum Ändern der Videogröße.",
     "productOf": "Ein Produkt von",
     "zenithDistrict": "ZenithDistrict",
     "allRightsReserved": "Alle Rechte vorbehalten.",
@@ -122,9 +122,9 @@
     "a8": "Ja. AspectCut läuft direkt in modernen mobilen Webbrowsern (iOS Safari 16+ und Android Chrome) mit WebCodecs-Unterstützung und speichert fertige Videos direkt in Ihrer Fotogalerie."
   },
   "seo": {
-    "homeTitle": "AspectCut — Video-Seitenverhältnis Ändern (Kostenlos, Online, Ohne Upload)",
-    "homeDescription": "Ändern Sie Video-Seitenverhältnisse (16:9 zu 9:16, 1:1, 4:5, 21:9) in Sekunden direkt im Browser. 100% privat, ohne Wasserzeichen, mit WebCodecs-Technologie.",
-    "homeKeywords": "video seitenverhaeltnis aendern, video format aendern online, video zuschneiden instagram, video auf 9 16 konvertieren, 16 9 in 9 16 umwandeln, video fuer tiktok anpassen, video online zuschneiden kostenlos",
+    "homeTitle": "Video-Größe online ändern – kostenlos, ohne Upload und Wasserzeichen",
+    "homeDescription": "Ändere die Video-Größe online und kostenlos für Instagram, TikTok, YouTube und mehr. Alles läuft im Browser: kein Upload, kein Konto und kein Wasserzeichen.",
+    "homeKeywords": "video größe ändern, videogröße ändern online, video größe ändern kostenlos, video skalieren, video seitenverhältnis ändern, video für instagram anpassen, video in 9:16 umwandeln, 16:9 in 9:16 umwandeln, video für youtube shorts anpassen, video für tiktok anpassen",
     "aboutTitle": "Über AspectCut — WebCodecs Video-Engine im Browser",
     "aboutDescription": "Erfahren Sie, wie AspectCut Videos vollständig lokal in Ihrem Browser via WebCodecs transformiert – ohne Server-Uploads und ohne Datenschutzrisiken.",
     "faqTitle": "Häufig Gestellte Fragen — AspectCut Videoformat-Konverter",
@@ -137,4 +137,3 @@
     "termsDescription": "Nutzungsbedingungen von AspectCut. Kostenlose, sichere und private Videoverarbeitung im Browser."
   }
 }
-
