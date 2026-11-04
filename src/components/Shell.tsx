@@ -155,6 +155,9 @@ export default function Shell({ children }: { children: React.ReactNode }) {
               / Wasm
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-[#c89c6e] group-hover:scale-125 transition-transform shadow-[0_0_8px_#c89c6e]" />
+            <span className="hidden xl:inline-flex text-[10px] font-mono text-[#c89c6e] border border-[rgba(200,156,110,0.3)] bg-[rgba(200,156,110,0.08)] px-2 py-0.5 rounded-full">
+              by ZenithDistrict
+            </span>
           </Link>
 
           {/* Center Indicators */}
@@ -170,19 +173,13 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             </span>
           </div>
 
-          {/* Right Controls */}
+          {/* Right Controls (matching top header layout of reference) */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Pill button like "max 5 ins" in reference */}
-            <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass-pill font-mono text-[11px] text-[var(--text-main)] font-semibold select-none">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Max 500 MB</span>
-            </div>
-
             {/* Quick Dark Mode Switcher */}
             <button
               type="button"
               onClick={toggleTheme}
-              className="p-1.5 rounded-full glass-pill text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
+              className="p-2 rounded-full glass-pill text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
               aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
             >
               {darkMode ? <Sun className="w-3.5 h-3.5 text-[#e8c7a2]" /> : <Moon className="w-3.5 h-3.5 text-[#74675b]" />}
@@ -196,10 +193,16 @@ export default function Shell({ children }: { children: React.ReactNode }) {
               aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={menuOpen}
               aria-controls="navigation-drawer"
-              className="p-1.5 rounded-full glass-pill text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
+              className="p-2 rounded-full glass-pill text-[var(--text-main)] hover:text-[#c89c6e] transition-colors"
             >
               {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
+
+            {/* Prominent White Glass Pill Button on the far right (like "max 5 ins" in reference) */}
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full glass-pill font-mono text-[11px] text-[var(--text-main)] font-semibold select-none shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Max 500 MB</span>
+            </div>
           </div>
         </header>
       </div>

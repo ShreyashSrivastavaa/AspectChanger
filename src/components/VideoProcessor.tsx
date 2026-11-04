@@ -273,53 +273,58 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
         }}
       />
 
-      {/* STATE 1: EMPTY STATE — Architectural Frosted Glass Well */}
+      {/* STATE 1: EMPTY STATE — Architectural Frosted Glass Hero Card (Progria Nova styling) */}
       {!file ? (
         <div
           onDragOver={onDragOver}
           onDragLeave={onDragLeave}
           onDrop={onDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`relative w-full glass-panel py-16 px-6 text-center cursor-pointer transition-all duration-300 group ${
+          className={`relative w-full glass-panel py-18 sm:py-24 px-6 sm:px-12 text-center cursor-pointer transition-all duration-300 group rounded-[32px] ${
             isDraggingOver
-              ? "border-[#c89c6e] scale-[1.01] shadow-[0_0_40px_rgba(200,156,110,0.3)]"
-              : "hover:border-white hover:shadow-2xl"
+              ? "border-[#c89c6e] scale-[1.01] shadow-[0_0_50px_rgba(200,156,110,0.35)]"
+              : "hover:border-white hover:shadow-[0_30px_70px_-10px_rgba(140,110,80,0.22)]"
           }`}
         >
+          {/* Top-Right Frosted Glass Reticle Icon (matching reference) */}
+          <div className="absolute top-5 right-6 w-5 h-5 rounded-full border border-white/80 dark:border-white/20 flex items-center justify-center opacity-60">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#c89c6e]" />
+          </div>
+
           {/* Viewfinder Camera Corner Marks in Champagne Gold */}
           <div className="viewfinder-corner viewfinder-tl" />
           <div className="viewfinder-corner viewfinder-tr" />
           <div className="viewfinder-corner viewfinder-bl" />
           <div className="viewfinder-corner viewfinder-br" />
 
-          <div className="max-w-md mx-auto space-y-4">
+          <div className="max-w-md mx-auto space-y-5">
             {/* Elegant Frosted Frame Icon with Metallic Gold Ripple */}
             <div className="flex justify-center">
-              <div className="relative w-14 h-14 rounded-2xl glass-pill flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <div className="relative w-16 h-16 rounded-2xl glass-pill flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+                <svg width="34" height="34" viewBox="0 0 32 32" fill="none">
                   <rect x="4" y="6" width="24" height="20" rx="3" stroke="#a89b8d" strokeWidth="1.2" strokeDasharray="3 2" />
-                  <rect x="11" y="4" width="10" height="24" rx="2" stroke="#c89c6e" strokeWidth="1.5" />
+                  <rect x="11" y="4" width="10" height="24" rx="2" stroke="#c89c6e" strokeWidth="1.6" />
                   <circle cx="16" cy="16" r="1.5" fill="#c89c6e" />
                 </svg>
               </div>
             </div>
 
-            <div className="space-y-1.5">
-              <p className="text-xl sm:text-2xl font-semibold tracking-tight text-[var(--text-main)]">
+            <div className="space-y-2">
+              <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-[var(--text-main)]">
                 Drop your video clip here
               </p>
-              <p className="text-xs text-[var(--text-muted)]">
-                Processed privately inside browser memory. Never uploaded.
+              <p className="text-xs sm:text-sm text-[var(--text-muted)] max-w-sm mx-auto leading-relaxed">
+                Processed privately inside browser memory. Never uploaded to any server.
               </p>
             </div>
 
-            <div className="pt-2">
-              <span className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full btn-radiant-glow text-xs font-semibold tracking-wide shadow-lg">
+            <div className="pt-3">
+              <span className="inline-flex items-center gap-2 px-8 py-3 rounded-full btn-radiant-glow text-xs sm:text-sm font-semibold tracking-wide shadow-xl group-hover:scale-105 transition-all">
                 Choose Video File
               </span>
             </div>
 
-            <p className="font-mono text-[11px] text-[var(--text-muted)] pt-2 tracking-wider">
+            <p className="font-mono text-[11px] text-[var(--text-muted)] pt-3 tracking-widest uppercase">
               MP4 · MOV · WEBM · MKV · AVI (UP TO 500 MB)
             </p>
           </div>

@@ -71,96 +71,169 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }}
       />
 
-      {/* SPATIAL ARCHITECTURAL BACKGROUND (Recreating the reference image atmosphere) */}
+      {/* SPATIAL ARCHITECTURAL STUDIO BACKGROUND (Faithfully reproducing the reference image) */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
-        {/* Soft floating claymorphism sphere 1 (Top Left) */}
+        
+        {/* Soft Claymorphism Sphere 1 (Top Left) */}
         <div 
-          className="absolute -top-10 left-[10%] w-24 h-24 rounded-full opacity-70 blur-[1px]"
-          style={{
-            background: "radial-gradient(circle at 35% 35%, #ffffff 0%, #edd4c0 40%, #c9a78d 100%)",
-            boxShadow: "0 25px 40px -10px rgba(160, 125, 95, 0.35)",
-          }}
+          className="hidden md:block absolute -top-8 left-[6%] xl:left-[11%] w-20 h-20 xl:w-26 xl:h-26 clay-sphere opacity-90 blur-[0.5px]"
+          style={{ transform: "translateZ(0)" }}
         />
 
-        {/* Soft floating sphere 2 (Bottom Right) */}
+        {/* Floating 3D Plate 1: Top Left (Frosted Glass with Liquid Gold Wave) */}
         <div 
-          className="absolute top-[48%] -right-8 w-36 h-36 rounded-full opacity-65 blur-[1px]"
+          className="hidden lg:block absolute top-10 left-[-3%] xl:left-[1%] w-52 xl:w-64 h-36 xl:h-44 rounded-3xl border border-white/80 opacity-70 -rotate-12 transition-transform duration-500 hover:rotate-[-8deg]"
           style={{
-            background: "radial-gradient(circle at 35% 35%, #ffffff 0%, #ebd3bf 45%, #c29e84 100%)",
-            boxShadow: "0 35px 50px -15px rgba(160, 125, 95, 0.4)",
-          }}
-        />
-
-        {/* Floating 3D Frosted Glass Plate: Top Left (16:9) */}
-        <div 
-          className="hidden xl:block absolute top-12 left-[-2%] w-56 h-36 rounded-2xl border border-white/80 opacity-55 rotate-[-12deg]"
-          style={{
-            background: "rgba(255, 255, 255, 0.35)",
-            backdropFilter: "blur(14px)",
-            boxShadow: "0 30px 60px rgba(120, 100, 80, 0.15)",
+            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 238, 230, 0.25) 100%)",
+            backdropFilter: "blur(18px)",
+            boxShadow: "0 30px 65px -10px rgba(130, 105, 80, 0.18), inset 0 1.5px 2px rgba(255, 255, 255, 0.95)",
           }}
         >
-          {/* Metallic curved gold wave */}
-          <svg className="w-full h-full" viewBox="0 0 220 140" fill="none">
+          <svg className="w-full h-full" viewBox="0 0 240 160" fill="none">
             <path 
-              d="M 10 110 Q 90 20, 210 50" 
-              stroke="url(#goldGradient1)" 
-              strokeWidth="4" 
+              d="M 12 125 Q 95 20, 228 55" 
+              stroke="url(#progriaGold1)" 
+              strokeWidth="5" 
+              strokeLinecap="round" 
+            />
+            <path 
+              d="M 12 125 Q 95 20, 228 55" 
+              stroke="rgba(255, 255, 255, 0.6)" 
+              strokeWidth="1.5" 
               strokeLinecap="round" 
             />
             <defs>
-              <linearGradient id="goldGradient1" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#f7e1cb" />
-                <stop offset="50%" stopColor="#c89c6e" />
-                <stop offset="100%" stopColor="#966d48" />
+              <linearGradient id="progriaGold1" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#fceddf" />
+                <stop offset="35%" stopColor="#d8ab7d" />
+                <stop offset="70%" stopColor="#c89c6e" />
+                <stop offset="100%" stopColor="#8d623e" />
               </linearGradient>
             </defs>
           </svg>
         </div>
 
-        {/* Floating 3D Frosted Glass Plate: Top Right (9:16) */}
+        {/* Floating 3D Plate 2: Top Right (Frosted Glass with Champagne Stipples & Gold Wave) */}
         <div 
-          className="hidden xl:block absolute top-16 right-[-2%] w-48 h-64 rounded-2xl border border-white/80 opacity-55 rotate-[14deg]"
+          className="hidden lg:block absolute top-12 right-[-3%] xl:right-[1%] w-48 xl:w-56 h-60 xl:h-72 rounded-3xl border border-white/80 opacity-70 rotate-[14deg] transition-transform duration-500 hover:rotate-[10deg] overflow-hidden"
           style={{
-            background: "rgba(255, 255, 255, 0.35)",
-            backdropFilter: "blur(14px)",
-            boxShadow: "0 30px 60px rgba(120, 100, 80, 0.15)",
+            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(245, 235, 225, 0.25) 100%)",
+            backdropFilter: "blur(18px)",
+            boxShadow: "0 30px 65px -10px rgba(130, 105, 80, 0.18), inset 0 1.5px 2px rgba(255, 255, 255, 0.95)",
           }}
         >
-          {/* Metallic curved gold wave */}
-          <svg className="w-full h-full" viewBox="0 0 190 250" fill="none">
+          {/* Top Champagne Stippled Texture */}
+          <div className="absolute inset-0 stipple-surface opacity-35" />
+          <svg className="w-full h-full relative z-10" viewBox="0 0 200 260" fill="none">
             <path 
-              d="M 20 50 Q 150 120, 40 220" 
-              stroke="url(#goldGradient2)" 
-              strokeWidth="4" 
+              d="M 20 60 Q 165 130, 35 235" 
+              stroke="url(#progriaGold2)" 
+              strokeWidth="5" 
+              strokeLinecap="round" 
+            />
+            <path 
+              d="M 20 60 Q 165 130, 35 235" 
+              stroke="rgba(255, 255, 255, 0.6)" 
+              strokeWidth="1.5" 
               strokeLinecap="round" 
             />
             <defs>
-              <linearGradient id="goldGradient2" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#f7e1cb" />
-                <stop offset="50%" stopColor="#c89c6e" />
-                <stop offset="100%" stopColor="#966d48" />
+              <linearGradient id="progriaGold2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#faebd7" />
+                <stop offset="40%" stopColor="#d4a373" />
+                <stop offset="80%" stopColor="#b08156" />
+                <stop offset="100%" stopColor="#754f30" />
               </linearGradient>
             </defs>
           </svg>
         </div>
 
-        {/* Floating Terrazzo Mineral Plate: Bottom Left */}
+        {/* Floating 3D Plate 3: Bottom Left (Speckled Mineral Terrazzo with Gold Wave) */}
         <div 
-          className="hidden xl:block absolute bottom-8 left-[2%] w-52 h-36 rounded-2xl border border-white/70 opacity-50 rotate-[-8deg]"
+          className="hidden lg:block absolute bottom-12 left-[-2%] xl:left-[2%] w-48 xl:w-60 h-36 xl:h-44 rounded-3xl border border-white/75 opacity-75 -rotate-8 transition-transform duration-500 hover:rotate-[-4deg] terrazzo-surface overflow-hidden"
           style={{
-            background: "radial-gradient(#ab9b8a 1px, transparent 1px) 0 0 / 12px 12px, rgba(235, 225, 215, 0.6)",
-            boxShadow: "0 25px 50px rgba(120, 100, 80, 0.12)",
+            boxShadow: "0 28px 60px -10px rgba(120, 95, 75, 0.2), inset 0 1.5px 2px rgba(255, 255, 255, 0.9)",
           }}
         >
-          <svg className="w-full h-full" viewBox="0 0 200 140" fill="none">
+          <svg className="w-full h-full" viewBox="0 0 220 150" fill="none">
             <path 
-              d="M 10 70 Q 110 30, 190 90" 
-              stroke="url(#goldGradient1)" 
-              strokeWidth="3.5" 
+              d="M 10 75 Q 115 35, 205 105" 
+              stroke="url(#progriaGold1)" 
+              strokeWidth="4.5" 
+              strokeLinecap="round" 
+            />
+            <path 
+              d="M 10 75 Q 115 35, 205 105" 
+              stroke="rgba(255, 255, 255, 0.55)" 
+              strokeWidth="1.2" 
+              strokeLinecap="round" 
             />
           </svg>
         </div>
+
+        {/* Floating 3D Plate 4: Bottom Right (Fine Diagonal Pinstripes with Gold Wave) */}
+        <div 
+          className="hidden lg:block absolute bottom-8 right-[4%] xl:right-[7%] w-48 xl:w-56 h-64 xl:h-76 rounded-3xl border border-white/80 opacity-75 rotate-[12deg] transition-transform duration-500 hover:rotate-[8deg] pinstripe-surface overflow-hidden"
+          style={{
+            backdropFilter: "blur(16px)",
+            boxShadow: "0 30px 65px -10px rgba(130, 105, 80, 0.18), inset 0 1.5px 2px rgba(255, 255, 255, 0.95)",
+          }}
+        >
+          <svg className="w-full h-full" viewBox="0 0 200 270" fill="none">
+            <path 
+              d="M 15 80 Q 155 150, 40 245" 
+              stroke="url(#progriaGold2)" 
+              strokeWidth="4.5" 
+              strokeLinecap="round" 
+            />
+            <path 
+              d="M 15 80 Q 155 150, 40 245" 
+              stroke="rgba(255, 255, 255, 0.6)" 
+              strokeWidth="1.2" 
+              strokeLinecap="round" 
+            />
+          </svg>
+        </div>
+
+        {/* Terrazzo Curved Arch (Bottom Right Background) */}
+        <div 
+          className="hidden xl:block absolute bottom-0 right-[2%] w-44 h-44 rounded-t-full terrazzo-surface opacity-75 border-t border-l border-r border-white/60"
+          style={{
+            boxShadow: "0 25px 50px -10px rgba(120, 95, 75, 0.25)",
+            transform: "translateY(25%)",
+          }}
+        />
+
+        {/* Resting Clay Sphere 2 (Bottom Right near arch) */}
+        <div 
+          className="hidden md:block absolute bottom-6 right-[14%] xl:right-[15%] w-24 h-24 xl:w-32 xl:h-32 clay-sphere opacity-95"
+          style={{
+            boxShadow: "0 35px 60px -15px rgba(150, 115, 85, 0.45), 0 15px 25px -5px rgba(150, 115, 85, 0.3)",
+          }}
+        />
+
+        {/* Soft Organic Clay Pebble (Bottom Left) */}
+        <div 
+          className="hidden xl:block absolute -bottom-10 left-[8%] w-36 h-28 rounded-[50%] clay-sphere opacity-60 blur-[1px]"
+        />
+
+        {/* Subtle Botanical Leaf Silhouette (Far Right Edge) */}
+        <div 
+          className="hidden xl:block absolute top-[28%] right-[-10px] w-28 h-56 opacity-25 blur-[2.5px] pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse at 80% 50%, #4a5c43 0%, #687e60 40%, transparent 75%)",
+            maskImage: "radial-gradient(ellipse at center, black 40%, transparent 70%)",
+            WebkitMaskImage: "radial-gradient(ellipse at center, black 40%, transparent 70%)",
+          }}
+        />
+
+        {/* Studio Floor Reflection & Diffuse Ambient Glow */}
+        <div 
+          className="absolute bottom-0 inset-x-0 h-48 pointer-events-none"
+          style={{
+            background: "linear-gradient(to top, rgba(240, 232, 222, 0.75) 0%, rgba(245, 239, 232, 0.3) 50%, transparent 100%)",
+          }}
+        />
       </div>
 
       {/* Main Single-Viewport Stage */}

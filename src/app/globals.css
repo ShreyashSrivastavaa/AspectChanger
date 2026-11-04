@@ -211,6 +211,44 @@ body {
 .viewfinder-bl { bottom: -1px; left: -1px; border-bottom-width: 2px; border-left-width: 2px; border-bottom-left-radius: 4px; }
 .viewfinder-br { bottom: -1px; right: -1px; border-bottom-width: 2px; border-right-width: 2px; border-bottom-right-radius: 4px; }
 
+/* Textures & 3D Materials (matching Progria Nova reference) */
+.terrazzo-surface {
+  background-color: #ece4d8;
+  background-image: 
+    radial-gradient(#a38b72 1.5px, transparent 1.5px),
+    radial-gradient(#6d5845 1.2px, transparent 1.2px),
+    radial-gradient(#dfc4a9 2px, transparent 2px),
+    radial-gradient(#4d3a2a 1px, transparent 1px);
+  background-size: 28px 28px, 42px 42px, 56px 56px, 34px 34px;
+  background-position: 0 0, 14px 21px, 7px 14px, 22px 9px;
+}
+
+.pinstripe-surface {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(255, 255, 255, 0.85) 1.5px,
+    rgba(238, 228, 216, 0.5) 1.5px,
+    rgba(238, 228, 216, 0.5) 5px
+  );
+}
+
+.stipple-surface {
+  background-image: radial-gradient(#c89c6e 0.9px, transparent 0.9px);
+  background-size: 6px 6px;
+}
+
+/* 3D Soft Lighting for Clay Spheres */
+.clay-sphere {
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 32%, #ffffff 0%, #fbe7d5 30%, #e6c8b0 65%, #b89172 100%);
+  box-shadow: 
+    0 30px 50px -10px rgba(150, 115, 85, 0.38),
+    0 12px 24px -5px rgba(150, 115, 85, 0.25),
+    inset -4px -6px 12px rgba(120, 80, 50, 0.25),
+    inset 4px 6px 10px rgba(255, 255, 255, 0.8);
+}
+
 /* Motion safety */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
