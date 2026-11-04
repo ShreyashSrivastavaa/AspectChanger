@@ -14,6 +14,8 @@ import {
   Shield,
   Cpu
 } from "lucide-react";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import LocaleSuggestionToast from "@/components/LocaleSuggestionToast";
 
 export default function Shell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -175,6 +177,9 @@ export default function Shell({ children }: { children: React.ReactNode }) {
 
           {/* Right Controls (matching top header layout of reference) */}
           <div className="flex items-center gap-2 sm:gap-3">
+            {/* Multilingual Selector */}
+            <LanguageSwitcher variant="pill" />
+
             {/* Quick Dark Mode Switcher */}
             <button
               type="button"
@@ -433,6 +438,9 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           <span>100% Private Sandbox</span>
         </div>
       </div>
+
+      {/* Dismissible International Language Suggestion Banner */}
+      <LocaleSuggestionToast />
     </div>
   );
 }

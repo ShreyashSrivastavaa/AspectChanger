@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BRAND } from "@/lib/config";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Footer() {
   return (
@@ -145,8 +146,11 @@ export default function Footer() {
 
         {/* Bottom Micro Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-[var(--text-muted)] gap-4">
-          <div>
-            &copy; {new Date().getFullYear()} {BRAND.name}. A product of <a href="https://zenithdistrict.com" target="_blank" rel="noopener noreferrer" className="text-[#c89c6e] hover:underline font-semibold">ZenithDistrict</a>. 100% In-Browser WebAssembly.
+          <div className="flex items-center gap-4">
+            <div>
+              &copy; {new Date().getFullYear()} {BRAND.name}. A product of <a href="https://zenithdistrict.com" target="_blank" rel="noopener noreferrer" className="text-[#c89c6e] hover:underline font-semibold">ZenithDistrict</a>. 100% In-Browser WebAssembly.
+            </div>
+            <LanguageSwitcher variant="footer" />
           </div>
           <div className="flex flex-wrap items-center gap-4">
             <Link href="/about" className="hover:text-[var(--text-main)] transition-colors">About</Link>
