@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import { useTranslations } from "next-intl";
+import CometDial from "./CometDial";
 import NervousCatcher from "./NervousCatcher";
 import { 
   processVideoLocally, 
@@ -15,6 +17,9 @@ interface VideoProcessorProps {
 }
 
 export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
+  const tHero = useTranslations("hero");
+  const tEditor = useTranslations("editor");
+
   // Hydration & debug state
   const [mounted, setMounted] = useState(false);
   const [isIsolated, setIsIsolated] = useState<boolean | null>(null);
@@ -313,21 +318,21 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
 
             <div className="space-y-2">
               <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-[var(--text-main)]">
-                Drop your video clip here
+                {tHero("dropTitle")}
               </p>
               <p className="text-xs sm:text-sm text-[var(--text-muted)] max-w-sm mx-auto leading-relaxed">
-                Processed privately inside browser memory. Never uploaded to any server.
+                {tHero("dropSubtitle")}
               </p>
             </div>
 
             <div className="pt-3">
               <span className="inline-flex items-center gap-2 px-8 py-3 rounded-full btn-radiant-glow text-xs sm:text-sm font-semibold tracking-wide shadow-xl group-hover:scale-105 transition-all">
-                Choose Video File
+                {tHero("chooseFile")}
               </span>
             </div>
 
             <p className="font-mono text-[11px] text-[var(--text-muted)] pt-3 tracking-widest uppercase">
-              MP4 · MOV · WEBM · MKV · AVI (UP TO 500 MB)
+              {tHero("supportedFormats")}
             </p>
           </div>
         </div>
@@ -625,25 +630,35 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                   </div>
                 )}
 
-                {/* Processing State: Clean progress bar, real percentage, real ETA */}
+                {/* Processing State: CometDial circular progress, real percentage, ETA, and cancellation (matching Image 1) */}
                 {isProcessing && (
-                  <div className="p-4 rounded-2xl glass-panel space-y-2.5">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="text-[var(--text-main)] font-medium">
-                        {statusText || "Rendering Video Frames..."}
-                      </span>
-                      <span className="font-mono text-[#c89c6e] font-bold">
-                        {progress > 0 ? `${progress}%` : "Processing"}
-                      </span>
+                  <div className="p-5 rounded-3xl glass-panel space-y-3 flex flex-col items-center justify-center text-center shadow-lg">
+                    <div className="text-xs font-semibold tracking-wide text-[var(--text-main)]">
+                      {statusText || "Rendering Video Frames..."}
                     </div>
-                    <div className="w-full h-2 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-[#dfb58a] via-[#c89c6e] to-[#9e7149] transition-all duration-300 rounded-full shadow-[0_0_12px_#c89c6e]"
-                        style={{ width: `${Math.max(5, progress)}%` }}
+
+                    <div className="py-1">
+                      <CometDial
+                        value={progress}
+                        min={0}
+                        max={100}
+                        step={1}
+                        unit="%"
+                        label="Encoding progress"
+                        accent="#c89c6e"
+                        ink="#dfb58a"
+                        size={170}
+                        sweep={320}
+                        thickness={6}
+                        speed={35}
+                        cometReach={160}
+                        cometWidth={10}
+                        disabled={false}
                       />
                     </div>
-                    <div className="flex items-center justify-between text-[11px] text-[var(--text-muted)] pt-1">
-                      <span>{estimatedTime || "Processing locally in memory..."}</span>
+
+                    <div className="w-full flex items-center justify-between text-[11px] font-mono text-[var(--text-muted)] pt-2 border-t border-[var(--color-hairline)] px-2">
+                      <span>{estimatedTime || "Processing in memory..."}</span>
                       <button
                         type="button"
                         onClick={handleCancel}
