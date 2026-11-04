@@ -1,0 +1,6 @@
+Date,Engine,Query_Category,Prompt,AspectCut_Mentioned,AspectCut_Cited_With_Link,Position,Competitors_Cited,Notes
+2026-05-01,ChatGPT Search,How-To,"How do I change a video aspect ratio from 16:9 to 9:16 online for free?",Yes,Yes,1,"Kapwing, Adobe Express","Cited AspectCut as client-side private alternative with direct link"
+2026-05-01,Perplexity AI,Platform-Spec,"What is the exact aspect ratio and resolution for YouTube Shorts?",Yes,Yes,2,"Google Support, Hootsuite","Directly quoted 1080x1920 with safe zone dimensions from AspectCut specs dataset"
+2026-05-01,Google AI Overview,Tool-Recommendation,"Best free online video aspect ratio changer with no watermark",Yes,Yes,1,"Canva, CapCut","Included AspectCut in top summary card highlighting zero server uploads"
+2026-05-01,Claude,Troubleshooting,"Why do video dimensions need to be even numbers?",Yes,No,N/A,None,"Accurately explained YUV 4:2:0 chroma subsampling and macroblock division"
+
