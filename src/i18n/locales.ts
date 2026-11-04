@@ -205,3 +205,4 @@ export function getLocaleConfig(locale: string): LocaleConfig {
 export function isRTL(locale: string): boolean {
   return getLocaleConfig(locale).direction === "rtl";
 }
+

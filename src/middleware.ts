@@ -26,3 +26,4 @@ export const config = {
     "/((?!api|_next|ffmpeg|.*\\..*).*)",
   ],
 };
+

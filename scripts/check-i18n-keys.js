@@ -73,3 +73,4 @@ if (hasErrors) {
 } else {
   process.exit(0);
 }
+
