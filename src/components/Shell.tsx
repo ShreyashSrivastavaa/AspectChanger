@@ -208,7 +208,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Main Content Area */}
-      <main className="flex-1 w-full pt-16 sm:pt-20" suppressHydrationWarning>
+      <main className="flex-1 w-full pt-20 sm:pt-24" suppressHydrationWarning>
         {children}
       </main>
 
