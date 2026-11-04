@@ -1,0 +1,186 @@
+/* Nervous Catcher Component Styles */
+.nervous-catcher {
+  --nc-accent: #c89c6e;
+  --nc-accent-glow: rgba(200, 156, 110, 0.35);
+  position: relative;
+  width: 100%;
+  border-radius: 24px;
+}
+
+.nc-scene-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 640 / 380;
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--color-glass-border);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25);
+  background: rgba(244, 238, 229, 0.55);
+}
+
+.dark .nc-scene-wrapper {
+  background: rgba(20, 18, 16, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+.nc-scene-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  color: var(--text-main);
+}
+
+.nc-download-button {
+  position: absolute;
+  left: 31%;
+  top: 73.684%;
+  width: 38%;
+  height: 13.5%;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-size: clamp(11px, 2vw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  z-index: 2;
+  transform-origin: center bottom;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #fdf6ef 45%, #fae6d6 100%);
+  color: #382c22;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 18px rgba(195, 135, 95, 0.25), inset 0 1px 1px #ffffff;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nc-download-button:hover:not(:disabled) {
+  box-shadow: 0 6px 24px rgba(195, 135, 95, 0.4), 0 0 16px rgba(200, 156, 110, 0.45);
+  border-color: #c89c6e;
+  transform: translateY(-1px);
+}
+
+.nc-download-button:disabled {
+  cursor: wait;
+}
+
+.nc-download-button svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.nc-button-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.nc-progress-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(223, 181, 138, 0.35) 0%, rgba(200, 156, 110, 0.6) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.nc-download-button.is-running .nc-progress-fill {
+  opacity: 1;
+}
+
+.nc-download-button.is-done {
+  border-color: #c89c6e;
+  box-shadow: 0 0 20px rgba(200, 156, 110, 0.4);
+}
+
+.nc-caption {
+  text-align: center;
+  min-height: 22px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  margin-top: 10px;
+  transition: color 0.2s;
+}
+
+.nc-toolbar {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nc-quiet-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--text-muted);
+  border: 1px solid var(--color-hairline);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.dark .nc-quiet-button {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.nc-quiet-button:hover {
+  color: var(--text-main);
+  border-color: #c89c6e;
+  background: rgba(200, 156, 110, 0.12);
+}
+
+.nc-quiet-button[aria-pressed="true"] {
+  color: #c89c6e;
+  border-color: rgba(200, 156, 110, 0.5);
+  background: rgba(200, 156, 110, 0.12);
+}
+
+.nc-quiet-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.nc-direct-link {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.nc-direct-link:hover {
+  color: #c89c6e;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nc-scene-wrapper * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
