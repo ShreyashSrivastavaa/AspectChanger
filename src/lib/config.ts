@@ -1,21 +1,24 @@
 export const BRAND = {
   name: "AspectCut",
+  parentCompany: "ZenithDistrict",
+  parentCompanyUrl: "https://zenithdistrict.com",
+  attribution: "A product of ZenithDistrict (zenithdistrict.com)",
   tagline: "Client-side video aspect ratio changer & reframer",
   domain: "https://aspectcut.com",
   canonicalEntityStatement:
     "AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebAssembly; videos are not uploaded to a server.",
   contactEmail: "support@aspectcut.com",
   description:
-    "AspectCut is a free, browser-based video aspect ratio changer that processes files locally with WebAssembly; videos are not uploaded to a server.",
+    "AspectCut is a free, browser-based video aspect ratio changer by ZenithDistrict that processes files locally with WebAssembly; videos are not uploaded to a server.",
   
   // Team and Organization Attribution
-  // Note: Replace TODO placeholders with real founder/company details when deploying
   team: {
-    founderName: "TODO: Add Founder Name (e.g., Alex Chen)",
-    founderRole: "Creator & Lead Systems Engineer",
-    founderTwitter: "TODO: Add Founder Twitter (e.g., https://twitter.com/username)",
-    founderLinkedIn: "TODO: Add Founder LinkedIn (e.g., https://linkedin.com/in/username)",
-    organization: "AspectCut Labs",
+    founderName: "ZenithDistrict Team",
+    founderRole: "Product & Engineering",
+    founderTwitter: "https://twitter.com/zenithdistrict",
+    founderLinkedIn: "https://linkedin.com/company/zenithdistrict",
+    organization: "ZenithDistrict",
+    organizationUrl: "https://zenithdistrict.com",
     foundingYear: 2026,
     mission:
       "Empowering video creators with fast, private, client-side browser tools that eliminate slow cloud queues, privacy leaks, and subscription watermarks.",

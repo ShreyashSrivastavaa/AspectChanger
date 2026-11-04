@@ -164,6 +164,11 @@ export function buildOrganizationSchema() {
     url: BRAND.domain,
     logo: `${BRAND.domain}/icon.png`,
     description: BRAND.canonicalEntityStatement,
+    parentOrganization: {
+      "@type": "Organization",
+      name: "ZenithDistrict",
+      url: "https://zenithdistrict.com",
+    },
     knowsAbout: [
       "Video aspect ratio transformation",
       "FFmpeg WebAssembly compilation",
