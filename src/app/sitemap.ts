@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
-import { BRAND } from "@/lib/config";
+import { ALL_LOCALES } from "@/i18n/locales";
+import { buildLocaleUrl, buildHreflangAlternates } from "@/lib/i18n/seo-metadata";
 import { RATIO_PAIRS_DATA } from "@/lib/seo/ratio-pairs-data";
 import { VERIFIED_PLATFORM_SPECS } from "@/lib/seo/verified-specs";
 import { DEVICES_DATA } from "@/lib/seo/devices-data";
@@ -11,134 +12,128 @@ import { GLOSSARY_TERMS } from "@/lib/seo/glossary-data";
 import { GUIDES_DATA } from "@/lib/seo/guides-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = BRAND.domain;
   const now = new Date();
 
-  // 1. Core static and hub pages
-  const coreRoutes: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: now, changeFrequency: "daily", priority: 1.0 },
-    { url: `${baseUrl}/tools`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/for`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/from`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
-    { url: `${baseUrl}/convert`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
-    { url: `${baseUrl}/fix`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
-    { url: `${baseUrl}/compare`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/resolution`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/calculator`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
-    { url: `${baseUrl}/calculator/aspect-ratio`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
-    { url: `${baseUrl}/glossary`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/guides`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
-    { url: `${baseUrl}/methodology`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/benchmarks`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
-    { url: `${baseUrl}/data/platform-specs`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
-    { url: `${baseUrl}/press`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/all-pages`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/faq`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${baseUrl}/terms`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${baseUrl}/privacy`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${baseUrl}/changelog`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
-    { url: `${baseUrl}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+  // Define base relative route paths with their SEO properties
+  const baseEntries: Array<{
+    path: string;
+    changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+    priority: number;
+  }> = [
+    // 1. Core static and hub pages
+    { path: "/", changeFrequency: "daily", priority: 1.0 },
+    { path: "/tools", changeFrequency: "weekly", priority: 0.9 },
+    { path: "/for", changeFrequency: "weekly", priority: 0.9 },
+    { path: "/from", changeFrequency: "weekly", priority: 0.85 },
+    { path: "/convert", changeFrequency: "weekly", priority: 0.85 },
+    { path: "/fix", changeFrequency: "weekly", priority: 0.85 },
+    { path: "/compare", changeFrequency: "weekly", priority: 0.8 },
+    { path: "/resolution", changeFrequency: "weekly", priority: 0.8 },
+    { path: "/calculator", changeFrequency: "weekly", priority: 0.85 },
+    { path: "/calculator/aspect-ratio", changeFrequency: "weekly", priority: 0.85 },
+    { path: "/glossary", changeFrequency: "weekly", priority: 0.8 },
+    { path: "/guides", changeFrequency: "weekly", priority: 0.85 },
+    { path: "/methodology", changeFrequency: "monthly", priority: 0.7 },
+    { path: "/benchmarks", changeFrequency: "monthly", priority: 0.75 },
+    { path: "/data/platform-specs", changeFrequency: "weekly", priority: 0.85 },
+    { path: "/press", changeFrequency: "monthly", priority: 0.6 },
+    { path: "/all-pages", changeFrequency: "weekly", priority: 0.7 },
+    { path: "/about", changeFrequency: "monthly", priority: 0.6 },
+    { path: "/faq", changeFrequency: "weekly", priority: 0.7 },
+    { path: "/terms", changeFrequency: "monthly", priority: 0.5 },
+    { path: "/privacy", changeFrequency: "monthly", priority: 0.5 },
+    { path: "/changelog", changeFrequency: "weekly", priority: 0.6 },
+    { path: "/contact", changeFrequency: "monthly", priority: 0.5 },
+
+    // 2. Programmatic conversion pairs (/tools/[pair])
+    ...RATIO_PAIRS_DATA.map((p) => ({
+      path: `/tools/${p.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
+
+    // 3. Platform presets (/for/[platform])
+    ...Object.values(VERIFIED_PLATFORM_SPECS).map((p) => ({
+      path: `/for/${p.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
+
+    // 4. Source devices (/from/[device])
+    ...Object.values(DEVICES_DATA).map((d) => ({
+      path: `/from/${d.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    })),
+
+    // 5. Container formats (/convert/[slug])
+    ...Object.values(FORMATS_DATA).map((f) => ({
+      path: `/convert/${f.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    })),
+
+    // 6. Problem solutions (/fix/[slug])
+    ...Object.values(PROBLEMS_DATA).map((pr) => ({
+      path: `/fix/${pr.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    })),
+
+    // 7. Aspect ratio comparisons (/compare/[slug])
+    ...Object.values(COMPARISONS_DATA).map((c) => ({
+      path: `/compare/${c.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+
+    // 8. Dimension resolution specs (/resolution/[dimension])
+    ...Object.values(RESOLUTIONS_DATA).map((r) => ({
+      path: `/resolution/${r.dimension}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+
+    // 9. Calculator ratio resolution tables (/calculator/resolution/[ratio])
+    ...RATIO_PAIRS_DATA.slice(0, 6).map((p) => ({
+      path: `/calculator/resolution/${p.slug.split("-to-")[0]}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
+
+    // 10. Educational guides (/guides/[slug])
+    ...Object.values(GUIDES_DATA).map((g) => ({
+      path: `/guides/${g.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    })),
+
+    // 11. Glossary terms (/glossary/[term])
+    ...Object.values(GLOSSARY_TERMS).map((gt) => ({
+      path: `/glossary/${gt.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
   ];
 
-  // 2. Programmatic conversion pairs (/tools/[pair])
-  const ratioPairRoutes: MetadataRoute.Sitemap = RATIO_PAIRS_DATA.map((p) => ({
-    url: `${baseUrl}/tools/${p.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.9,
-  }));
+  // Generate full matrix of URLs across all 20 locales with reciprocal hreflang alternates
+  const sitemapEntries: MetadataRoute.Sitemap = [];
 
-  // 3. Platform presets (/for/[platform])
-  const platformRoutes: MetadataRoute.Sitemap = Object.values(VERIFIED_PLATFORM_SPECS).map((p) => ({
-    url: `${baseUrl}/for/${p.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.9,
-  }));
+  for (const entry of baseEntries) {
+    const alternatesLanguages = buildHreflangAlternates(entry.path);
 
-  // 4. Source devices (/from/[device])
-  const deviceRoutes: MetadataRoute.Sitemap = Object.values(DEVICES_DATA).map((d) => ({
-    url: `${baseUrl}/from/${d.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.85,
-  }));
+    for (const locale of ALL_LOCALES) {
+      sitemapEntries.push({
+        url: buildLocaleUrl(locale, entry.path),
+        lastModified: now,
+        changeFrequency: entry.changeFrequency,
+        priority: locale === "en" ? entry.priority : Math.max(0.4, entry.priority - 0.05),
+        alternates: {
+          languages: alternatesLanguages,
+        },
+      });
+    }
+  }
 
-  // 5. Container formats (/convert/[slug])
-  const formatRoutes: MetadataRoute.Sitemap = Object.values(FORMATS_DATA).map((f) => ({
-    url: `${baseUrl}/convert/${f.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.85,
-  }));
-
-  // 6. Problem solutions (/fix/[slug])
-  const problemRoutes: MetadataRoute.Sitemap = Object.values(PROBLEMS_DATA).map((pr) => ({
-    url: `${baseUrl}/fix/${pr.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.85,
-  }));
-
-  // 7. Aspect ratio comparisons (/compare/[slug])
-  const comparisonRoutes: MetadataRoute.Sitemap = Object.values(COMPARISONS_DATA).map((c) => ({
-    url: `${baseUrl}/compare/${c.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  // 8. Dimension resolution specs (/resolution/[dimension])
-  const resolutionRoutes: MetadataRoute.Sitemap = Object.values(RESOLUTIONS_DATA).map((r) => ({
-    url: `${baseUrl}/resolution/${r.dimension}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  // 9. Calculator ratio resolution tables (/calculator/resolution/[ratio])
-  const calculatorRatioRoutes: MetadataRoute.Sitemap = [
-    "16-9",
-    "9-16",
-    "1-1",
-    "4-5",
-    "4-3",
-    "21-9",
-  ].map((ratio) => ({
-    url: `${baseUrl}/calculator/resolution/${ratio}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  // 10. Glossary terms (/glossary/[term])
-  const glossaryRoutes: MetadataRoute.Sitemap = Object.values(GLOSSARY_TERMS).map((g) => ({
-    url: `${baseUrl}/glossary/${g.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.75,
-  }));
-
-  // 11. Pillar guides (/guides/[slug])
-  const guideRoutes: MetadataRoute.Sitemap = Object.values(GUIDES_DATA).map((g) => ({
-    url: `${baseUrl}/guides/${g.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.85,
-  }));
-
-  return [
-    ...coreRoutes,
-    ...ratioPairRoutes,
-    ...platformRoutes,
-    ...deviceRoutes,
-    ...formatRoutes,
-    ...problemRoutes,
-    ...comparisonRoutes,
-    ...resolutionRoutes,
-    ...calculatorRatioRoutes,
-    ...glossaryRoutes,
-    ...guideRoutes,
-  ];
+  return sitemapEntries;
 }
