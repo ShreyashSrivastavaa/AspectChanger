@@ -140,10 +140,10 @@ export default function Shell({ children }: { children: React.ReactNode }) {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col studio-background transition-colors duration-300" suppressHydrationWarning>
+    <div className="min-h-screen flex flex-col studio-background transition-colors duration-300 relative" suppressHydrationWarning>
       
-      {/* Floating Frosted Glass Header (Fixed at top on scroll with frosted glass backdrop) */}
-      <div className="w-full px-4 sm:px-6 fixed top-3 left-0 right-0 z-50 pointer-events-none" suppressHydrationWarning>
+      {/* Floating Frosted Glass Header (Stays at the top of the page, does not follow scroll) */}
+      <div className="w-full px-4 sm:px-6 absolute top-3 left-0 right-0 z-30 pointer-events-none" suppressHydrationWarning>
         <header className="max-w-4xl mx-auto px-5 py-2.5 rounded-full glass-header flex items-center justify-between pointer-events-auto">
           
           {/* Brand Mark (with mineral tag) */}
