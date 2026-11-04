@@ -9,6 +9,7 @@
     "check:keywords": "node scripts/check-cannibalization.js",
     "check:quality": "node scripts/check-quality-gates.js",
     "check:schemas": "node scripts/check-schemas.js",
+    "check:i18n": "node scripts/check-i18n-keys.js",
     "check:links": "node scripts/check-internal-links.js",
     "monitor:specs": "node scripts/monitor-specs.js",
     "dev": "next dev",
