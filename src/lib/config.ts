@@ -7,7 +7,7 @@ export const BRAND = {
   domain: process.env.NEXT_PUBLIC_SITE_URL || "https://aspectcut.vercel.app",
   canonicalEntityStatement:
     "AspectCut is a free tool to resize video online. It processes files locally in your browser with WebCodecs; videos are not uploaded to a server.",
-  contactEmail: "support@aspectcut.com",
+  contactEmail: "zenithdistrict14@gmail.com",
   description:
     "AspectCut is a free tool by ZenithDistrict to resize video online. It processes files locally in your browser with WebCodecs; videos are not uploaded to a server.",
   
