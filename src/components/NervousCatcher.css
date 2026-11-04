@@ -17,6 +17,7 @@
   border: 1px solid var(--color-glass-border);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25);
   background: rgba(244, 238, 229, 0.55);
+  container-type: inline-size;
 }
 
 .dark .nc-scene-wrapper {
@@ -37,20 +38,20 @@
 
 .nc-download-button {
   position: absolute;
-  left: 31%;
+  left: 19%;
   top: 73.684%;
-  width: 38%;
+  width: 50%;
   height: 13.5%;
-  padding: 0 14px;
+  padding: 0 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   border-radius: 9999px;
   font-family: var(--font-sans);
-  font-size: clamp(11px, 2vw, 13px);
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-size: clamp(10.5px, 3.4cqw, 12.5px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
   z-index: 2;
   transform-origin: center bottom;
   overflow: hidden;
@@ -63,10 +64,21 @@
   user-select: none;
 }
 
+.dark .nc-download-button {
+  background: linear-gradient(180deg, #2a2521 0%, #1d1916 100%);
+  color: #f5ede4;
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+}
+
 .nc-download-button:hover:not(:disabled) {
   box-shadow: 0 6px 24px rgba(195, 135, 95, 0.4), 0 0 16px rgba(200, 156, 110, 0.45);
   border-color: #c89c6e;
   transform: translateY(-1px);
+}
+
+.dark .nc-download-button:hover:not(:disabled) {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(200, 156, 110, 0.3);
 }
 
 .nc-download-button:disabled {
@@ -74,8 +86,8 @@
 }
 
 .nc-download-button svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   flex: none;
 }
 
@@ -84,9 +96,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 6px;
   z-index: 1;
   white-space: nowrap;
+  max-width: 100%;
 }
 
 .nc-progress-fill {
@@ -184,3 +197,4 @@
     animation: none !important;
   }
 }
+
