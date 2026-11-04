@@ -3,6 +3,9 @@ import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Shell from "@/components/Shell";
 import { BRAND } from "@/lib/config";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getLocale } from "next-intl/server";
+import { getLocaleConfig, isRTL } from "@/i18n/locales";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -83,11 +86,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+  const dir = isRTL(locale) ? "rtl" : "ltr";
+  const config = getLocaleConfig(locale);
+
   const jsonLdOrg = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -120,7 +128,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={config.hreflang} dir={dir} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -135,9 +143,11 @@ export default function RootLayout({
         className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <Shell>
-          {children}
-        </Shell>
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          <Shell>
+            {children}
+          </Shell>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
