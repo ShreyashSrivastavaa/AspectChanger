@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import NervousCatcher from "./NervousCatcher";
 import { 
   processVideoLocally, 
   terminateFFmpeg, 
@@ -276,6 +277,7 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
       {/* STATE 1: EMPTY STATE — Architectural Frosted Glass Hero Card (Progria Nova styling) */}
       {!file ? (
         <div
+          suppressHydrationWarning
           onDragOver={onDragOver}
           onDragLeave={onDragLeave}
           onDrop={onDrop}
@@ -623,27 +625,29 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                   </div>
                 )}
 
-                {/* Processing State: Progress bar, real percentage, real ETA */}
+                {/* Processing State: Clean progress bar, real percentage, real ETA */}
                 {isProcessing && (
                   <div className="p-4 rounded-2xl glass-panel space-y-2.5">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="text-[var(--text-main)] font-medium">{statusText}</span>
+                      <span className="text-[var(--text-main)] font-medium">
+                        {statusText || "Rendering Video Frames..."}
+                      </span>
                       <span className="font-mono text-[#c89c6e] font-bold">
                         {progress > 0 ? `${progress}%` : "Processing"}
                       </span>
                     </div>
-                    <div className="w-full h-1.5 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
+                    <div className="w-full h-2 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-gradient-to-r from-[#dfb58a] via-[#c89c6e] to-[#9e7149] transition-all duration-300 rounded-full shadow-[0_0_12px_#c89c6e]"
                         style={{ width: `${Math.max(5, progress)}%` }}
                       />
                     </div>
-                    <div className="flex items-center justify-between text-[11px] text-[var(--text-muted)]">
-                      <span>{estimatedTime || "Processing locally..."}</span>
+                    <div className="flex items-center justify-between text-[11px] text-[var(--text-muted)] pt-1">
+                      <span>{estimatedTime || "Processing locally in memory..."}</span>
                       <button
                         type="button"
                         onClick={handleCancel}
-                        className="text-red-500 hover:underline font-mono text-[10px]"
+                        className="text-red-500 hover:text-red-600 hover:underline font-mono text-[11px] font-semibold transition-colors"
                       >
                         Cancel
                       </button>
@@ -651,35 +655,18 @@ export default function VideoProcessor({ initialRatio }: VideoProcessorProps) {
                   </div>
                 )}
 
-                {/* Done State: Success Card & Glowing Download Button */}
+                {/* Done State: Success Card & StickMan Nervous Catcher */}
                 {resultBlob && (
-                  <div className="p-4 rounded-2xl glass-panel space-y-3">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-semibold text-[var(--text-main)]">Ready for Download</span>
-                      <span className="font-mono text-[var(--text-muted)]">
-                        {(resultBlob.blob.size / (1024 * 1024)).toFixed(1)} MB
-                      </span>
-                    </div>
-                    <a
-                      href={resultBlob.url}
-                      download={resultBlob.filename}
-                      className="w-full h-12 rounded-full btn-radiant-glow font-bold text-xs uppercase tracking-wider flex items-center justify-center shadow-lg"
-                    >
-                      Download Video ({resultBlob.filename})
-                    </a>
-                    <div className="flex items-center justify-between text-[11px] text-[var(--text-muted)] pt-1">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setResultBlob(null);
-                          setProgress(0);
-                        }}
-                        className="hover:underline text-[var(--text-main)]"
-                      >
-                        Convert another
-                      </button>
-                      <span className="font-mono">100% Lossless copy</span>
-                    </div>
+                  <div className="p-4 rounded-3xl glass-panel shadow-lg">
+                    <NervousCatcher
+                      blobUrl={resultBlob.url}
+                      filename={resultBlob.filename}
+                      fileSize={resultBlob.blob.size}
+                      onConvertAnother={() => {
+                        setResultBlob(null);
+                        setProgress(0);
+                      }}
+                    />
                   </div>
                 )}
               </div>
